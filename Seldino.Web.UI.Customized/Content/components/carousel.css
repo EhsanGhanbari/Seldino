@@ -1,0 +1,169 @@
+﻿ul.carousel3d {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+}
+
+    ul.carousel3d.carousel-3-item.disabled {
+    }
+
+        ul.carousel3d.carousel-3-item.disabled li.item2 img {
+            width: 130% !important;
+            -webkit-filter: grayscale(100%);
+            -moz-filter: grayscale(100%);
+            -o-filter: grayscale(100%);
+            filter: grayscale(100%);
+        }
+
+        ul.carousel3d.carousel-3-item.disabled li:not(.item2) img {
+            opacity: 0.5 !important;
+            -webkit-filter: grayscale(100%);
+            -moz-filter: grayscale(100%);
+            -o-filter: grayscale(100%);
+            filter: grayscale(100%);
+            cursor: default;
+        }
+
+    ul.carousel3d.empty:before {
+        content: "تصویری برای محصول وجود ندارد!";
+        width: 100%;
+        height: 100px;
+        background: #eee;
+        position: absolute;
+        font-weight: bold;
+        text-align: center;
+        line-height: 100px;
+        border-top: solid 1px #ccc;
+        border-bottom: solid 1px #ccc;
+        top: 50%;
+        transform: translate(0,-50%);
+    }
+
+    ul.carousel3d:hover li img {
+        -ms-opacity: 1 !important;
+        opacity: 1 !important;
+    }
+
+    ul.carousel3d li {
+        cursor: pointer;
+        list-style: none;
+        position: absolute;
+        display: table;
+        margin: 0;
+        padding: 0;
+        -webkit-transition: all 0.3s;
+        -moz-transition: all 0.3s;
+        -ms-transition: all 0.3s;
+        -o-transition: all 0.3s;
+        transition: all 0.3s;
+    }
+
+        ul.carousel3d li img {
+            -webkit-transition: all 0.3s;
+            -moz-transition: all 0.3s;
+            -ms-transition: all 0.3s;
+            -o-transition: all 0.3s;
+            transition: all 0.3s;
+        }
+
+    ul.carousel3d.carousel-3-item li {
+        width: 34.33333%;
+        height: 100%;
+        overflow: hidden;
+    }
+
+        ul.carousel3d.carousel-3-item li img {
+            width: 100%;
+            display: table-cell;
+            vertical-align: middle;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            -moz-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            -o-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+        }
+
+        ul.carousel3d.carousel-3-item li.item1 img,
+        ul.carousel3d.carousel-3-item li.item3 img {
+            opacity: 0;
+        }
+
+        ul.carousel3d.carousel-3-item li.item1,
+        ul.carousel3d.carousel-3-item li.item3 {
+            opacity: 0.4;
+        }
+
+        ul.carousel3d.carousel-3-item li.outRight,
+        ul.carousel3d.carousel-3-item li.outLeft {
+            opacity: 0;
+        }
+
+        ul.carousel3d.carousel-3-item li.item1 {
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        ul.carousel3d.carousel-3-item li.item2 {
+            cursor: default;
+            left: 50%;
+            -webkit-transform: translate(-50%, 0);
+            -moz-transform: translate(-50%, 0);
+            -ms-transform: translate(-50%, 0);
+            -o-transform: translate(-50%, 0);
+            transform: translate(-50%, 0);
+            width: 40%;
+            z-index: 2;
+            padding: 5px;
+        }
+
+            ul.carousel3d.carousel-3-item li.item2 img {
+                width: 130%;
+            }
+
+    ul.carousel3d.carousel-3-item:hover li.item2 {
+            border-radius: 5px;
+            border: solid 1px #999;
+    }
+
+    ul.carousel3d.carousel-3-item:hover li.item2 img {
+        width: 150%;
+    }
+
+    ul.carousel3d.carousel-3-item li.item3 {
+        top: 0;
+        right: 0;
+        z-index: 1;
+    }
+
+
+    ul.carousel3d.carousel-3-item li.outRight {
+        right: 10%;
+        top: -10%;
+    }
+
+    ul.carousel3d.carousel-3-item li.InRight {
+        right: 0;
+        top: 0;
+    }
+
+    ul.carousel3d.carousel-3-item li.outLeft {
+        left: 10%;
+        top: -10%;
+    }
+
+    ul.carousel3d.carousel-3-item li.InLeft {
+        left: 0;
+        top: 0;
+    }

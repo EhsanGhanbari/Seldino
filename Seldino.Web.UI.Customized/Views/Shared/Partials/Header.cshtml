@@ -1,0 +1,124 @@
+﻿@using Seldino.Application.Query.MembershipService
+@using Seldino.CrossCutting.Web.ViewMessages
+
+@{
+    var actionName = ViewContext.Controller.ValueProvider.GetValue("action").RawValue;
+    var controllerName = ViewContext.Controller.ValueProvider.GetValue("controller").RawValue;
+}
+
+<div class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-toggle" data-side-nav="left">
+                <i class="fa fa-navicon"></i>
+            </a>
+
+            <a class="navbar-brand hidden-xs" href="@Url.Action("Index", "Home", new {area = ""})">
+                <img src="/Content/Images/logo.png">
+            </a>
+        </div>
+
+        <div class="visible-xs pull-right logo-xs">
+            <img src="/Content/Images/logo.png">
+        </div>
+
+        <div class="navbar-collapse collapse navbar-right">
+            <ul class="nav navbar-nav navbar-right navbar-icons hidden-xs">
+                <li><a href="#" data-side-nav="right"><i class="fa fa-navicon"></i></a></li>
+                @if ((string)controllerName != "Account")
+                {
+                    if (!User.Identity.IsAuthenticated)
+                    {
+                        <li><a href="javascript:void(0);" data-toggle="modal" data-target="#modalLogin" title="ورود به کادوبین"><i class="fa fa-lock"></i></a></li>
+                        <li><a href="@Url.Action("register", "Account", new {area = ""})" title="ثبت نام در کادوبین"><i class="fa fa-user"></i></a></li>
+                    }
+                    else
+                    {
+                        <li><a href="@Url.Action("SignOut", "Account", new {area = ""})" title="خروج از فروشگاه"><i class="fa fa-power-off"></i></a></li>
+                        <li><a href="@Url.Action("Index", "Dashboard", new {area = "Management"})" title="داشبورد"><i class="fa fa-dashboard"></i></a></li>
+                    }
+                }
+                <li><a href="#search"><i class="fa fa-search"></i></a></li>
+            </ul>
+
+            <ul class="nav navbar-nav hidden-xs">
+                <li>@Html.ActionLink("خانه", "Index", "Home")</li>
+                <li>@Html.ActionLink("درباره ما", "About", "Home")</li>
+                <li>@Html.ActionLink("تماس با ما", "Contact", "Home")</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="side-nav" data-side="left">
+        <div class="nav-side-header">
+            <img src="~/Content/Images/logo.png" />
+        </div>
+        <div class="nav-side-content">
+            <ul class="list-group">
+                @if (!User.Identity.IsAuthenticated)
+                {
+                    <li class="list-group-item">
+                        <a href="@Url.Action("Register", "Account", new {area=""})">
+                            <i class="fa fa-user"></i>
+                            ثبت نام در کادوبین
+                        </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="@Url.Action("SignIn", "Account", new {area=""})">
+                            <i class="fa fa-lock"></i>
+                            حساب کاربری
+                        </a>
+                    </li>
+                }
+                else
+                {
+                    <li class="list-group-item"><a href="@Url.Action("SignOut", "Account", new {area = ""})">خروج از فروشگاه</a></li>
+                }
+            </ul>
+            
+            <ul class="list-group">
+                <li class="list-group-item">@Html.ActionLink("خانه", "Index", "Home")</li>
+                <li class="list-group-item">@Html.ActionLink("درباره ما", "About", "Home")</li>
+                <li class="list-group-item">@Html.ActionLink("تماس با ما", "Contact", "Home")</li>
+                <li class="list-group-item">@Html.ActionLink("محصولات پر فروش", "BestSellings", "Product")</li>
+                <li class="list-group-item">@Html.ActionLink("محصولات پر  بازدید", "MostVisiteds", "Product")</li>
+                <li class="list-group-item">@Html.ActionLink("محصولات محبوب  ", "Populars", "Product")</li>
+                <li class="list-group-item">@Html.ActionLink("محصولات تخفیف خورده  ", "Discounteds", "Product")</li>
+            </ul>
+
+            <hr/>
+
+            <div class="text-center en">
+                <i class="fa fa-instagram fa-2x"></i>
+
+                <h4>#Kadobin</h4>
+
+                <hr />
+
+                <button class="btn btn-sm btn-default">
+                    <i class="fa fa-facebook"></i>
+                </button>
+                <button class="btn btn-sm btn-default">
+                    <i class="fa fa-twitter"></i>
+                </button>
+                <button class="btn btn-sm btn-default">
+                    <i class="fa fa-instagram"></i>
+                </button>
+                <button class="btn btn-sm btn-default">
+                    <i class="fa fa-youtube"></i>
+                </button>
+                <button class="btn btn-sm btn-default">
+                    <i class="fa fa-google-plus"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@Html.Action("ShowBasket", "Basket", new { area = "", pageIndex = 1, pageSize = 1000 })
+
+@Html.Action("SearchForm", "Product", new { area = "" })
+
+@Html.Partial("Partials/Login", new AuthenticateQueryRequest())
+
+<div class="clearfix"></div>

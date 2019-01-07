@@ -1,0 +1,41 @@
+﻿    @model Seldino.Application.Query.ProductService.ProductCategoriesQueryResponse
+@using Seldino.CrossCutting.Web.ViewMessages
+
+@if (Model != null)
+{
+    foreach (var item in Model.Categories)
+    {
+        if (item.ProductBrands.Count != 0 || item.ProductTags.Count != 0)
+        {
+            <div class="col-lg-3 box">
+                <div class="page-header">
+                    <b>@item.Name</b>
+                </div>
+
+                <div class="scroller mCustomScrollbar" data-mcs-theme="dark">
+                    <ul class="list-group">
+                        @foreach (var sub in item.ProductBrands)
+                        {
+                            <li class="list-group-item">
+                                <div class="row">
+                                    @Html.ActionLink(sub.Name, "category", "Product", new { category = sub.Name, pageIndex = 1, pageSize = 20 }, null)
+                                    <small class="text-muted pull-left">@ProductViewMessage.ProductBrand</small>
+                                </div>
+                            </li>
+                        }
+
+                        @foreach (var sub in item.ProductTags)
+                        {
+                            <li class="list-group-item">
+                                <div class="row">
+                                    @Html.ActionLink(sub.Name, "Tag", "Product", new { category = item.Name, tag = sub.Name, pageIndex = 1, pageSize = 20 }, null)
+                                    <small class="text-muted pull-left">@ProductViewMessage.ProductTag</small>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        }
+    }
+}

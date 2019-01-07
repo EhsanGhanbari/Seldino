@@ -1,0 +1,190 @@
+﻿@using Seldino.CrossCutting.Web.Helpers
+@using Seldino.CrossCutting.Web.ViewMessages
+@model  Seldino.Application.Query.ProductService.ProductDto
+
+@{
+    ViewBag.Title = ProductViewMessage.ProductDetailTitle;
+}
+<div class="row">
+    <div class="col-xs-12">
+        <div class="panel panel-default">
+            <div class="panel-body prdetail">
+                <div class="row">
+                    <div class="col-sm-4">
+                        @if (Model.ProductPictures.Count != 0)
+                        {
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="img-rounded sl-p" style="background-image: url(@Html.GetImageUrl(Model.ProductPictures.FirstOrDefault().FullPath)"></div>
+                                </div>
+                                <div class="col-xs-12">
+                                    @foreach (var item in Model.ProductPictures.Skip(1))
+                                    {
+                                        <div class="img-rounded col-xs-3  sl-po" style="background-image: url(@Url.Content(item.Address + "/" + item.Name))"></div>
+                                    }
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="d-img noimg"><i class="icon-picture"></i></div>
+                        }
+                    </div>
+                    <div class="col-sm-8">
+
+                        <div class="clearfix">
+                            <div class="pull-right">
+                                <h4>@Model.ProductName</h4>
+                            </div>
+                            <div class="pull-left">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span class="icon-reorder icon-large pract"></span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#"><i class="icon-shopping-cart"></i>&nbsp;@BasketViewMessage.AddToCart</a></li>
+                                        <li><a href="#"><i class="icon-heart-empty"></i>&nbsp;@ProductViewMessage.MyFavorite</a></li>
+                                        <li><a href="#"><i class="icon-th-large"></i>&nbsp;@ProductViewMessage.SimilarProducts</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                        <p>@Html.ActionLink((Model.ProductCategory != null) ? Model.ProductCategory.Name : "Category", "Product", new { category = Model.ProductCategory.Name }, new { @class = "btn btn-link" }) </p>
+                        <p>@ProductViewMessage.ProductBrand: @((Model.ProductBrand != null) ? Model.ProductBrand.Name : "")</p>
+                        <p class="price">@Model.Price @ProductViewMessage.CurrencyToman</p>
+                        <p>
+                            @ProductViewMessage.ProductTag:
+                            @foreach (var item in Model.ProductTags)
+                            {
+                                <text>
+                                    @Html.ActionLink(item.Name, "Tag", "Product", new { tag = item.Name }, new { @class = "btn btn-link" }) &nbsp;
+                                </text>
+                            }
+                        </p>
+                        <div class="despr">
+                            <div class="descon">
+                                <p>
+                                    <strong>@CommonViewMessage.Detail: </strong>
+                                    @Model.Description
+                                </p>
+                            </div>
+                        </div>
+                        @*<div class="btn-group btn-group-justified" role="group" aria-label="...">
+                                <div class="btn-group" role="group">
+                                    <button data-toggle="tooltip" data-placement="top" title="@ProductViewMessage.AddToCart" type="button" class="btn btn-info btn-xs"><i class="icon-shopping-cart"></i></button>
+                                </div>
+                                <div class="btn-group" role="group">
+                                    <span data-favorite-type="Product" data-action="@Url.Action("Add", "Favorite", new { ProductId = Model.ProductId })" data-favorite-id="@Model.ProductId" data-toggle="tooltip" data-placement="top" title="@ProductViewMessage.MyFavorite" class="btn btn-info btn-xs"><i class="icon-heart-empty"></i>&nbsp;250</span>
+                                </div>
+                                <div class="btn-group" role="group">
+                                    <button data-toggle="tooltip" data-placement="top" title="@ProductViewMessage.Like" type="button" class="btn btn-info btn-xs"><i class="icon-thumbs-up-alt"></i>&nbsp;2650</button>
+                                </div>
+                            </div>*@
+
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer media-footer">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="media">
+                            <div class="media-left">
+                                <img class="media-object img-circle" src="http://placehold.it/70x70">
+                            </div>
+                            <div class="media-body">
+                                <div class="clearfix">
+                                    <div class="pull-right"><h4 class="media-heading" id="media-heading">آریا<a class="anchorjs-link" href="#media-heading"><span class="anchorjs-icon"></span></a></h4></div>
+                                    <div class="pull-left">
+                                        <div class="btn-group">
+                                            <button class="btn btn-primary btn-xs"><i class="icon-thumbs-up-alt"></i> 15</button>
+                                            <button class="btn btn-danger btn-xs"><i class="icon-thumbs-down-alt"></i> 10</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="media-body-text">
+                                    سلام. وقتی خواستین شارژ کنین خواهشا قرمز جیگری یا عنابی هم حتما بیارید. همین کالج ولی با رنگ های متنوع. قرمز یادتون نره. مرسی
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="media">
+                            <div class="media-left">
+                                <img class="media-object img-circle" src="http://placehold.it/70x70">
+                            </div>
+                            <div class="media-body">
+                                <div class="clearfix">
+                                    <div class="pull-right"><h4 class="media-heading" id="media-heading">آریا<a class="anchorjs-link" href="#media-heading"><span class="anchorjs-icon"></span></a></h4></div>
+                                    <div class="pull-left">
+                                        <div class="btn-group">
+                                            <button class="btn btn-primary btn-xs"><i class="icon-thumbs-up-alt"></i> 15</button>
+                                            <button class="btn btn-danger btn-xs"><i class="icon-thumbs-down-alt"></i> 10</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="media-body-text">
+                                    سلام. وقتی خواستین شارژ کنین خواهشا قرمز جیگری یا عنابی هم حتما بیارید. همین کالج ولی با رنگ های متنوع. قرمز یادتون نره. مرسی
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-sm-3"></div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">دیدگاه خود را در مورد این محصول بیان کنید</div>
+            <div class="panel-body">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="inputEmail3">نام</label>
+                        <div class="col-sm-6">
+                            <input type="text" placeholder="نام" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="inputEmail3">ایمیل</label>
+                        <div class="col-sm-6">
+                            <input type="email" placeholder="ایمیل" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="inputPassword3">دیدگاه</label>
+                        <div class="col-sm-6">
+                            <textarea placeholder="دیدگاه" class="form-control"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button class="btn btn-info btn-sm" type="submit">ارسال دیدگاه</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $("body").on("click", "[data-favorite-type]", function () {
+
+        @*xmlhttp.open("Post", "@Url.Action("Add", "Favorite")");*@
+        var command = {
+            UserId: "",
+            ProductId: $(this).attr("data-favorite-id"),
+            StoreId: ""
+        };
+        console.log(command);
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                alert(JSON.parse(xmlhttp.responseText).message)
+            }
+        }
+        xmlhttp.open("Post", $(this).attr("data-action"), true);
+        xmlhttp.send();
+
+
+    })
+</script>

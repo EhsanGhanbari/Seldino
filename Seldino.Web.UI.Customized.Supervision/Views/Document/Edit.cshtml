@@ -1,0 +1,76 @@
+﻿@model Seldino.Application.Command.DocumentHandler.EditDocumentCommand
+@using Seldino.CrossCutting.Web.ViewMessages
+@{
+    ViewBag.Title = DocumentViewMessage.Edit;
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <h4 class="page-header">@DocumentViewMessage.Edit</h4>
+        @using (Html.BeginForm("Edit", "DocumentSuperviser", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal" }))
+        {
+            <div class="col-lg-12">
+                <div class="form-group">
+                    @Html.HiddenFor(p => p.DocumentId)
+                    @Html.CheckBoxFor(p => p.IsDefault)
+                    @Html.Label(DocumentViewMessage.IsDefault, new { @class = "control-label" })
+                    @Html.ValidationMessageFor(c => c.IsDefault)
+                </div>
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active"><a href="#rule" aria-controls="profile" role="tab" data-toggle="tab">@DocumentViewMessage.Rule</a></li>
+                    <li role="presentation"><a href="#about" aria-controls="messages" role="tab" data-toggle="tab">@DocumentViewMessage.About</a></li>
+                    <li role="presentation"><a href="#social" aria-controls="messages" role="tab" data-toggle="tab">@DocumentViewMessage.SocialNetwork</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane fade in active" id="rule">
+                        <hr class="transparent" />
+                        @Html.TextAreaFor(p => p.RuleCommand.Body)
+                        @Html.ValidationMessageFor(c => c.RuleCommand.Body)
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="about">
+                        <hr class="transparent" />
+                        @Html.TextAreaFor(p => p.AboutCommand.Body)
+                        @Html.ValidationMessageFor(c => c.AboutCommand.Body)
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="social">
+                        <hr class="transparent" />
+                    </div>
+                </div>
+                <hr />
+                <button type="submit" class="btn btn-default">@CommonViewMessage.Save</button>
+                <hr class="transparent" />
+            </div>
+        }
+    </div>
+</div>
+
+<script src="@Url.Content("~/Scripts/CKEditor/ckeditor.js")"></script>
+<script>
+    $(function () {
+        CKEDITOR.replace('RuleCommand_Body', {
+            filebrowserImageBrowseUrl: '/Supervision/DocumentSuperviser/GetPictures',
+            filebrowserImageUploadUrl: '/Supervision/DocumentSuperviser/SavePicture'
+        });
+        CKEDITOR.replace('AboutCommand_Body', {
+            filebrowserImageBrowseUrl: '/Supervision/DocumentSuperviser/GetPictures',
+            filebrowserImageUploadUrl: '/Supervision/DocumentSuperviser/SavePicture'
+        });
+        $('textarea').each(function () {
+            var id = $(this).attr('id'),
+                form = this.form;
+
+            CKEDITOR.instances[id].on('beforeCommandExec', function (event) {
+                if (event.data.name === 'save') {
+                    event.cancel();
+                    $(form).submit();
+                }
+            });
+        });
+    });
+    function updateValue(id, value) {
+        document.getElementById(id).value = value;
+    }
+    function updateImage(id, value) {
+        document.getElementById(id).innerHTML = value;
+    }
+</script>

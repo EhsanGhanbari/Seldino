@@ -1,0 +1,239 @@
+﻿@model  Seldino.Application.Query.BannerService.BannersQueryResponse
+@using Seldino.CrossCutting.Web.ViewMessages
+@{
+    ViewBag.Title = BannerViewMessage.BannerInActiveList;
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">@BannerViewMessage.BannerInActiveList</div>
+    <div class="panel-body">
+        <div class="btn-toolbar propbar">
+            <div class="pull-right">
+                <div class="progroup btn-group">
+                    @Html.ActionLink(BannerViewMessage.CreateBannerPageTitle, "Create", "Banner", new { @class = "btn btn-default btn-sm" })
+                </div>
+            </div>
+            <div class="pull-left clearfix">
+                <div class=" pull-right">
+                    @if (Model.Banners.HasMoreResults)
+                    {
+                        <p class="pgsize">
+                            @(
+ (Model.Banners.CurrentPage * Model.Banners.PageSize) - (Model.Banners.PageSize - 1) +
+        "-" +
+        Model.Banners.CurrentPage * Model.Banners.PageSize
+                            )
+                            از
+                            @Model.Banners.TotalCount
+                        </p>
+
+                    }
+                    else
+                    {
+                        <p class="pgsize">
+                            @(
+ (Model.Banners.CurrentPage * Model.Banners.PageSize) - (Model.Banners.PageSize - 1) +
+        "-" +
+        Model.Banners.CurrentPage * Model.Banners.PageSize
+                            )
+                            از
+                            @Model.Banners.TotalCount
+                        </p>
+                    }
+                </div>
+                <div class="btn-group pull-left">
+                    @if (Model.Banners.CurrentPage == Model.Banners.TotalPages)
+                    {
+                        <button disabled class="btn btn-default"><i class="icon-chevron-right"></i></button>
+                    }
+                    else
+                    {
+                        <a class="btn btn-default" href="@Url.Action("List", "Banner", new { pageIndex = Model.CurrentPage + 1 })"><i class="icon-chevron-right"></i></a>
+                    }
+                    @if (Model.Banners.CurrentPage - 1 == 0)
+                    {
+                        <button disabled class="btn btn-default"><i class="icon-chevron-left"></i></button>
+                    }
+                    else
+                    {
+                        <a class="btn btn-default" href="@Url.Action("List", "Banner", new { pageIndex = Model.CurrentPage -1  })"><i class="icon-chevron-left"></i></a>
+                    }
+                </div>
+            </div>
+        </div>
+        <hr />
+        <table id="BannerList" class="table">
+            <thead>
+                <tr>
+                    <th><input type="checkbox" class="datapropfull" /></th>
+                    <th>@BannerViewMessage.BannerImage</th>
+                    <th>@BannerViewMessage.BannerType</th>
+                    <th>@BannerViewMessage.StartDate</th>
+                    <th>@BannerViewMessage.EndDate</th>
+                    <th>@BannerViewMessage.Fee</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Banners.Result)
+                {
+                    <tr class="center-td">
+                        <td><input type="checkbox" class="dataprop" value="@item.BannerId" /></td>
+                        <td>
+                            <div class="sl-p img-rounded" style="background-image: url(@item.Picture.Address.Replace("~", string.Empty)/@item.Picture.Name)"></div>
+                        </td>
+                        <td>@item.BannerType</td>
+                        <td>@(item.StartDate.Year + "-" + item.StartDate.Month + "-" + item.StartDate.Day)</td>
+                        <td>@(item.EndDate.Year + "-" + item.EndDate.Month + "-" + item.EndDate.Day)</td>
+                        <td>@item.Fee @ProductViewMessage.CurrencyToman</td>
+                        <td>
+                            <div class="btn-group">
+                                @Html.ActionLink(CommonViewMessage.Edit, "Edit", "Banner", new { area = "Management", bannerId = item.BannerId }, new { @class = "btn btn-success btn-sm" })
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function generateGUID() {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+            var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+            return v.toString(16);
+        });
+    }
+    function unMarkList() {
+        $.each($(".fa-check-square-o"), function (i, element) {
+            $(this).removeClass("fa-check-square-o").addClass("fa-square-o");
+        });
+        $.each($(".prop input[type=hidden]"), function (i, index) {
+            $("#" + $(this).val()).remove();
+        })
+        $(".prop").remove();
+    }
+    function ajaxLoading() {
+        $("#loading").show();
+    }
+    function remopveAjaxLoading() {
+        $("#loading").hide();
+    }
+    var guid = generateGUID();
+    $(function () {
+        $(".dataprop, .datapropfull").attr("checked", false);
+        var SelectedCount = 0
+        $("body").on("click", ".dataprop", function () {
+            if ($(this).is(':checked')) {
+                $(this).parents("tr").addClass("rowchecked");
+                SelectedCount++;
+            }
+            else {
+                $(".datapropfull").prop('checked', false);
+                $(this).parents("tr").removeClass("rowchecked");
+                SelectedCount--;
+            }
+            if (SelectedCount == 0) {
+                $("#_delBnnS").remove();
+                $("#_acBnnS").remove();
+            }
+            else {
+                if ($("#_delBnnS").html() === undefined && $("#_acBnnS").html() === undefined) {
+                    $(".progroup").append('<button id="_delBnnS" onclick="DeleteSelectedBanner()" class="btn btn-default btn-sm" title="@CommonViewMessage.Delete" ><i class="zmdi zmdi-delete"></i></button>');
+                    $(".progroup").append('<button id="_acBnnS" onclick="ActivateSelectedBanner()" class="btn btn-default btn-sm" title="@CommonViewMessage.Deactivate" ><i class="zmdi zmdi-eye-off"></i></button>')
+                }
+
+            }
+        });
+
+        $("body").on("click", ".datapropfull", function () {
+            if ($(this).is(':checked')) {
+                var count = 0;
+                $.each($(".dataprop"), function (index, element) {
+                    count++;
+                    $(this).prop('checked', true);
+                    $(this).parents("tr").addClass("rowchecked");
+                });
+                if (count != 0) {
+                    if ($("#_delBnnS").html() === undefined && $("#_acBnnS").html() === undefined) {
+                        $(".progroup").append('<button id="_delBnnS" onclick="DeleteSelectedBanner()" class="btn btn-default btn-sm" title="@CommonViewMessage.Delete" ><i class="icon-trash"></i></button>')
+                        $(".progroup").append('<button id="_acBnnS" onclick="ActivateSelectedBanner()" class="btn btn-default btn-sm" title="@CommonViewMessage.Deactivate" ><i class="icon-eye-open"></i></button>')
+                    }
+                }
+            }
+            else {
+                $("#_delBnnS").remove();
+                $("#_acBnnS").remove();
+                $.each($(".dataprop"), function (index, element) {
+                    $(this).prop('checked', false);
+                    $(this).parents("tr").removeClass("rowchecked");
+                });
+            }
+        });
+    });
+    function DeleteSelectedBanner() {
+        alertify.confirm('@BannerViewMessage.BannerDeleteConfirm', function () {
+            ajaxLoading();
+            var selectedList = [];
+            $.each($(".dataprop"), function (i, element) {
+                if ($(this).is(':checked')) {
+                    selectedList.push($(this).val());
+                }
+            });
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("Delete", "Banner", new { area = "Management" })',
+                data: $.param({ BannerIds: selectedList }, true),
+                success: function (data) {
+                    alertify.success(data.Message);
+                    if (data.Success) {
+                        $("tr.rowchecked").remove();
+                        $("#_delBnnS").remove();
+                    }
+                    remopveAjaxLoading();
+                },
+                datatype: "json",
+                traditional: true,
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alertify.error(xhr.status);
+                    alertify.error(thrownError);
+                    remopveAjaxLoading();
+                }
+            })
+        })
+    }
+
+    function ActivateSelectedBanner() {
+        alertify.confirm('@BannerViewMessage.BannerActivateConfirm', function() {
+            ajaxLoading();
+            var selectedList = [];
+            $.each($(".dataprop"), function(i, element) {
+                if ($(this).is(':checked')) {
+                    selectedList.push($(this).val());
+                }
+            });
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("Activate", "Banner", new { area = "Management" })',
+                data: $.param({ BannerIds: selectedList }, true),
+                success: function(data) {
+                    alertify.success(data.Message);
+                    if (data.Success) {
+                        $("tr.rowchecked").remove();
+                        $("#_acBnnS").remove();
+                    }
+                    remopveAjaxLoading();
+                },
+                datatype: "json",
+                traditional: true,
+                error: function(xhr, ajaxOptions, thrownError) {
+                    alertify.error(xhr.status);
+                    alertify.error(thrownError);
+                    remopveAjaxLoading();
+                }
+            });
+        });
+    }
+</script>
+

@@ -1,0 +1,87 @@
+﻿@using Seldino.CrossCutting.Web.Helpers
+@using Seldino.CrossCutting.Web.ViewMessages
+@model Seldino.Application.Query.ProductService.ProductsQueryResponse
+
+<div class="container on-banner">
+    <div class="page-header">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <h3 class="pull-right">محصولات محبوب</h3>
+                <div class="page-tags">
+                    <h6 class="en pull-left">#kadobin/populars</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+    @{
+        if (Model.Products != null)
+        {
+            foreach (var product in Model.Products.Result)
+            {
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <div class="product-container sm" id="@product.ProductId" data-specialOffer="@product.IsInSpecialState" data-notexist="@product.NotExist">
+
+                        <div class="corner-ribbon animated"></div>
+
+                        @if (product.ProductPictures.Count > 1)
+                    {
+                            <ul class="carousel3d carousel-3-item hidden-sm hidden-xs" data-items="3">
+                                @{
+                                    if (product.ProductPictures != null)
+                                    {
+                                        foreach (var image in product.ProductPictures)
+                                        {
+                                            <li><img src="@string.Format("/" + Html.GetImageUrl(image.FullPath))"></li>
+                                        }
+
+                                    }
+                                }
+                            </ul>
+                            <div class="product-cover visible-sm visible-xs">
+                                <img src="@string.Format("/" + Html.GetImageUrl(product.ProductPictures.FirstOrDefault().FullPath))">
+                            </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="product-cover">
+                                            <img src="@string.Format("/" + Html.GetImageUrl(product.ProductPictures.FirstOrDefault().FullPath))">
+                                        </div>
+                                    }
+
+                        <div class="footer">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" data-product-name>@product.ProductName</div>
+                            <div data-product-price data-is-price>@product.Price.ToString("0") @ProductViewMessage.CurrencyToman</div>
+                            <div class="divider"></div>
+                            @if (product.OldPrice != null)
+                            {
+                                <div data-product-old-price data-is-price>
+                                    @product.OldPrice @ProductViewMessage.CurrencyToman
+                                </div>
+                            }
+                        </div>
+
+                        <div class="footer-hover">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="btn-group btn-group-justified">
+                                    <a class="btn btn-primary">
+                                        <i class="fa fa-heart"></i>
+                                    </a>
+                                    <a class="btn btn-primary buy" data-product-id="@product.ProductId">
+                                        <i class="fa fa-shopping-bag"></i>
+                                    </a>
+                                    <a href="@Url.Action("Detail", "Product", new {productId = product.ProductId})" class="btn btn-primary">
+                                        <i class="fa fa-map-o"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                                    }
+                                }
+    }
+
+</div>
+
+<div class="clearfix"></div>
+

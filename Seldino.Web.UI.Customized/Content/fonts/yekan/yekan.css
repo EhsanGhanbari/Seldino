@@ -1,0 +1,16 @@
+@font-face {
+    font-family: 'Yekan';
+    src: url('/Content/fonts/yekan/Yekan.eot?#') format('eot'), 
+        url('/Content/fonts/yekan/Yekan.woff') format('woff'), 
+        url('/Content/fonts/yekan/Yekan.ttf') format('truetype') ,
+        url('/Content/fonts/yekan/Yekan.svg') format('svg');
+}
+
+@font-face {
+    font-family: 'YekanNumber';
+    src: url('/Content/fonts/yekan/YekanNo.eot?#') format('eot'), 
+        url('/Content/fonts/yekan/YekanNo.woff') format('woff'), 
+        url('/Content/fonts/yekan/YekanNo.ttf') format('truetype') ,
+        url('/Content/fonts/yekan/YekanNo.svg') format('svg');
+}
+

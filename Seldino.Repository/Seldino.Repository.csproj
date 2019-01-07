@@ -1,0 +1,297 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B0719FA4-0114-483F-91AE-389B97D30E02}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Seldino.Repository</RootNamespace>
+    <AssemblyName>Seldino.Repository</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Autofac">
+      <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Lucene.Net, Version=3.0.3.0, Culture=neutral, PublicKeyToken=85089178b9ac3181, processorArchitecture=MSIL">
+      <HintPath>..\packages\Lucene.Net.3.0.3\lib\NET40\Lucene.Net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SqlBulkTools, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SqlBulkTools.3.0.1\lib\net45\SqlBulkTools.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Transactions" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Configurations\BannerConfiguration.cs" />
+    <Compile Include="Configurations\BasketConfiguration.cs" />
+    <Compile Include="Configurations\BlogConfiguration.cs" />
+    <Compile Include="Configurations\DiscountConfiguration.cs" />
+    <Compile Include="Configurations\DocumentConfiguration.cs" />
+    <Compile Include="Configurations\GiftDeskConfiguration.cs" />
+    <Compile Include="Configurations\GlobalizationConfiguration.cs" />
+    <Compile Include="Configurations\LocationConfiguration.cs" />
+    <Compile Include="Configurations\MembershipConfiguration.cs" />
+    <Compile Include="Configurations\NotificationConfiguration.cs" />
+    <Compile Include="Configurations\OrderConfiguration.cs" />
+    <Compile Include="Configurations\PaymentConfiguration.cs" />
+    <Compile Include="Configurations\SettingConfiguration.cs" />
+    <Compile Include="Configurations\ShippingConfiguration.cs" />
+    <Compile Include="Configurations\StoreConfiguration.cs" />
+    <Compile Include="DataContexts\ReadOnlyDataContext.cs" />
+    <Compile Include="Infrastructure\Constants.cs" />
+    <Compile Include="Infrastructure\EntityBaseConfiguration.cs" />
+    <Compile Include="Migrations\201604141607146_Initializing.cs" />
+    <Compile Include="Migrations\201604141607146_Initializing.Designer.cs">
+      <DependentUpon>201604141607146_Initializing.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604141639415_MigrationHistory.cs" />
+    <Compile Include="Migrations\201604141639415_MigrationHistory.Designer.cs">
+      <DependentUpon>201604141639415_MigrationHistory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201605142024509_AddSettingConfig.cs" />
+    <Compile Include="Migrations\201605142024509_AddSettingConfig.Designer.cs">
+      <DependentUpon>201605142024509_AddSettingConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606192130221_AddStoreToRegionAndArea.cs" />
+    <Compile Include="Migrations\201606192130221_AddStoreToRegionAndArea.Designer.cs">
+      <DependentUpon>201606192130221_AddStoreToRegionAndArea.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606271452032_AddSpecialProductStuffOnProduct.cs" />
+    <Compile Include="Migrations\201606271452032_AddSpecialProductStuffOnProduct.Designer.cs">
+      <DependentUpon>201606271452032_AddSpecialProductStuffOnProduct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201607152045520_AddInvoices.cs" />
+    <Compile Include="Migrations\201607152045520_AddInvoices.Designer.cs">
+      <DependentUpon>201607152045520_AddInvoices.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201607202005117_AddSerializedValuesToProduct.cs" />
+    <Compile Include="Migrations\201607202005117_AddSerializedValuesToProduct.Designer.cs">
+      <DependentUpon>201607202005117_AddSerializedValuesToProduct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201607202035591_ProductCommentRelation.cs" />
+    <Compile Include="Migrations\201607202035591_ProductCommentRelation.Designer.cs">
+      <DependentUpon>201607202035591_ProductCommentRelation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201607261001246_AdduUnauthorizedBasket.cs" />
+    <Compile Include="Migrations\201607261001246_AdduUnauthorizedBasket.Designer.cs">
+      <DependentUpon>201607261001246_AdduUnauthorizedBasket.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201607271307255_AddIsInSpecialStateOnProduct.cs" />
+    <Compile Include="Migrations\201607271307255_AddIsInSpecialStateOnProduct.Designer.cs">
+      <DependentUpon>201607271307255_AddIsInSpecialStateOnProduct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201607280825419_AddVisitCountOnProduct.cs" />
+    <Compile Include="Migrations\201607280825419_AddVisitCountOnProduct.Designer.cs">
+      <DependentUpon>201607280825419_AddVisitCountOnProduct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201607281037409_ChangeUnauthorizedBasketItem.cs" />
+    <Compile Include="Migrations\201607281037409_ChangeUnauthorizedBasketItem.Designer.cs">
+      <DependentUpon>201607281037409_ChangeUnauthorizedBasketItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201607311145261_AddSlugToProduct.cs" />
+    <Compile Include="Migrations\201607311145261_AddSlugToProduct.Designer.cs">
+      <DependentUpon>201607311145261_AddSlugToProduct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608020654359_AddSeoSetting.cs" />
+    <Compile Include="Migrations\201608020654359_AddSeoSetting.Designer.cs">
+      <DependentUpon>201608020654359_AddSeoSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608020914200_AddMetaKeywordOnProduct.cs" />
+    <Compile Include="Migrations\201608020914200_AddMetaKeywordOnProduct.Designer.cs">
+      <DependentUpon>201608020914200_AddMetaKeywordOnProduct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610121543236_AddCostOnDeliverOption.cs" />
+    <Compile Include="Migrations\201610121543236_AddCostOnDeliverOption.Designer.cs">
+      <DependentUpon>201610121543236_AddCostOnDeliverOption.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611031557215_ChangeBannerInactivityProperty.cs" />
+    <Compile Include="Migrations\201611031557215_ChangeBannerInactivityProperty.Designer.cs">
+      <DependentUpon>201611031557215_ChangeBannerInactivityProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611031651436_ChangeUserInactivityProperty.cs" />
+    <Compile Include="Migrations\201611031651436_ChangeUserInactivityProperty.Designer.cs">
+      <DependentUpon>201611031651436_ChangeUserInactivityProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701052044367_ChangeIsActiveFieldOnNotifiaction.cs" />
+    <Compile Include="Migrations\201701052044367_ChangeIsActiveFieldOnNotifiaction.Designer.cs">
+      <DependentUpon>201701052044367_ChangeIsActiveFieldOnNotifiaction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701222121576_AddGiftDesk.cs" />
+    <Compile Include="Migrations\201701222121576_AddGiftDesk.Designer.cs">
+      <DependentUpon>201701222121576_AddGiftDesk.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Repositories\BannerRepository.cs" />
+    <Compile Include="Repositories\DocumentRepository.cs" />
+    <Compile Include="Repositories\GiftDeskRepository.cs" />
+    <Compile Include="Repositories\LanguageRepository.cs" />
+    <Compile Include="Repositories\LocationRepository.cs" />
+    <Compile Include="Repositories\SettingRespository.cs" />
+    <Compile Include="Repositories\ShippingRepository.cs" />
+    <Compile Include="DataContexts\DataContext.cs" />
+    <Compile Include="Configurations\ProductConfiguration.cs" />
+    <Compile Include="Infrastructure\ValueObjectBaseConfiguration.cs" />
+    <Compile Include="Infrastructure\DatabaseFactory.cs" />
+    <Compile Include="Infrastructure\Disposable.cs" />
+    <Compile Include="Infrastructure\IDatabaseFactory.cs" />
+    <Compile Include="Infrastructure\IUnitOfWork.cs" />
+    <Compile Include="Infrastructure\UnitOfWork.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\BasketRepository.cs" />
+    <Compile Include="Repositories\BlogRepository.cs" />
+    <Compile Include="Repositories\PayementRepository.cs" />
+    <Compile Include="RepositoryBase.cs" />
+    <Compile Include="Repositories\DiscountRepository.cs" />
+    <Compile Include="Repositories\MembershipRepository.cs" />
+    <Compile Include="Repositories\NotificationRepository.cs" />
+    <Compile Include="Repositories\OrderRepository.cs" />
+    <Compile Include="Repositories\ProductRepository.cs" />
+    <Compile Include="Repositories\StoreRepository.cs" />
+    <Compile Include="RepositoryMoule.cs" />
+    <Compile Include="Search\ISearchBits.cs" />
+    <Compile Include="Search\IAppDataFolder.cs" />
+    <Compile Include="Search\IDocumentIndex.cs" />
+    <Compile Include="Search\IIndexProvider.cs" />
+    <Compile Include="Search\ILuceneAnalyzerProvider.cs" />
+    <Compile Include="Search\ISearchBuilder.cs" />
+    <Compile Include="Search\ISearchHit.cs" />
+    <Compile Include="Search\LuceneDocumentIndex.cs" />
+    <Compile Include="Search\LuceneIndexProvider.cs" />
+    <Compile Include="Search\LuceneSearchBuilder.cs" />
+    <Compile Include="Search\SearchBits.cs" />
+    <Compile Include="Search\ShellSettings.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Seldino.CrossCutting\Seldino.CrossCutting.csproj">
+      <Project>{e6160ceb-9431-46e1-8e04-42657ac23a86}</Project>
+      <Name>Seldino.CrossCutting</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Seldino.Domain\Seldino.Domain.csproj">
+      <Project>{EBC94A7C-2559-4B92-AFD5-E194D32FDF05}</Project>
+      <Name>Seldino.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Seldino.Infrastructure\Seldino.Infrastructure.csproj">
+      <Project>{F8A98EEA-8606-4CF0-8256-937291614D92}</Project>
+      <Name>Seldino.Infrastructure</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DataScripts\Seldino.sql" />
+    <Content Include="DataScripts\Kadobin.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201604141607146_Initializing.resx">
+      <DependentUpon>201604141607146_Initializing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604141639415_MigrationHistory.resx">
+      <DependentUpon>201604141639415_MigrationHistory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605142024509_AddSettingConfig.resx">
+      <DependentUpon>201605142024509_AddSettingConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606192130221_AddStoreToRegionAndArea.resx">
+      <DependentUpon>201606192130221_AddStoreToRegionAndArea.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606271452032_AddSpecialProductStuffOnProduct.resx">
+      <DependentUpon>201606271452032_AddSpecialProductStuffOnProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607152045520_AddInvoices.resx">
+      <DependentUpon>201607152045520_AddInvoices.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607202005117_AddSerializedValuesToProduct.resx">
+      <DependentUpon>201607202005117_AddSerializedValuesToProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607202035591_ProductCommentRelation.resx">
+      <DependentUpon>201607202035591_ProductCommentRelation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607261001246_AdduUnauthorizedBasket.resx">
+      <DependentUpon>201607261001246_AdduUnauthorizedBasket.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607271307255_AddIsInSpecialStateOnProduct.resx">
+      <DependentUpon>201607271307255_AddIsInSpecialStateOnProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607280825419_AddVisitCountOnProduct.resx">
+      <DependentUpon>201607280825419_AddVisitCountOnProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607281037409_ChangeUnauthorizedBasketItem.resx">
+      <DependentUpon>201607281037409_ChangeUnauthorizedBasketItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607311145261_AddSlugToProduct.resx">
+      <DependentUpon>201607311145261_AddSlugToProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608020654359_AddSeoSetting.resx">
+      <DependentUpon>201608020654359_AddSeoSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608020914200_AddMetaKeywordOnProduct.resx">
+      <DependentUpon>201608020914200_AddMetaKeywordOnProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610121543236_AddCostOnDeliverOption.resx">
+      <DependentUpon>201610121543236_AddCostOnDeliverOption.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611031557215_ChangeBannerInactivityProperty.resx">
+      <DependentUpon>201611031557215_ChangeBannerInactivityProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611031651436_ChangeUserInactivityProperty.resx">
+      <DependentUpon>201611031651436_ChangeUserInactivityProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701052044367_ChangeIsActiveFieldOnNotifiaction.resx">
+      <DependentUpon>201701052044367_ChangeIsActiveFieldOnNotifiaction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701222121576_AddGiftDesk.resx">
+      <DependentUpon>201701222121576_AddGiftDesk.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

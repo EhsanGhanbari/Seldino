@@ -1,0 +1,30 @@
+﻿.parallax-window {
+    background: url(/Content/images/bg-footer.jpg) no-repeat;
+    background-attachment: scroll;
+    background-size: cover;
+    color: #fff;
+    text-align: center;
+    padding-top: 100px;
+    overflow: hidden;
+    margin: 50px 0 ;
+    height: 500px;
+}
+
+    .parallax-window .page-subheading {
+        color: #fff;
+    }
+
+    .parallax-window h5{
+        margin-bottom: 100px;
+    }
+
+    .parallax-window input{
+        color: #fff;
+        direction: ltr;
+        font-family: tahoma;
+    }
+
+    .parallax-window a {
+        color: #fff;
+        cursor: pointer;
+    }

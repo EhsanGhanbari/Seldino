@@ -1,0 +1,20 @@
+﻿@model Seldino.Application.Query.DocumentService.DocumentDto
+@using Seldino.CrossCutting.Web.ViewMessages
+<div class="panel panel-default">
+    <div class="panel-heading">@DocumentViewMessage.CompanyInformation</div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-sm-7">
+                <div class="clp">
+                    @if (Model != null)
+                    {
+                        @Html.Raw(Model.Information.Body)
+                    }
+                </div>
+            </div>
+            <div class="col-sm-5 hidden-xs scicon">
+                <i class="icon-info-sign"></i>
+            </div>
+        </div>
+    </div>
+</div>

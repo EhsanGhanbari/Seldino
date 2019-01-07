@@ -1,0 +1,47 @@
+﻿<div class="hidden-sm hidden-xs">
+    <!-- Nav tabs -->
+    <div class="nav nav-tabs" role="tablist">
+        <div role="presentation" class="col-lg-3 col-md-3 active">
+            <a href="#BestSelling" aria-controls="home" role="tab" data-toggle="tab" data-ajax-call="/Product/BestSelling" data-ajax-id="BestSelling" data-ajax-to="tabs" data-ajax-default>
+                <i class="fa fa-bar-chart-o"></i>
+                پرفروش ترین
+            </a>
+        </div>
+        <div role="presentation" class="col-lg-3 col-md-3">
+            <a href="#Popular1" aria-controls="profile" role="tab" data-toggle="tab" data-ajax-call="/Product/Mostvisited" data-ajax-id="Popular1" data-ajax-to="tabs">
+                <i class="fa fa-hand-pointer-o"></i>
+                پر بازدید ترین
+            </a>
+        </div>
+        <div role="presentation" class="col-lg-3 col-md-3">
+            <a href="#Popular2" aria-controls="messages" role="tab" data-toggle="tab" data-ajax-call="/Product/Popular" data-ajax-id="Popular2" data-ajax-to="tabs">
+                <i class="fa fa-heart-o"></i>
+                محبوب ترین
+            </a>
+        </div>
+        <div role="presentation" class="col-lg-3 col-md-3">
+            <a href="#Discounted" aria-controls="settings" role="tab" data-toggle="tab" data-ajax-call="/Product/Discounted" data-ajax-id="Discounted" data-ajax-to="tabs">
+                <i class="fa fa-legal"></i>
+                تخفیف خورده ها
+            </a>
+        </div>
+    </div>
+
+    <!-- Tab panes -->
+    <div class="tab-content" data-ajax-body="tabs">
+        <div role="tabpanel" class="tab-pane active" id="BestSelling">
+            <div class="container has-margin" data-ajax-bind="BestSelling"></div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="Popular1">
+            <div class="container has-margin" data-ajax-bind="Popular1"></div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="Popular2">
+            <div class="container has-margin" data-ajax-bind="Popular2"></div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="Discounted">
+            <div class="container has-margin" data-ajax-bind="Discounted"></div>
+        </div>
+    </div>
+</div>
+
+<div class="clearfix"></div>

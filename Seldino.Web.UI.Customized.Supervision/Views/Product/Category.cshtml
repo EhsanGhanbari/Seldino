@@ -1,0 +1,226 @@
+﻿@using Seldino.CrossCutting.Web.ViewMessages
+@model Seldino.Application.Query.ProductService.ProductsQueryResponse
+
+@{
+    ViewBag.Title = ProductViewMessage.Products;
+}
+<br />
+
+<div class="panel panel-default">
+    <div class="panel-heading">@ProductViewMessage.Products</div>
+    <div class="panel-body">
+        <div class="btn-toolbar propbar">
+            <div class="pull-left clearfix">
+                <div class="pull-right">
+                    @{
+                        if (Model.Products != null)
+                        {
+                            <p class="pgsize">@((Model.Products.CurrentPage * Model.Products.PageSize) - (Model.Products.PageSize - 1) + "-" + Model.Products.CurrentPage * Model.Products.PageSize) از @Model.Products.TotalCount</p>
+                        }
+                    }
+
+                </div>
+                <div class="btn-group pull-left">
+                    @{
+                        if (Model.Products != null)
+                        {
+                            if (Model.Products.CurrentPage == Model.Products.TotalPages)
+                            {
+                                <button disabled class="btn btn-default"><i class="icon-chevron-right"></i></button>
+                            }
+                            else
+                            {
+                                <a class="btn btn-default" href="@Url.Action("List", "Product", new {pageIndex = Model.Products.CurrentPage + 1})"><i class="icon-chevron-right"></i></a>
+                            }
+                            if (Model.Products.CurrentPage - 1 == 0)
+                            {
+                                <button disabled class="btn btn-default"><i class="icon-chevron-left"></i></button>
+                            }
+                            else
+                            {
+                                <a class="btn btn-default" href="@Url.Action("List", "Product", new {pageIndex = Model.Products.CurrentPage - 1})"><i class="icon-chevron-left"></i></a>
+                            }
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+        <hr />
+        <table id="productList" class="table">
+            <thead>
+                <tr>
+                    <th><input type="checkbox" class="datapropfull" /></th>
+                    <th>@ProductViewMessage.ProductImage</th>
+                    <th>@ProductViewMessage.ProductName</th>
+                    <th>@ProductViewMessage.ProductCategory</th>
+                    <th>@ProductViewMessage.ProductBrand</th>
+                    <th>@ProductViewMessage.ProductPrice</th>
+                    <th>@ProductViewMessage.ProductCommentCount</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Products != null)
+                {
+                    foreach (var item in Model.Products.Result)
+                    {
+                        <tr class="center-td">
+                            <td><input type="checkbox" class="dataprop" value="@item.ProductId" data-st-val="@item.Stores[0].Id" /></td>
+                            <td>
+                                @{
+                                    if (item.ProductPictures != null && item.ProductPictures.Count > 0 && item.ProductPictures.FirstOrDefault() != null)
+                                    {
+                                        <div class="sl-p img-rounded" style="background-image: url(@item.ProductPictures.FirstOrDefault().Address.Replace("~", "")@item.ProductPictures.FirstOrDefault().Name)"></div>
+                                    }
+                                    else
+                                    {
+                                        <div class="sl-p img-rounded noimg">
+                                            <i class="icon-picture"></i>
+                                        </div>
+                                    }
+                                }
+                            </td>
+
+                            <td>
+                                @Html.ActionLink(item.ProductName, "Detail", "Product", new { productId = item.ProductId }, null)
+                            </td>
+                            <td>
+                                @Html.ActionLink(((item.ProductCategory != null) ? item.ProductCategory.Name : ""), "Category", "Product", new
+                                {
+                                    category = (item.ProductCategory != null) ? item.ProductCategory.Name : "",
+                                    pageIndex = 1
+                                }, null)
+                            </td>
+                            <td>
+                                @Html.ActionLink(((item.ProductBrand != null) ? item.ProductBrand.Name : ""), "Brand", "Product", new
+                                {
+                                    category = (item.ProductCategory != null) ? item.ProductCategory.Name : "",
+                                    brand = (item.ProductBrand != null) ? item.ProductBrand.Name : "",
+                                    pageIndex = 1
+                                }, null)
+                            </td>
+                            <td>@item.Price.ToString("0") @ProductViewMessage.CurrencyToman</td>
+                            <td><i class="icon-comment"></i>&nbsp;@item.ProductComments.Count</td>
+                            <td>
+                                <div class="btn-group">
+                                    @Ajax.ActionLink(CommonViewMessage.Delete, "Delete", "Payment", new { command = item }, new AjaxOptions
+                                    {
+                                        Confirm = CommonViewMessage.Areyousure,
+                                        OnFailure = "OnFailure",
+                                        //   OnSuccess = "$('#" + rowId + "').remove()"
+                                    }, new { @class = "btn btn-default" })
+                                </div>
+
+                            </td>
+                        </tr>
+                                        }
+                                    }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+        function generateGUID() {
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+                var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            });
+        }
+        function unMarkList() {
+            $.each($(".fa-check-square-o"), function (i, element) {
+                $(this).removeClass("fa-check-square-o").addClass("fa-square-o");
+            });
+            $.each($(".prop input[type=hidden]"), function (i, index) {
+                $("#" + $(this).val()).remove();
+            })
+            $(".prop").remove();
+        }
+        function ajaxLoading() {
+            $("#loading").show();
+        }
+        function remopveAjaxLoading() {
+            $("#loading").hide();
+        }
+        var guid = generateGUID();
+        $(function () {
+            $(".dataprop, .datapropfull").attr("checked", false);
+            var SelectedCount = 0
+            $("body").on("click", ".dataprop", function () {
+                if ($(this).is(':checked')) {
+                    $(this).parents("tr").addClass("rowchecked");
+                    SelectedCount++;
+                }
+                else {
+                    $(".datapropfull").prop('checked', false);
+                    $(this).parents("tr").removeClass("rowchecked");
+                    SelectedCount--;
+                }
+                if (SelectedCount == 0) {
+                    $("#_delPrdS").remove();
+                }
+                else {
+                    if ($("#_delPrdS").html() === undefined) {
+                        $(".progroup").append('<button id="_delPrdS" onclick="DeleteSelectedProduct()" class="btn btn-default btn-sm" title="@CommonViewMessage.Delete" ><i class="icon-trash"></i></button>')
+                        //$(".progroup").append('<button id="_disPrdS" onclick="DiscountSelectedProduct()" class="btn btn-default btn-sm" title="تخفیف" ><i class="icon-money"></i></button>')
+                    }
+                }
+            });
+
+            $("body").on("click", ".datapropfull", function () {
+                if ($(this).is(':checked')) {
+                    $.each($(".dataprop"), function (index, element) {
+                        $(this).prop('checked', true);
+                        $(this).parents("tr").addClass("rowchecked");
+                    });
+                    if ($("#_delPrdS").html() === undefined) {
+                        $(".progroup").append('<button id="_delPrdS" onclick="DeleteSelectedProduct()" class="btn btn-default btn-sm" title="@CommonViewMessage.Delete" ><i class="icon-trash"></i></button>')
+                        $(".progroup").append('<button id="_disPrdS" onclick="DiscountSelectedProduct()" class="btn btn-default btn-sm" title="تخفیف" ><i class="icon-money"></i></button>')
+                    }
+                }
+                else {
+                    $("#_delPrdS").remove();
+                    $("#_disPrdS").remove();
+                    $.each($(".dataprop"), function (index, element) {
+                        $(this).prop('checked', false);
+                        $(this).parents("tr").removeClass("rowchecked");
+                    });
+                }
+            });
+        });
+
+        function DeleteSelectedProduct() {
+            alertify.confirm('@ProductViewMessage.ProductDeleteConfirm',
+                function () {
+                    ajaxLoading();
+                    var deletedList = [];
+                    $.each($(".dataprop"), function (i, element) {
+                        if ($(this).is(':checked')) {
+                            deletedList.push($(this).val());
+                        }
+                    });
+                    $.ajax({
+                        type: "POST",
+                        url: '@Url.Action("DeleteProduct", "Product")',
+                        data: $.param({ productIds: deletedList }, true),
+                        success: function (data) {
+                            alertify.success(data.Message);
+                            $("tr.rowchecked").remove();
+                            $("#_delPrdS").remove();
+                            remopveAjaxLoading();
+                        },
+                        datatype: "json",
+                        traditional: true,
+                        error: function (xhr, ajaxOptions, thrownError) {
+                            alertify.error(xhr.status);
+                            alertify.error(thrownError);
+                            remopveAjaxLoading();
+                        }
+                    });
+                });
+        }
+    </script>
+}
+
+

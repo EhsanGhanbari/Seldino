@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    @*<link rel="shortcut icon" type="image/x-icon" href="#" />*@
+    <title>@ViewBag.Title</title>
+    @System.Web.Optimization.Styles.Render("~/Content/Default")
+    @System.Web.Optimization.Styles.Render("~/Content/css")
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.1.2/css/material-design-iconic-font.min.css">
+    <link href="~/Content/Css/material-design-color-palette.min.css" rel="stylesheet" />
+    <link href="~/Content/Css/animate.min.css" rel="stylesheet" />
+    @System.Web.Optimization.Scripts.Render("~/bundles/jquery")
+    @System.Web.Optimization.Scripts.Render("~/bundles/scripts")
+</head>
+<body>
+    <header>
+        @Html.Partial("Partials/Header")
+        @RenderSection("banner", false)
+    </header>
+    <div id="wrapper">
+        <div class="container">
+            <div class="tabbable tabs-right clearfix">
+                <ul class="nav nav-tabs col-xs-3 col-sm-2">
+                    <li class="profile active">
+                        <a href="@Url.Action("UpdateProfile", "Account", new { area = "" })">
+                            <p class="text-center">
+                                <i class="icon-user"></i>
+                            </p>
+                            <p class="text-center">
+                                پروفایل
+                            </p>
+                        </a>
+                    </li>
+                    <li class="message">
+                        <a href="#" data-toggle="tab">
+                            <p class="text-center">
+                                <i class="icon-envelope"></i>
+                            </p>
+                            <p class="text-center">
+                                پیغام ها
+                            </p>
+                        </a>
+                    </li>
+                    <li class="favorites">
+                        <a href="#" data-toggle="tab">
+                            <p class="text-center">
+                                <i class="icon-heart"></i>
+                            </p>
+                            <p class="text-center">
+                                علاقه مندی ها
+                            </p>
+                        </a>
+                    </li>
+                    <li class="order">
+                        <a href="#" data-toggle="tab">
+                            <p class="text-center">
+                                <i class="icon-shopping-cart"></i>
+                            </p>
+                            <p class="text-center">
+                                سفارش ها
+                            </p>
+                        </a>
+                    </li>
+                    <li class="comment">
+                        <a href="#" data-toggle="tab">
+                            <p class="text-center">
+                                <i class="icon-comment"></i>
+                            </p>
+                            <p class="text-center">
+                                نظر ها
+                            </p>
+                        </a>
+                    </li>
+                </ul>
+                <div class="tab-content  col-xs-9 col-sm-10">
+                    <div class="tab-pane active">
+                        @RenderBody()
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    @RenderSection("BestBanner", false)
+    @Html.Partial("Partials/Footer")
+    @Html.Partial("Partials/Component")
+    @Html.Partial("Partials/Scripts")
+    @RenderSection("scripts", false)
+</body>
+</html>

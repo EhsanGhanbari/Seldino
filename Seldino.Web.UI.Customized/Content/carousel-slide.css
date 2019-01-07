@@ -1,0 +1,90 @@
+﻿.carousel {
+    margin-bottom: 150px;
+}
+
+.carousel-controllers {
+    position: absolute;
+    z-index: 5;
+    background: #fff;
+    width: 100%;
+    right: 0;
+    left: 0;
+    bottom: -100px;
+    margin: 0;
+}
+
+    .carousel-controllers .carousel-indicators-item.active {
+        background: #fafafa;
+    }
+
+    .carousel-controllers .carousel-indicators-item {
+        background: #fff;
+        padding: 0 15px;
+        border-left: solid 1px #ddd;
+        cursor: pointer;
+        position: relative;
+        height: 100px;
+    }
+
+        .carousel-controllers .carousel-indicators-item:before {
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 7px solid transparent;
+            border-right: 7px solid transparent;
+            border-bottom: 7px solid #fff;
+            top: -7px;
+            left: 50%;
+            margin-left: -3.5px;
+            opacity: 0;
+            filter: alpha(opacity=0);
+            -webkit-transition: all 0.3s ease;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-controllers .carousel-indicators-item.active:before {
+            opacity: 1;
+        }
+
+        .carousel-controllers .carousel-indicators-item .title {
+            text-align: center;
+            line-height: 100px;
+            font-weight: bold;
+        }
+
+        .carousel-controllers .carousel-indicators-item .index {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            left: 100px;
+            padding: 25px 25px;
+            display: table;
+        }
+
+            .carousel-controllers .carousel-indicators-item .index span {
+                display: table-cell;
+                vertical-align: middle;
+                text-align: center;
+                background: #eaeaea;
+                border-radius: 100%;
+                font-weight: bold;
+                font-size: 1.2em;
+                color: #888;
+                transition: background 0.3s ease;
+            }
+
+        .carousel-controllers .carousel-indicators-item.active .index span {
+            background: #00bcd4;
+            color: #fff;
+        }
+
+
+@media (max-width:768px) {
+    .carousel {
+        margin-bottom: 0;
+    }
+}
+
+@media (max-width:992px) {
+}

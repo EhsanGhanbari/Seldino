@@ -1,0 +1,28 @@
+﻿@using Seldino.CrossCutting.Web.Helpers
+@model  Seldino.Application.Query.BannerService.AdvBannersQueryQueryResponse
+
+@if (Model != null && !Model.Failed)
+{
+    foreach (var item in Model.Banners.Where(q => q.BannerType == Seldino.CrossCutting.Enums.BannerType.Fixed))
+    {
+        <div class="banner-home">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12 col-xs-12">
+                        <div class="block-text-banner">
+                            <b>@item.Caption</b>
+
+                            <a class="btn btn-outline link-detail" href="@item.Url">اطلاعات بیشتر ...</a>
+                        </div>
+                    </div>
+                    <div class="col-md-6 hidden-sm hidden-xs">
+                        <div class="image-box">
+                            <img src="@Html.GetImageUrl(item.Picture.FullPath)" alt="@item.Caption" class="img-responsive">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+

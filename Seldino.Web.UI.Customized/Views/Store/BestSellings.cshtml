@@ -1,0 +1,65 @@
+﻿@model  Seldino.Application.Query.StoreService.StoresQueryResponse
+@using Seldino.CrossCutting.Web.ViewMessages
+
+@if (!Model.Failed && Model.Stores.Result.Count != 0)
+{
+    <hr />
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="clearfix">
+                <div class="pull-right">
+                    <h4 class="cardTitle">
+                        <i class="zmdi zmdi-store"></i>
+                        @StoreViewMessage.PopularStore
+                    </h4>
+                </div>
+                <div class="pull-left  com-lst">
+                    @Html.ActionLink("لیست کامل", "Index", "Store", null, new { @class = "btn btn-link btn-sm" })
+                </div>
+            </div>
+            <div class="store owl-carousel custom-nav">
+                @foreach (var item in Model.Stores.Result)
+                {
+                    <a class="item" href="@Url.Action("Detail", "Store", new { area = "", storeId = item.StoreId })">
+                        <div class="image">
+                            <img src="@item.Pictures.FirstOrDefault().Address.Replace("~/", string.Empty)/@item.Pictures.FirstOrDefault().Name" />
+                        </div>
+                        <div class="caption">
+                            <h4>@item.Name</h4>
+                        </div>
+                    </a>
+                }
+            </div>
+        </div>
+    </div>
+    <script>
+        $(function () {
+            $('.store.owl-carousel').owlCarousel({
+                rtl: true,
+                navText: ["<i class='icon-angle-right'></i>", "<i class='icon-angle-left'></i>"],
+                loop: true,
+                lazyLoad: true,
+                margin: 10,
+                responsiveClass: true,
+                dots: false,
+                responsive: {
+
+                    480: {
+                        items: 2,
+                        nav: true
+                    },
+
+
+                    768: {
+                        items: 2,
+                        nav: true
+                    },
+                    1000: {
+                        items: 3,
+                        nav: true
+                    }
+                }
+            });
+        })
+    </script>
+}

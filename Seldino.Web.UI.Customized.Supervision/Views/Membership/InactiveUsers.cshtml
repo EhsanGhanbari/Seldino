@@ -1,0 +1,173 @@
+﻿@using Seldino.CrossCutting.Web.ViewMessages
+@model Seldino.CrossCutting.Paging.PagingQueryResponse<Seldino.Application.Query.MembershipService.UserDto>
+
+@{
+    ViewBag.Title = "Users";
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <h4 class="page-header">@MembershipViewMessage.Membership</h4>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th><input type="checkbox" class="datapropfull" /></th>
+                    <th>@MembershipViewMessage.Name</th>
+                    <th>@MembershipViewMessage.Phone</th>
+                    <th>@MembershipViewMessage.Email</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null)
+                {
+                    foreach (var item in Model.Result)
+                    {
+                        string rowId = Guid.NewGuid().ToString("N");
+                        <tr id="@rowId">
+                            <th><input type="checkbox" class="dataprop" value="@item.UserId"/></th>
+                            @{
+                                if (item.Profile != null)
+                                {
+                                    <td>@item.Profile.FirstName @item.Profile.LastName</td>
+                                    <td>@item.Profile.CellPhone</td>
+                                }
+                                else
+                                {
+                                    <td></td>
+                                    <td></td>
+                                }
+                            }
+
+                            <td>@item.Email</td>
+                            <td>
+                                <div class="btn-group">
+                                    @Ajax.ActionLink(CommonViewMessage.Delete, "DeleteUser", "Membership", new {command = item}, new AjaxOptions
+                                    {
+                                        Confirm = CommonViewMessage.Areyousure,
+                                        OnFailure = "OnFailure",
+                                        OnSuccess = "$('#" + rowId + "').remove()"
+                                    }, new {@class = "btn btn-default"})
+                                </div>
+                            </td>
+
+                            <td>
+                                <div class="btn-group">
+                                    @Ajax.ActionLink(MembershipViewMessage.Activate, "Activate", "Membership", new { command = item }, new AjaxOptions
+                                    {
+                                        Confirm = CommonViewMessage.Areyousure,
+                                        OnFailure = "OnFailure",
+                                        OnSuccess = "$('#" + rowId + "').remove()"
+                                    }, new { @class = "btn btn-default" })
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+        function generateGUID() {
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+                var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            });
+        }
+
+        function unMarkList() {
+            $.each($(".fa-check-square-o"), function (i, element) {
+                $(this).removeClass("fa-check-square-o").addClass("fa-square-o");
+            });
+            $.each($(".prop input[type=hidden]"), function (i, index) {
+                $("#" + $(this).val()).remove();
+            })
+            $(".prop").remove();
+        }
+
+        function ajaxLoading() {
+            $("#loading").show();
+        }
+
+        function remopveAjaxLoading() {
+            $("#loading").hide();
+        }
+
+        var guid = generateGUID();
+        $(function () {
+            $(".dataprop, .datapropfull").attr("checked", false);
+            var SelectedCount = 0
+            $("body").on("click", ".dataprop", function () {
+                if ($(this).is(':checked')) {
+                    $(this).parents("tr").addClass("rowchecked");
+                    SelectedCount++;
+                }
+                else {
+                    $(".datapropfull").prop('checked', false);
+                    $(this).parents("tr").removeClass("rowchecked");
+                    SelectedCount--;
+                }
+                if (SelectedCount == 0) {
+                    $("#_delUrdS").remove();
+                }
+                else {
+                    if ($("#_delUrdS").html() === undefined) {
+                        $(".progroup").append('<button id="_delUrdS" onclick="DeleteUser()" class="btn btn-default btn-sm" title="@CommonViewMessage.Delete" ><i class="icon-trash"></i></button>')
+                    }
+                }
+            });
+
+            $("body").on("click", ".datapropfull", function () {
+                if ($(this).is(':checked')) {
+                    $.each($(".dataprop"), function (index, element) {
+                        $(this).prop('checked', true);
+                        $(this).parents("tr").addClass("rowchecked");
+                    });
+                    if ($("#_delUrdS").html() === undefined) {
+                        $(".progroup").append('<button id="_delUrdS" onclick="DeleteUser()" class="btn btn-default btn-sm" title="@CommonViewMessage.Delete" ><i class="icon-trash"></i></button>')
+                    }
+                }
+                else {
+                    $("#_delUrdS").remove();
+                    $.each($(".dataprop"), function (index, element) {
+                        $(this).prop('checked', false);
+                        $(this).parents("tr").removeClass("rowchecked");
+                    });
+                }
+            });
+        });
+
+        function DeleteUser() {
+            alertify.confirm('@CommonViewMessage.Areyousure؟', function () {
+                ajaxLoading();
+                var deletedList = [];
+                $.each($(".dataprop"), function (i, element) {
+                    if ($(this).is(':checked')) {
+                        deletedList.push($(this).val());
+                    }
+                });
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("DeleteUser", "Membership")',
+                    data: $.param({ productIds: deletedList }, true),
+                    success: function (data) {
+                        alertify.success(data.Message);
+                        $("tr.rowchecked").remove();
+                        $("#_delUrdS").remove();
+                        remopveAjaxLoading();
+                    },
+                    datatype: "json",
+                    traditional: true,
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        alertify.error(xhr.status);
+                        alertify.error(thrownError);
+                        remopveAjaxLoading();
+                    }
+                });
+            });
+        }
+    </script>
+}

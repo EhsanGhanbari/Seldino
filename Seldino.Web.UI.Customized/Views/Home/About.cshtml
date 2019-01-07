@@ -1,0 +1,12 @@
+﻿@model Seldino.Application.Query.DocumentService.DocumentDto
+@using Seldino.CrossCutting.Web.ViewMessages
+
+<div class="container on-banner">
+    <div class="page-header">
+        <h3>درباره کادوبین</h3>
+    </div>
+    @if (Model != null && Model.About != null)
+    {
+        @Html.Raw(Model.About.Body)
+    }
+</div>

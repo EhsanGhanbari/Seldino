@@ -1,0 +1,19 @@
+﻿@using Seldino.CrossCutting.Web.ViewMessages
+@model Seldino.Application.Command.NotificationHandler.EditNotificationCommand
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@using (Html.BeginForm())
+{
+    <div>
+        @Html.TextBoxFor(model => model.Title)
+    </div>
+    <div>
+        @Html.TextAreaFor(model => model.Body)
+    </div>
+    <div>
+        <input type="submit" value="@CommonViewMessage.Edit" />
+    </div>
+}

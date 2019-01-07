@@ -1,0 +1,61 @@
+﻿.nav.nav-tabs {
+    width: 100%;
+}
+
+    .nav.nav-tabs div[role='presentation']:nth-child(1) {
+        background-color: #8bc34a;
+    }
+
+    .nav.nav-tabs div[role='presentation']:nth-child(2) {
+        background-color: #03a9f4;
+    }
+
+    .nav.nav-tabs div[role='presentation']:nth-child(3) {
+        background-color: #5c6bc0;
+    }
+
+    .nav.nav-tabs div[role='presentation']:nth-child(4) {
+        background-color: #00bcd4;
+    }
+
+    .nav.nav-tabs div[role='presentation'] {
+        text-align: center;
+        font-weight: bold;
+        display: table;
+        height: 200px;
+        border-bottom-width: 5px;
+        border-bottom-style: solid;
+        border-bottom-color: inherit;
+        transition: border 0.3s ease;
+        float: right;
+    }
+
+        .nav.nav-tabs div[role='presentation'].active {
+            border-bottom-color: #fff;
+        }
+
+            .nav.nav-tabs div[role='presentation'].active a {
+                cursor: default;
+            }
+
+        .nav.nav-tabs div[role='presentation'] a {
+            display: table-cell;
+            vertical-align: middle;
+            height: 100%;
+            color: #fff;
+            font-size: 2em;
+        }
+
+            .nav.nav-tabs div[role='presentation'] a:hover {
+                text-decoration: none;
+            }
+
+            .nav.nav-tabs div[role='presentation'] a i {
+                display: block;
+            }
+
+            .tab-content .container {
+                min-height: 500px;
+                clear: both;
+            }
+

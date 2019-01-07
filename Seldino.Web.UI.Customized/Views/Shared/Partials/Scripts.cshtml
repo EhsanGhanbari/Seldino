@@ -1,0 +1,133 @@
+﻿<script>
+
+    @*function isEmail(email) {
+        if (/(.+)@@(.+){2,}\.(.+){2,}/.test(email)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function getlocalStorage(key) {
+        return localStorage.getItem(key);
+    }
+
+    function setlocalStorage(key, value) {
+        localStorage.setItem(key, value);
+    }
+
+    function removelocalStorage(key) {
+        localStorage.removeItem(key);
+    }
+
+    function submitValid(form, submitInput) {
+
+        var username = $(form + " input[name='Email']");
+        var password = $(form + " input[name='Password']");
+
+        username.blur(function () {
+            if (!isEmail($(this).val())) {
+                $(".loginErrorMessage").fadeIn(500).text("ایمیل وارد شده صحیح نمیباشد");
+            } else {
+                $(".loginErrorMessage").fadeOut(500);
+            }
+        });
+
+        username.keyup(function () {
+            if ($(this).val().length !== 0 && password.val() !== "")
+                $(submitInput).attr('disabled', false);
+            else
+                $(submitInput).attr('disabled', true);
+        });
+
+        password.keyup(function () {
+            if ($(this).val().length !== 0 && username.val() !== "")
+                $(submitInput).attr('disabled', false);
+            else
+                $(submitInput).attr('disabled', true);
+        });
+    }
+
+    submitValid('.login-form', '.loginScript');
+    submitValid('.login-form2', '.loginScript2');
+
+    function isLoggedIn() {
+        if (getlocalStorage() !== "") {
+            
+        }
+    }
+
+
+    $(".loginScript").click(function () {
+        var data = {
+            Email: $(".login-form input[name='Email']").val(),
+            Password: $(".login-form input[name='Password']").val(),
+            RememberMe: $(".login-form input[name='RememberMe']").is(":checked"),
+            ReturnUrl: $(".login-form input[name='ReturnUrl']").val()
+        }
+
+        $.post("/Account/SignIn", data).done(function (response) {
+            if (!response.Failed) {
+                if (data.ReturnUrl !== "") {
+                    window.location.href = data.ReturnUrl;
+                } else {
+                    window.location.href = "@Url.Action("index", "Home", new { area = "" })";
+                }
+            } else {
+                toastr.error(response.Message);
+                return false;
+            }
+        });
+    });
+
+    $(".loginScript2").click(function () {
+        var data = {
+            Email: $(".login-form2 input[name='Email']").val(),
+            Password: $(".login-form2 input[name='Password']").val(),
+            RememberMe: $(".login-form2 input[name='RememberMe']").is(":checked"),
+            ReturnUrl: $(".login-form2 input[name='ReturnUrl']").val()
+        }
+
+
+        $.post("/Account/SignIn", data).done(function (response) {
+            if (response.Success) {
+                if (data.ReturnUrl !== "") {
+                    window.location.href = data.ReturnUrl;
+                }
+                else {
+                    window.location.href = "@Url.Action("index", "Home", new { area = "" })";
+                }
+            } else {
+                $(".loginErrorMessage").fadeIn(500).text("نام کاربری و یا رمز عبور اشتباه است");
+            }
+        });
+    });
+
+    $(".registerScript").click(function () {
+
+        var data = {
+            Email: $(".register-form input[name='Email']").val(),
+            Password: $(".register-form input[name='Password']").val(),
+            ConfirmPassword: $(".register-form input[name='ConfirmPassword']").val()
+        }
+
+        if (!isEmail(data.Email)) {
+            $(".registerMessage").addClass("alert-danger").fadeIn(500).text("ایمیل وارد شده صحیح نمیباشد");
+        } else if (data.Password !== data.ConfirmPassword) {
+            $(".registerMessage").addClass("alert-danger").fadeIn(500).text("رمز عبور تکرار شده صحیح نمیباشد.");
+        } else if (data.Password.length < 6) {
+            $(".registerMessage").addClass("alert-danger").fadeIn(500).text("رمز عبور نباید کوچک تر از 6 کاراکتر باشد.");
+        }
+        else {
+            $.post("/Account/Register", data).done(function (response) {
+                $(".registerMessage").removeClass("alert-danger");
+                $(".registerMessage").addClass("alert-success").fadeIn(500).text("حساب کاربری شما با موفقیت ثبت گردید.");
+                setTimeout(function () {
+                    window.location.href = "@Url.Action("index", "Home", new { area = "" })";
+                }, 2000)
+            });
+        }
+
+
+    });*@
+</script>

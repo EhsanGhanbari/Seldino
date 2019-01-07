@@ -1,0 +1,71 @@
+﻿@model Seldino.Application.Query.DocumentService.DocumentDto
+
+@if (Model != null)
+{
+    foreach (var item in Model.SocialMedias)
+    {
+        <div class="socials-network animated fadeInLeft hidden-sm hidden-xs">
+            <ul class="list-unstyled">
+                @switch (item.SocialMediaOption.Name)
+                    {
+                        case "Facebook":
+                        <li class="facebook">
+                            <a href="@item.Url">
+                                <i class="fa fa-facebook"></i>
+                            </a>
+                        </li>
+                        break;
+                    case "Twitter":
+                        <li class="twitter">
+                            <a href="@item.Url">
+                                <i class="fa fa-twitter"></i>
+                            </a>
+                        </li>
+                        break;
+                    case "Pintrest":
+                        <li class="pinterest">
+                            <a href="#">
+                                <i class="fa fa-pinterest"></i>
+                            </a>
+                        </li>
+                        break;
+                    case "GooglePlus":
+                        <li class="google-plus">
+                            <a href="@item.Url">
+                                <i class="fa fa-google-plus"></i>
+                            </a>
+                        </li>
+                        break;
+                    case "Instagram":
+                        <li class="instagram">
+                            <a href="@item.Url">
+                                <i class="fa fa-instagram"></i>
+                            </a>
+                        </li>
+                        break;
+                    case "Redditalien":
+                        <li class="reddit-alien">
+                            <a href="@item.Url">
+                                <i class="fa fa-reddit-alien"></i>
+                            </a>
+                        </li>
+                        break;
+                    case "Pagelines":
+                        <li class="pagelines">
+                            <a href="@item.Url">
+                                <i class="fa fa-pagelines"></i>
+                            </a>
+                        </li>
+                        break;
+                    case "Envelope":
+                        <li class="envelope">
+                            <a href="#">
+                                <i class="fa fa-envelope"></i>
+                            </a>
+                        </li>
+                        break;
+                }
+            </ul>
+        </div>
+    }
+}

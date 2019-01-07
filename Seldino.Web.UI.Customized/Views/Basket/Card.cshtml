@@ -1,0 +1,303 @@
+﻿@model Seldino.Application.Query.BasketService.BasketQueryResponse
+@{
+    Layout = "~/Views/Shared/_CardLayout.cshtml";
+}
+
+<div class="col-lg-6 col-md-6 hidden-sm hidden-xs full-height my-card">
+
+    <div class="dot-view-border"><span class="blue-text">سبد خرید شما</span></div>
+    <div class="clearfix"></div>
+
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pull-left">
+
+        @if (Model.Basket != null && !Model.Failed)
+        {
+            <ul class="list-group">
+                @foreach (var item in Model.Basket.BasketItems)
+                {
+                    var address = item.Product.ProductPictures.FirstOrDefault().Address.Replace("~", "");
+                    var image = address + "/" + item.Product.ProductPictures.FirstOrDefault().Name;
+                    <li class="list-group-item" data-product-id="@item.Product.ProductId" data-price="@item.Product.Price.ToString("0")">
+                        <div class="row">
+                            <div class="text-center col-lg-2 col-md-2 col-sm-3 col-xs-3">
+                                <div class="image-holder">
+                                    <img src="@image" alt="@item.Product.ProductName">
+                                    <span>@item.Quantity.Value</span>
+                                </div>
+                            </div>
+                            <div class="text-center col-lg-4 col-md-4 col-sm-3 col-xs-3">
+                                <b>@item.Product.ProductName</b>
+                            </div>
+                            <div class="text-center col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                <b class="amount">@item.Product.Price.ToString("0") تومان</b>
+                            </div>
+                            <div class="text-center col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                                <input type="number" value="@item.Quantity.Value" min="1" />
+                            </div>
+                            <div class="text-center col-lg-2 col-md-2 hidden-sm hidden-xs">
+                                <b class="amount" data-row-sum>@item.Product.Price.ToString("0")</b> <b>تومان</b>
+                            </div>
+                            <div class="text-center col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                                <a data-remove-item>
+                                    <i class="fa fa-trash text-danger"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                }
+            </ul>
+
+            <div class="pull-left items-total">
+                <b class="amount">@Model.Basket.ItemsTotal.ToString("0")</b>
+
+                <small>تومان</small>
+            </div>
+        }
+
+        @if (User.Identity.IsAuthenticated)
+        {
+            <div class="clearfix"></div>
+            <br />
+
+            <a href="@Url.Action("Invoice","Order", new {area=""})" class="btn btn-primary btn-lg">
+                تایید نهایی
+            </a>
+        }
+
+        <a href="@Url.Action("Index", "Home", new {area = ""})" class="btn btn-warning btn-lg">
+            ادامه خرید
+        </a>
+    </div>
+</div>
+
+<div class="col-lg-6 col-md-6 col-xs-12 full-height user-info">
+
+    <div class="table-card-holder visible-sm visible-xs">
+        <div class="well" data-call-element="content">
+            سبد خرید
+            <div class="pull-left">
+                <b class="sum amount">@Model.Basket.ItemsTotal.ToString("0") تومان</b>
+            </div>
+        </div>
+
+        <div class="content well well-sm" data-element="content">
+            <ul class="list-group">
+                @foreach (var item in Model.Basket.BasketItems)
+                {
+                    var address = item.Product.ProductPictures.FirstOrDefault().Address.Replace("~", "");
+                    var image = address + "/" + item.Product.ProductPictures.FirstOrDefault().Name;
+                    <li class="list-group-item" data-product-id="@item.Product.ProductId" data-price="@item.Product.Price.ToString("0")">
+                        <div class="row">
+                            <div class="text-center col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                                <div class="image-holder">
+                                    <img src="@image" alt="@item.Product.ProductName">
+                                    <span>@item.Quantity.Value</span>
+                                </div>
+                            </div>
+                            <div class="text-center col-lg-4 col-md-4 col-sm-4 col-xs-6">
+                                <b>@item.Product.ProductName</b>
+                            </div>
+                            <div class="text-center col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                <b class="amount">@item.Product.Price.ToString("0") تومان</b>
+                            </div>
+                            <div class="text-center col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                <input type="number" value="@item.Quantity.Value" min="1" />
+                            </div>
+                            <div class="text-center col-lg-2 col-md-2 col-sm-2 hidden-xs">
+                                <b class="amount" data-row-sum>@item.Product.Price.ToString("0")</b> <b>تومان</b>
+                            </div>
+                            <div class="text-center col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                                <a data-remove-item>
+                                    <i class="fa fa-trash text-danger"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+    <div class="dot-view-border"><span class="blue-text">فروشگاه کادوبین</span></div>
+    <div class="clearfix"></div>
+
+    @if (!User.Identity.IsAuthenticated)
+    {
+        <div class="col-lg-8 col-lg-offset-2">
+            <h6 class="blue-text">برای ادامه خرید وارد سیستم شوید</h6>
+            <div class="clearfix"></div><hr /><br />
+            <form class="login-form">
+                <input name="ReturnUrl" type="hidden" value="/Order/Card" />
+                <input name="RememberMe" type="hidden" value="false">
+                <div class="form-group">
+                    <label for="email">پست الکترونیک</label>
+                    <input type="text" name="Email" id="email" class="form-control text-center" autocomplete="off" />
+                </div>
+
+                <div class="form-group">
+                    <label for="password">
+                        رمز عبور خود را وارد نمایید
+                        <i class="fa fa-asterisk" style="margin: 0 10px;"></i>
+                        <a href="@Url.Action("ForgotPassword", "Account", new {area = ""})">
+                            <small>بازیابی رمز عبور</small>
+                        </a>
+                    </label>
+                    <input type="password" name="Password" id="password" class="form-control text-center" autocomplete="off" />
+                </div>
+
+                <button type="button" class="btn btn-lg btn-primary pull-right" data-login>
+                    <b>ورود به کادوبین</b>
+                </button>
+
+
+                <a href="@Url.Action("Index", "Home", new {area = ""})" class="btn btn-link btn-lg visible-sm pull-right visible-xs">
+                    بازگشت و ادامه خرید
+                </a>
+            </form>
+        </div>
+
+        <div class="clearfix"></div>
+        <div class="dot-view-border circle"><span class="blue-text">یا</span></div>
+
+        <div class="col-lg-12 text-center">
+            <a href="/Account/register" class="blue-text">
+                <b>ثبت نام کنید</b>
+            </a>
+        </div>
+    }
+
+    <b>@User.Identity.Name</b>
+
+    <div class="clearfix"></div>
+    <div class="footer">
+        <small>تمامی حقوق وب سایت متعلق به <a href="/">کادوبین</a> می باشد.</small>
+    </div>
+</div>
+
+<div class="wizard">
+    <div class="bs-wizard" style="border-bottom:0;">
+        <div class="col-xs-3 bs-wizard-step active">
+            <div class="text-center bs-wizard-stepnum">سبد خرید</div>
+            <div class="progress"><div class="progress-bar"></div></div>
+            <a href="#" class="bs-wizard-dot"></a>
+        </div>
+
+        <div class="col-xs-3 bs-wizard-step">
+            <div class="text-center bs-wizard-stepnum">نحوه ارسال</div>
+            <div class="progress"><div class="progress-bar"></div></div>
+            <a href="#" class="bs-wizard-dot"></a>
+        </div>
+
+        <div class="col-xs-3 bs-wizard-step">
+            <div class="text-center bs-wizard-stepnum">تایید نهایی</div>
+            <div class="progress"><div class="progress-bar"></div></div>
+            <a href="#" class="bs-wizard-dot"></a>
+        </div>
+
+        <div class="col-xs-3 bs-wizard-step">
+            <div class="text-center bs-wizard-stepnum">پرداخت</div>
+            <div class="progress"><div class="progress-bar"></div></div>
+            <a href="#" class="bs-wizard-dot"></a>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script type="text/javascript">
+        $.fn.digits = function () {
+            return this.each(function () {
+                $(this).text($(this).text().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
+            });
+        }
+
+        $(".amount").digits();
+
+        function setDigits(amount) {
+            var toString = amount.toString();
+            return toString.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+        }
+
+        function removeDigits(amount) {
+            return amount.replace(/[^0-9\.]+/g, "");
+        }
+
+        function cartSum() {
+            var sum = 0;
+            $("[data-row-sum]").each(function () {
+                var value = removeDigits($(this).text());
+                sum += parseInt(value);
+            });
+            $("tfoot .sum").html(setDigits(sum));
+        }
+
+        $("li[data-product-id]").each(function () {
+            var price = $(this).data("price");
+            var value = $(this).find("input").val();
+            $(this).find("[data-row-sum]").html(setDigits(price * value));
+        });
+
+        $("[data-remove-item]").click(function () {
+            var id = $(this).closest("li").data("product-id");
+
+            var command = {
+                ProductIds: [id]
+            }
+
+            $.post("/Basket/RemoveItem", command).done(function (response) {
+                if (response.Success) {
+                    window.location.reload();
+                    toastr.success(response.Message);
+                } else {
+                    toastr.error(response.Message);
+                }
+            });
+        });
+
+        $("input[type='number']").change(function () {
+            var productId = $(this).closest("li").data("product-id");
+            var quantity = $(this).val();
+
+            var command = {
+                ProductId: productId,
+                Quantity: quantity
+            }
+
+            $.post("/Basket/Update", command).done(function (response) {
+                if (response.Success) {
+                    window.location.reload();
+                    toastr.success(response.Message);
+                } else {
+                    toastr.error(response.Message);
+                }
+            }).error(function () {
+                toastr.error("مشکل در ارتباط با سرور، مجدداً تلاش نمایید");
+            });
+        });
+
+        $("[data-call-element]").click(function () {
+            var element = $(this).data("call-element");
+
+            $("[data-element='" + element + "']").fadeToggle();
+        });
+
+        $("button[data-login]").click(function () {
+            var form = $(this).closest(".login-form");
+            var params = {
+                Email: form.find("input[name='Email']").val(),
+                Password: form.find("input[name='Password']").val(),
+                RememberMe: form.find("input[name='RememberMe']").is(":checked"),
+                ReturnUrl: form.find("input[name='ReturnUrl']").val()
+            }
+            $.post("/Account/SignIn", params).done(function (response) {
+                if (!response.Failed) {
+                    window.location.reload();
+                } else {
+                    toastr.error(response.Message);
+                    return false;
+                }
+            });
+        });
+    </script>
+}

@@ -1,0 +1,35 @@
+﻿@using Seldino.CrossCutting.Web.ViewMessages
+@model Seldino.Application.Query.BannerService.BannerQueryResponse
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <h4 class="page-header">@BannerViewMessage.Banners</h4>
+    </div>
+
+    @{
+        if (Model.Banner != null)
+        {
+            <div>
+                @Html.DisplayFor(model => model.Banner.StartDate)
+            </div>
+
+            <div>
+                @Html.DisplayFor(model => model.Banner.EndDate)
+            </div>
+
+            <div>
+                @Html.DisplayFor(model => model.Banner.BannerType)
+            </div>
+
+            <div>
+                @Html.DisplayFor(model => model.Banner.Fee)
+            </div>
+
+            <div>
+                @Html.DisplayFor(model => model.Banner.Url)
+            </div>
+        }
+    }
+</div>
+

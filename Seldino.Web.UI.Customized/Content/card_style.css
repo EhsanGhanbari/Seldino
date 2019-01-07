@@ -1,0 +1,311 @@
+﻿body {
+    direction: rtl;
+    font-family: "Yekan","YekanNumber";
+    padding: 0;
+    margin: 0;
+    overflow: hidden !important;
+}
+
+
+a:hover {
+    text-decoration: none;
+}
+
+.btn.btn-primary {
+    background-color: #00bcd5;
+    border-color: #00bcd5;
+    border-radius: 0;
+}
+
+button.btn,
+a.btn {
+    border-radius: 0;
+}
+
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
+
+.full-height {
+    position: absolute;
+    height: 100%;
+    padding-top: 100px;
+}
+
+.my-card {
+    background-color: #fafafa;
+    right: 0;
+}
+
+.user-info {
+    border-right: solid 1px #ddd;
+    left: 0;
+}
+
+.login-form input {
+    padding: 25px;
+    direction: ltr;
+    box-shadow: none;
+    background: transparent;
+    border-color: #ddd;
+    font-family: tahoma;
+}
+
+.login-form .form-group {
+    margin-bottom: 15px;
+}
+
+    .login-form .form-group label {
+        color: #999;
+        font-weight: normal;
+    }
+
+.dot-view-border {
+    width: 100%;
+    text-align: center;
+    position: relative;
+    margin: 50px 0;
+}
+
+    .dot-view-border span {
+        border: dashed 1px #ddd;
+        padding: 5px 25px;
+        font-weight: bold;
+        font-size: 2em;
+    }
+
+    .dot-view-border.circle span {
+        border-radius: 100%;
+    }
+
+    .dot-view-border:after,
+    .dot-view-border:before {
+        content: "";
+        border-top: dashed 1px #ddd;
+        position: absolute;
+        width: 32%;
+        top: 50%;
+    }
+
+    .dot-view-border.circle:after,
+    .dot-view-border.circle:before {
+        width: 42%;
+    }
+
+    .dot-view-border:before {
+        left: 0;
+    }
+
+    .dot-view-border:after {
+        right: 0;
+    }
+
+.list-group-item .row {
+    padding: 30px 0 10px;
+}
+
+.list-group-item div.image-holder {
+    width: 4.6em;
+    height: 4.6em;
+    position: relative;
+    margin-top: -15px;
+}
+
+    .list-group-item div.image-holder img {
+        width: 100%;
+        height: 100%;
+        border: solid 1px #eee;
+        border-radius: 8px;
+    }
+
+    .list-group-item div.image-holder span {
+        font-size: 0.85714em;
+        font-weight: 500;
+        white-space: nowrap;
+        padding: 0.15em 0.65em;
+        border-radius: 2em;
+        background-color: rgba(153,153,153,0.9);
+        color: #fff;
+        position: absolute;
+        right: -0.75em;
+        top: -0.75em;
+        z-index: 3;
+    }
+
+.list-group-item input {
+    border: none;
+    background: transparent;
+    font-weight: bold;
+    text-align: center;
+    outline: none;
+    width: 50px;
+}
+
+.items-total {
+    font-size: 2.5em;
+    font-weight: normal;
+    color: #00bcd5;
+}
+
+    .items-total small {
+        font-size: 0.5em;
+    }
+
+a[data-remove-item] {
+    cursor: pointer;
+    font-size: 1.5em;
+}
+
+[data-call-element] {
+    cursor: pointer;
+}
+
+.table-card-holder {
+    display: none;
+    position: relative;
+}
+
+    .table-card-holder .content {
+        display: none;
+        position: absolute;
+        z-index: 100;
+        width: 100%;
+        height: 300px;
+        overflow: auto;
+    }
+
+.user-info .footer {
+    position: absolute;
+    bottom: 0;
+    margin: 20px 0;
+    color: #ccc;
+}
+
+
+/*mdb*/
+
+.wizard {
+    position: fixed;
+    top: 20px;
+    left: 0;
+    right: 0;
+}
+
+/*Form Wizard*/
+.bs-wizard {
+    border-bottom: solid 1px #e0e0e0;
+    padding: 0 0 10px 0;
+}
+
+    .bs-wizard > .bs-wizard-step {
+        padding: 0;
+        position: relative;
+    }
+
+        .bs-wizard > .bs-wizard-step + .bs-wizard-step {
+        }
+
+        .bs-wizard > .bs-wizard-step .bs-wizard-stepnum {
+            color: #595959;
+            font-size: 16px;
+            margin-bottom: 5px;
+            padding-right: 35px;
+        }
+
+        .bs-wizard > .bs-wizard-step .bs-wizard-info {
+            color: #999;
+            font-size: 14px;
+        }
+
+        .bs-wizard > .bs-wizard-step > .bs-wizard-dot {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            display: block;
+            background: #afe7ee;
+            top: 45px;
+            right: 50%;
+            margin-top: -15px;
+            margin-left: -15px;
+            border-radius: 50%;
+        }
+
+            .bs-wizard > .bs-wizard-step > .bs-wizard-dot:after {
+                content: ' ';
+                width: 14px;
+                height: 14px;
+                background: #00bcd5;
+                border-radius: 50px;
+                position: absolute;
+                top: 8px;
+                right: 8px;
+            }
+
+        .bs-wizard > .bs-wizard-step > .progress {
+            position: relative;
+            border-radius: 0px;
+            height: 8px;
+            box-shadow: none;
+            margin: 20px 0;
+        }
+
+            .bs-wizard > .bs-wizard-step > .progress > .progress-bar {
+                width: 0px;
+                box-shadow: none;
+                background: #afe7ee;
+            }
+
+        .bs-wizard > .bs-wizard-step.complete > .progress > .progress-bar {
+            width: 100%;
+        }
+
+        .bs-wizard > .bs-wizard-step.active > .progress > .progress-bar {
+            width: 50%;
+        }
+
+        .bs-wizard > .bs-wizard-step:first-child.active > .progress > .progress-bar {
+            width: 0%;
+        }
+
+        .bs-wizard > .bs-wizard-step:last-child.active > .progress > .progress-bar {
+            width: 100%;
+        }
+
+        .bs-wizard > .bs-wizard-step.disabled > .bs-wizard-dot {
+            background-color: #f5f5f5;
+        }
+
+            .bs-wizard > .bs-wizard-step.disabled > .bs-wizard-dot:after {
+                opacity: 0;
+            }
+
+        .bs-wizard > .bs-wizard-step:first-child > .progress {
+            right: 50%;
+            width: 50%;
+        }
+
+        .bs-wizard > .bs-wizard-step:last-child > .progress {
+            width: 50%;
+        }
+
+        .bs-wizard > .bs-wizard-step.disabled a.bs-wizard-dot {
+            pointer-events: none;
+        }
+/*END Form Wizard*/
+
+
+@media(max-width: 992px) {
+    body {
+        overflow: auto !important;
+    }
+
+    .user-info .footer {
+        position: static;
+        margin-top: 50px;
+    }
+
+    .wizard {
+        margin-top: 50px;
+        position: static;
+    }
+}

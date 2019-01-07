@@ -1,0 +1,144 @@
+﻿@using Seldino.CrossCutting.Web.ViewMessages
+@model Seldino.Application.Command.NotificationHandler.CreateMessageCommand
+@{
+    ViewBag.Title = NotificationViewMessage.ContactPageTitle;
+}
+
+<div class="container on-banner">
+    <div class="page-header">
+        <h3>پیام خود را به ما برسانید</h3>
+    </div>
+    <div class="col-lg-12 contact-form">
+        <div class="clearfix"></div>
+        @using (Html.BeginForm("Contact", "Home", FormMethod.Post, new { id = "ContactForm", data_Captcha = "true" }))
+        {
+            <div class="col-lg-4">
+
+                <div class="input-field">
+                    @Html.TextBoxFor(c => c.Title, new { @class = "form-control", id = "Title" })
+                    <label for="Title">عنوان پیام را وارد کنید</label>
+                </div>
+                <div class="clearfix"></div>
+
+                <div class="input-field">
+                    @Html.TextBoxFor(c => c.Name, new { @class = "form-control", id = "Name" })
+                    <label for="Name">نام خود را وارد کنید</label>
+                </div>
+
+                <div class="clearfix"></div>
+
+                <div class="input-field">
+                    @Html.TextBoxFor(c => c.Email, new { @class = "form-control", id = "Email" })
+                    <label for="Email">ایمیل خود را وارد کنید</label>
+                </div>
+
+                <div class="clearfix"></div>
+
+                <div class="captcha"></div>
+
+                <div class="clearfix"></div>
+
+                <button class="btn btn-primary btn-block" type="submit">@NotificationViewMessage.SendContactMessage </button>
+            </div>
+            <div class="col-lg-8">
+                <label for="Body">پیام خود را بنویسید ...</label>
+                <textarea name="Body" id="Body" class="form-control contact-textarea"></textarea>
+            </div>
+        }
+    </div>
+
+</div>
+
+
+@*<div class="panel panel-default">
+        <div class="panel-heading">@DocumentViewMessage.ContactUs</div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-5">
+                    <div class="clp">
+                        @using (Html.BeginForm("Contact", "Home", FormMethod.Post))
+                        {
+                            <div class="form-signin">
+                                <div class="form-group">
+                                    @Html.TextBoxFor(c => c.Name, new { @class = "form-control", placeholder = NotificationViewMessage.Name })
+                                    @Html.ValidationMessageFor(c => c.Name)
+                                </div>
+                                <div class="form-group">
+                                    @Html.TextBoxFor(c => c.Email, new { @class = "form-control", placeholder = "Email", type="email" })
+                                    @Html.ValidationMessageFor(c => c.Email)
+                                </div>
+                                <div class="form-group">
+                                    @Html.TextBoxFor(c => c.Title, new { @class = "form-control", placeholder = NotificationViewMessage.MessageTitle })
+                                    @Html.ValidationMessageFor(c => c.Title)
+                                </div>
+                                <div class="form-group">
+                                    @Html.TextAreaFor(c => c.Body, new { @class = "form-control", placeholder = NotificationViewMessage.MessageBody })
+                                    @Html.ValidationMessageFor(c => c.Body)
+                                </div>
+                                <div class="g-recaptcha" data-sitekey="6LegBgoTAAAAAKIbVszp9dq_6ENxqrixdUYh7r3G"></div>
+                                <div class="btn-group">
+                                    <button class="btn btn-default" type="submit">@NotificationViewMessage.SendContactMessage </button>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div class="col-sm-7 hidden-xs scicon">
+                    <i class="icon-envelope-alt"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <style>
+        .g-recaptcha {
+            margin: 15px 0;
+        }
+
+        .recaptchatable .recaptcha_image_cell, #recaptcha_table {
+            background-color: #FF0000 !important;
+        }
+
+        #recaptcha_table {
+            border-color: #FF0000 !important;
+        }
+
+        #recaptcha_response_field {
+            border-color: #FF0000 !important;
+        }
+    </style>
+    <script>
+        $(function () {
+            $("body").on("submit", "form", function (e) {
+                e.preventDefault();
+                e.stopImmediatePropagation();
+                document.getElementById("loading").style.display = "block";
+                var form = e.target;
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.open(form.method, form.action);
+                xmlhttp.onreadystatechange = function () {
+                    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                        if (form.dataset.ajaxUpdate) {
+                            var updateTarget = document.querySelector(form.dataset.ajaxUpdate);
+                            if (updateTarget) {
+                                updateTarget.innerHTML = xmlhttp.responseText;
+                            }
+                        }
+                    }
+                };
+                xmlhttp.send(new FormData(form));
+                xmlhttp.onreadystatechange = function () {
+                    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                        document.getElementById("loading").style.display = "none";
+                        var result = JSON.parse(xmlhttp.responseText);
+                        if (result.Success) {
+                            alertify.success(result.Message);
+                        }
+                        else {
+                            alertify.error(result.Message);
+                        }
+
+                    }
+                }
+            })
+        })
+    </script>*@

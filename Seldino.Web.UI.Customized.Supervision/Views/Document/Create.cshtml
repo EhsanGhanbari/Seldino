@@ -1,0 +1,119 @@
+﻿@model Seldino.Application.Command.DocumentHandler.AddDocumentCommand
+@using Seldino.CrossCutting.Web.ViewMessages
+@{
+    ViewBag.Title = DocumentViewMessage.Create;
+    var SocialMediaOptions = (IList<Seldino.Application.Query.DocumentService.SocialMediaOptionDto>)ViewData["SocialMediaOptions"];
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <h4 class="page-header">@DocumentViewMessage.Create</h4>
+        @using (Html.BeginForm("Create", "DocumentSuperviser", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal" }))
+        {
+            <div class="col-lg-12">
+                <div class="form-group">
+                    @Html.CheckBoxFor(p => p.IsDefault)
+                    @Html.Label(DocumentViewMessage.IsDefault, new { @class = "control-label" })
+                    @Html.ValidationMessageFor(c => c.IsDefault)
+                </div>
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active"><a href="#rule" aria-controls="profile" role="tab" data-toggle="tab">@DocumentViewMessage.Rule</a></li>
+                    <li role="presentation"><a href="#about" aria-controls="messages" role="tab" data-toggle="tab">@DocumentViewMessage.About</a></li>
+                    <li role="presentation"><a href="#guide" aria-controls="messages" role="tab" data-toggle="tab">@DocumentViewMessage.Help</a></li>
+                    <li role="presentation"><a href="#information" aria-controls="messages" role="tab" data-toggle="tab">@DocumentViewMessage.Information</a></li>
+                    <li role="presentation"><a href="#social" aria-controls="messages" role="tab" data-toggle="tab">@DocumentViewMessage.SocialNetwork</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane fade in active" id="rule">
+                        <hr class="transparent" />
+                        @Html.TextAreaFor(p => p.RuleCommand.Body)
+                        @Html.ValidationMessageFor(c => c.RuleCommand.Body)
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="about">
+                        <hr class="transparent" />
+                        @Html.TextAreaFor(p => p.AboutCommand.Body)
+                        @Html.ValidationMessageFor(c => c.AboutCommand.Body)
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="guide">
+                        <hr class="transparent" />
+                        @Html.TextAreaFor(p => p.GuideCommand.Body)
+                        @Html.ValidationMessageFor(c => c.GuideCommand.Body)
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="information">
+                        <hr class="transparent" />
+                        @Html.TextAreaFor(p => p.InformationCommand.Body)
+                        @Html.ValidationMessageFor(c => c.InformationCommand.Body)
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="social">
+                        <hr class="transparent" />
+                        <div class="row">
+                            @foreach (var item in SocialMediaOptions)
+                            {
+                                <div class="form-group col-xs-12">
+                                    <div class="input-group col-xs-12 col-sm-6">
+                                        <div class="input-group-addon"><i class="icon-@item.Name"></i></div>
+                                        <input type="url" name="SocialMedias[@SocialMediaOptions.IndexOf(item)].Url" class="form-control" placeholder="آدرس @item.Name" />
+                                        <input type="hidden" name="SocialMedias[@SocialMediaOptions.IndexOf(item)].SocialMediaOption.Name" value="@item.Name" />
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <hr />
+                <button type="submit" class="btn btn-default">@CommonViewMessage.Save</button>
+                <hr class="transparent" />
+            </div>
+        }
+    </div>
+</div>
+
+<script src="@Url.Content("~/Scripts/CKEditor/ckeditor.js")"></script>
+<script>
+    $(function () {
+        CKEDITOR.replace('RuleCommand_Body', {
+            filebrowserImageBrowseUrl: '/Supervision/DocumentSuperviser/GetPictures',
+            filebrowserImageUploadUrl: '/Supervision/DocumentSuperviser/SavePicture'
+        });
+        CKEDITOR.replace('AboutCommand_Body', {
+            filebrowserImageBrowseUrl: '/Supervision/DocumentSuperviser/GetPictures',
+            filebrowserImageUploadUrl: '/Supervision/DocumentSuperviser/SavePicture'
+        });
+
+        CKEDITOR.replace('GuideCommand_Body', {
+            filebrowserImageBrowseUrl: '/Supervision/DocumentSuperviser/GetPictures',
+            filebrowserImageUploadUrl: '/Supervision/DocumentSuperviser/SavePicture'
+        });
+
+        CKEDITOR.replace('InformationCommand_Body', {
+            filebrowserImageBrowseUrl: '/Supervision/DocumentSuperviser/GetPictures',
+            filebrowserImageUploadUrl: '/Supervision/DocumentSuperviser/SavePicture'
+        });
+        $('textarea').each(function () {
+            var id = $(this).attr('id'),
+                form = this.form;
+
+            CKEDITOR.instances[id].on('beforeCommandExec', function (event) {
+                if (event.data.name === 'save') {
+                    event.cancel();
+                    $(form).submit();
+                }
+            });
+        });
+    });
+    function updateValue(id, value) {
+        document.getElementById(id).value = value;
+    }
+    function updateImage(id, value) {
+        document.getElementById(id).innerHTML = value;
+    }
+    var Result = "@ViewBag.Result";
+    if (Result != null) {
+        if (Result.Success) {
+            alertify.success(Result.Message);
+        }
+        else {
+            alertify.error(Result.Message);
+        }
+    }
+</script>

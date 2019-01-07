@@ -1,0 +1,181 @@
+﻿@using Seldino.Application.Query.SettingService
+@using Seldino.CrossCutting.Web.Extensions
+@using Seldino.CrossCutting.Web.Helpers
+@using Seldino.CrossCutting.Web.ViewMessages
+@model  Seldino.Application.Query.ProductService.ProductDto
+
+@{
+    ViewBag.Title = ProductViewMessage.ProductDetailTitle;
+}
+
+@{
+    Html.Partial("Partials/Metadata", new SeoSettingDto
+    {
+        Title = Model.ProductName,
+        Keywords = Model.MetKeywords,
+        Description = Model.Description,
+        ImagePath = Model.ProductPictures.Select(c => c.FullPath).ToArray(),
+        CreateDate = Model.CreationDate,
+        UpdateDate = Model.LastUpdateDate,
+        //  Link = Url.ProductLink(Model.ProductId, Model.Slug) @ToDo
+    });
+}
+
+<div id="@Model.ProductId">
+    <div class="container product-header">
+        <h3>پیشنهاد شگفت انگیز</h3>
+
+        <div class="countdown">
+            <div class="clock"></div>
+            <script type="text/javascript">
+                startCountDown("@Model.ProductId", "2016/08/12 00:45");
+            </script>
+        </div>
+
+        <div class="discount">
+            <div class="title">تخفیف</div>
+            <div class="type">هزار تومان</div>
+            <div class="price">150</div>
+        </div>
+    </div>
+    <div class="container product-info first">
+        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 product-images">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 product-fav-buttons">
+                <a href="javascript:void(0);">
+                    <i class="fa fa-share-alt"></i>
+                </a>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <a href="javascript:void(0);">
+                        <i class="fa fa-heart-o"></i>
+                    </a>
+                }else{
+                    <a href="javascript:void(0);" data-toggle="modal" data-target="#modalLogin">
+                        <i class="fa fa-heart-o"></i>
+                    </a>
+                }
+            </div>
+
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 product-item">
+                <img src="@Url.Content(Model.ProductPictures.FirstOrDefault().Address + "/" + Model.ProductPictures.FirstOrDefault().Name)" />
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 product-items">
+                @foreach (var item in Model.ProductPictures)
+                {
+                    <div class="item">
+                        <img src="@Url.Content(item.Address + "/" + item.Name)" />
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12 product-basic-info">
+
+            <div class="head">
+                @if (Model.ProductBrand != null)
+                {
+                    <h4>@Model.ProductName</h4>
+                    <small>@Model.OriginalName</small>
+                }
+            </div>
+
+            <div class="body">
+                <div class="product-list">
+                    <div class="product-list-item">
+                        <label>@ProductViewMessage.ProductBrand: </label>
+                        @Html.ActionLink(Model.ProductBrand.Name, "Brand", "Product", new { category = Model.ProductCategory.Name, brand = Model.ProductBrand.Name, pageIndex = 1, pageSize = 20 })
+                    </div>
+
+                    @if (Model.ProductColors.Any())
+                    {
+                        <div class="product-list-item">
+                            <label>رنگ های محصول:</label>
+                            @foreach (var color in Model.ProductColors)
+                            {
+                                <b>@color</b>
+                            }
+                        </div>
+                    }
+
+                    @if (Model.ProductSizes.Any())
+                    {
+                        <div class="product-list-item">
+                            <label>اندازه های محصول:</label>
+                            @foreach (var size in Model.ProductSizes)
+                            {
+                                <b>@size</b>
+                            }
+                        </div>
+                    }
+                    <div class="product-list-item">
+                        <label>@ProductViewMessage.ProductCategory:</label>
+                        @Html.ActionLink(Model.ProductCategory.Name, "Category", "Product", new { category = Model.ProductCategory.Name, pageIndex = 1, pageSize = 20 })
+                    </div>
+
+                    @if (Model.ProductTags != null)
+                    {
+                        <div class="product-list-item">
+                            <label>@ProductViewMessage.ProductTag:</label>
+                            @foreach (var item in Model.ProductTags)
+                            {
+                                <text>
+                                    @Html.ActionLink(item.Name, "Tag", "Product", new { category = Model.ProductCategory.Name, tag = item.Name, pageIndex = 1, pageSize = 20 }, new { @class = "label label-default" })
+                                </text>
+                            }
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <div class="footer">
+                <div class="price">
+                    <h2>@Math.Truncate(Model.Price).ToString("N0")</h2>
+                    <h6>@ProductViewMessage.CurrencyToman</h6>
+                </div>
+                <button class="btn btn-primary btn-lg buy" data-loading-text="<i class='fa fa-spinner fa-spin'><i>" data-product-id="@Model.ProductId" data-add-to-card="true">
+                    <span>
+                        <i class="fa fa-shopping-basket"></i>
+                    </span>
+                    افزودن به سبد خرید
+                </button>
+            </div>
+
+        </div>
+    </div>
+    <div class="container product-info">
+        <div class="page-header">
+            <h4>معرفی محصول</h4>
+        </div>
+
+        <div class="content">
+            @if (!string.IsNullOrEmpty(Model.Description))
+            {
+                @Model.Description
+            }
+            <p>
+                ربات «BB-8» جدیدترین محصول شرکت «Sphero» است که خریدارانش بیشتر از دو گروه طرف‌داران فیلم‌های جنگ ستارگان و علاقه‌مندان به بازی با گجت‌های جدید هستند. با پیشرفت و ارتقای هرروزه‌ی گوشی‌های هوشمند و نرم‌افزارهایشان، انتظار آن می‌رود که بتوانید هر وسیله‌ای را با گوشی خود کنترل و هدایت کنید. به لطف این پیشرفت‌ها، ربات‌های جنگ ستارگان که همیشه آن‌ها را روی پرده‌ی سینما یا صفحه‌نمایش‌ها می‌دیدیم، اکنون در میان ما هستند. شرکت Sphero مجموعه‌ای است که در زمینه‌ی تولید گجت‌های هوشمند شهرت خوبی دارد. معروف‌ترین محصول Spheroتوپ سفید کوچکی بود که با حرکات سریعش توانست نگاه‌ها را به خود خیره کند و بدون هیچ سیم، کابل یا ریموت کنترل جداگانه‌ای می‌توانستید از آن استفاده کنید. تنها از طریق یک گوشی هوشمند که با بلوتوث به آن متصل شده بود، فرمان‌های کاربر را دریافت و اجرا می‌کرد. دو مدل Sphero 2.0 و Olli تولیدات بعدی این شرکت بودند که شباهت‌ها و تفاوت‌هایی با نمونه‌ی اولیه داشتند. اکنون محصولی دیگر از این شرکت عرضه شده است. توپ هوشمند BB-8، نمونه‌ای کوچک از رباتی است که در فیلم «نیرو برمی‌خیزد» از سری فیلم‌های جنگ ستارگان به روی پرده رفت. ارتفاع آن 114 و قطر آن 73 میلی‌متر است. 200 گرم وزن و پوسته‌ی سختی از جنس پلی‌کربنات دارد. این ربات کوچک برخلاف سایر ربات‌ها، می‌تواند شخصیتش را با توجه به خواسته‌های شما تغییر دهد، از شما یاد بگیرد و حتی احساساتش را نشان دهد. ربات BB-8 تابع فرمان‌های صوتی هم هست و از طریق بلوتوث به گوشی و تبلت متصل می‌شود که ارتباطش را می‌تواند تا محدوده‌ی 30 متری حفظ کند. اپلیکیشن این ربات، سیستم‌عامل iOS(نسخه 8.0 و بالاتر) و اندروید (نسخه 4.4.2 و بالاتر) را پشتیبانی می‌کند و با نصب نرم‌افزارش می‌توانید قابلیت‌ها و کنترل آن را در دست بگیرید. این محصول قابلیت برنامه‌ریزی و هدایت خودکار دارد، سنسورهای شتاب و ژیروسکوپ به حرکت صحیح آن کمک می‌کنند و حداکثر سرعتش به 7.24 کیلومتر بر ساعت می‌رسد. برای شارژکردنش کافی است آن را روی پایه‌ی شارژ بی‌سیم قرار دهید. با یک‌بار شارژکردن می‌تواند برای یک ساعت حرکت، انرژی داشته باشد. ویژگی جالب آن امکان ارسال پیام‌های تصویری به صورت هولوگرافیک است که تاکنون هیچ محصول مشابهی این قابلیت را ندارد. مشابه آنچه در فیلم مشاهده شد، BB-8 می‌تواند پیام های تصویری ضبط‌شده‌ی کاربر را به صورت هولوگرافیک ارسال کند. برای کنترل و هدایتش باید نرم‌افزار آن را از آیتونز یا گوگل‌پلی دانلود کرده و روی گوشی یا تبلتتان نصب کنید. این ربات کوچک همان چیزی است که شیفتگان جنگ ستارگان به دنبال آن هستند و هم‌اکنون می‌توان آن را در فروشگاه اینترنتی دیجی‌کالا خریداری کرد.
+            </p>
+
+            <div class="footer">
+                <a href="javascript:void(0);" data-content-more>
+                    <i class="fa fa-chevron-down"></i>
+                    نمایش بیشتر
+                </a>
+
+                <a href="javascript:void(0);" data-content-less>
+                    <i class="fa fa-chevron-up"></i>
+                    نمایش کمتر
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container product-info">
+        <div class="page-header">
+            <h4>محصولات مشابه</h4>
+        </div>
+
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            @Html.Action("Similar", "Product", new { productId = @Model.ProductId })
+        </div>
+    </div>
+</div>

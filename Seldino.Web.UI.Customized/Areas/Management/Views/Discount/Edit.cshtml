@@ -1,0 +1,110 @@
+﻿@model Seldino.Application.Command.DiscountHandler.EditDiscountCommand
+@using Seldino.CrossCutting.Web.ViewMessages
+@{
+    ViewBag.Title = "ایجاد قالب فروشگاه";
+}
+<div class="panel panel-default">
+    <div class="panel-heading"></div>
+    <div class="panel-body">
+        @using (Html.BeginForm("Create", "Discount", FormMethod.Post, new { @class = "form-horizontal" }))
+        {
+            @Html.HiddenFor(model => model.CreationDate)
+            @Html.HiddenFor(model => model.DiscountId)
+            <div class="form-group">
+                @Html.Label("نام قالب تخفیف", new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-8 col-md-6">
+                    @Html.TextBoxFor(p => p.Name, new { @class = "form-control", placeholder = "نام قالب تخفیف" })
+                </div>
+                @Html.ValidationMessageFor(c => c.Name)
+            </div>
+            <div class="form-group">
+                @Html.Label("درصد تخفیف", new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-8 col-md-6">
+                    @Html.TextBoxFor(p => p.Percentage, new { @class = "form-control", placeholder = "درصد تخفیف" })
+                </div>
+                @Html.ValidationMessageFor(c => c.Percentage)
+            </div>
+            <div class="form-group">
+                @Html.Label("محدودیت تخفیف", new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-8 col-md-6">
+                    @Html.EnumDropDownListFor(p => p.DiscountLimitation, new { @class = "form-control", placeholder = "محدودیت تخفیف" })
+                </div>
+                @Html.ValidationMessageFor(c => c.DiscountLimitation)
+            </div>
+            <div class="form-group">
+                @Html.Label("مبلغ تخفیف", new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-8 col-md-6">
+                    @Html.TextBoxFor(p => p.Amount, new { @class = "form-control", placeholder = "مبلغ تخفیف" })
+                </div>
+                @Html.ValidationMessageFor(c => c.Amount)
+            </div>
+            <div class="form-group">
+                @Html.Label("تاریخ شروع", new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-8 col-md-6">
+                    @Html.TextBoxFor(p => p.StartDate, new { @class = "form-control", placeholder = "تاریخ شروع" })
+                </div>
+                @Html.ValidationMessageFor(c => c.StartDate)
+            </div>
+            <div class="form-group">
+                @Html.Label("تاریخ پایان", new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-8 col-md-6">
+                    @Html.TextBoxFor(p => p.EndDate, new { @class = "form-control", placeholder = "تاریخ پایان" })
+                </div>
+                @Html.ValidationMessageFor(c => c.EndDate)
+            </div>
+            <div class="form-group">
+                @Html.Label("توقف تخفیف", new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-8 col-md-6">
+                    @Html.CheckBoxFor(p => p.Stopped)
+                </div>
+                <hr class="transparent" />
+                <div class="btn-group">
+                    <button class="btn btn-sm btn-success" type="submit">@CommonViewMessage.Create</button>
+                </div>
+                <hr class="transparent" />
+                @Html.ValidationMessageFor(c => c.Stopped)
+            </div>
+            @Html.ValidationSummary(true)
+        }
+    </div>
+</div>
+@System.Web.Optimization.Scripts.Render("~/bundles/jqueryval")
+<script>
+    $(function () {
+        $("body").on("submit", "form", function (e) {
+            e.preventDefault();
+            e.stopImmediatePropagation();
+            document.getElementById("loading").style.display = "block";
+            var form = e.target;
+            if (form.getAttribute("enctype") === "multipart/form-data") {
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.open(form.method, form.action);
+                xmlhttp.onreadystatechange = function () {
+                    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                        if (form.dataset.ajaxUpdate) {
+                            var updateTarget = document.querySelector(form.dataset.ajaxUpdate);
+                            if (updateTarget) {
+                                updateTarget.innerHTML = xmlhttp.responseText;
+                            }
+                        }
+                    }
+                };
+                xmlhttp.send(new FormData(form));
+                xmlhttp.onreadystatechange = function () {
+                    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                        document.getElementById("loading").style.display = "none";
+                        var result = JSON.parse(xmlhttp.responseText);
+                        if (result.Success) {
+                            alertify.success(result.Message);
+                            window.location.href = "@Url.Action("List", "Discount")";
+                        }
+                        else {
+                            alertify.error(result.Message);
+                        }
+
+                    }
+                }
+            }
+        })
+    })
+</script>

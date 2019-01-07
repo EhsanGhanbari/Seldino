@@ -1,0 +1,99 @@
+﻿@model Seldino.Application.Query.BasketService.BasketQueryResponse
+
+<div id="card">
+    <div class="status hidden-xs" data-toggle="modal" data-target="#basket">
+        <i class="fa fa-shopping-basket"></i>
+        <label>@((Model != null && Model.Basket != null && Model.Basket.NumberOfItems != 0) ? Model.Basket.NumberOfItems.ToString() : "0")</label>
+    </div>
+
+    <a href="@Url.Action("Card", "Basket", new { area = "" })" class="status visible-xs">
+        <i class="fa fa-shopping-basket"></i>
+        <label>@((Model != null && Model.Basket!=null&& Model.Basket.NumberOfItems != 0) ? Model.Basket.NumberOfItems.ToString() : "0")</label>
+    </a>
+    @if (Model != null)
+    {
+        <div class="hidden-xs">
+            <div class="modal" id="basket" role="dialog">
+                <div class="modal-dialog center modal-lg">
+                    <div class="modal-content animated fadeIn">
+                        <div class="modal-body">
+                            
+                            @if (Model.Basket != null)
+                            {
+
+                                if (Model.Basket.ItemsTotal == 0)
+                                {
+                                    <div class="card-empty">
+                                        <i class="fa fa-shopping-basket fa-5x"></i>
+                                        <h2>سبد خالی است</h2>
+                                        <a href="@Url.Action("Index", "Home", new {area = ""})"><small>جهت ادامه خرید کلیک نمایید</small></a>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center col-lg-1">تصویر محصول</th>
+                                                <th class="text-center col-lg-2">محصول</th>
+                                                <th class="text-center col-lg-2">قیمت</th>
+                                                <th class="text-center col-lg-2">تعداد</th>
+                                                <th class="text-center col-lg-1">حذف</th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                    <div class="scroller">
+                                        <table class="table table-card">
+                                            <tbody>
+                                                @foreach (var item in Model.Basket.BasketItems)
+                                                {
+                                                    var address = item.Product.ProductPictures.FirstOrDefault().Address.Replace("~", "");
+                                                    var image = address + "/" + item.Product.ProductPictures.FirstOrDefault().Name;
+                                                    <tr data-product-id="@item.Product.ProductId">
+                                                        <td class="col-lg-1">
+                                                            <div class="img-holder">
+                                                                <img src="@image" alt="@item.Product.ProductName">
+                                                            </div>
+                                                        </td>
+                                                        <td class="col-lg-2">
+                                                            <b>@item.Product.ProductName</b>
+                                                        </td>
+                                                        <td class="col-lg-2" data-is-price>@item.Product.Price.ToString("0") تومان</td>
+                                                        <td class="col-lg-2"><b>@item.Quantity.Value</b></td>
+                                                        <td class="col-lg-1">
+                                                            <a href="#" data-remove-id="@item.Product.ProductId" title="حذف">
+                                                                <i class="fa fa-trash fa-2x text-danger"></i>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                }
+
+                            }
+                        </div>
+                        @if (Model.Basket != null)
+                        {
+                            if (Model.Basket.ItemsTotal != 0)
+                            {
+                                <div class="modal-footer">
+                                    <a class="btn btn-primary btn-flat pull-right" data-dismiss="modal">
+                                        ادامه خرید
+                                    </a>
+                                    <a href="/Basket/Card" class="btn btn-primary btn-flat pull-right">
+                                        سبد خرید
+                                    </a>
+                                    <b class="basket-total" data-is-price>
+                                        @Model.Basket.ItemsTotal.ToString("0")
+                                    </b>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

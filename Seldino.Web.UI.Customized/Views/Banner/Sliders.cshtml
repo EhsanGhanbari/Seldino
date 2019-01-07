@@ -1,0 +1,57 @@
+﻿@using Seldino.CrossCutting.Web.Helpers
+@model  Seldino.Application.Query.BannerService.AdvBannersQueryQueryResponse
+
+<div id="carousel-example-generic" class="carousel slide" data-ride="carousel" data-interval="false">
+
+    <!-- Indicators -->
+    <div class="carousel-controllers carousel-indicators hidden-xs">
+        @if (Model != null && Model.Banners != null)
+        {
+            foreach (var item in Model.Banners.Where(q => q.BannerType == Seldino.CrossCutting.Enums.BannerType.Slider))
+            {
+                var col = 12 / @Model.Banners.Count;
+                <div data-target="#carousel-example-generic" data-banner-id="@item.BannerId" class="col-lg-@col col-md-@col col-sm-@col col-xs-@col carousel-indicators-item">
+                    <div class="col-lg-12 col-md-12">
+                        <div class="col-lg-9 col-md-9 title">@Html.Raw(item.Caption)</div>
+                        <div class="index hidden-sm"></div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+        @if (Model != null && Model.Banners != null)
+        {
+            foreach (var item in Model.Banners.Where(q => q.BannerType == Seldino.CrossCutting.Enums.BannerType.Slider))
+            {
+                <div class="item" data-banner-id="@item.BannerId" style="text-align: center">
+                    <img src="@string.Format("/" + Html.GetImageUrl(item.Picture.FullPath))" style="display: inline-block" />
+                    <div class="carousel-caption">
+                        <h4 class="h4-responsive">@Html.Raw(item.Caption)</h4>
+                        <a class="btn btn-primary btn-flat btn-lg" href="@item.Url">
+                            <i class="fa fa-shopping-cart"></i>
+                            <small>همین الان بخرید ...</small>
+                        </a>
+                    </div>
+                </div>
+            }
+        }
+
+    </div>
+
+    <!-- Controls -->
+    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+
+
+
+<div class="clearfix"></div>

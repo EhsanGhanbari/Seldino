@@ -1,0 +1,57 @@
+﻿@model Seldino.Application.Command.NotificationHandler.AddEmailToNewsletterCommand
+<div class="title">
+
+    <h4 class="page-subheading">
+        تازه ترین محصولات
+    </h4>
+
+
+    <div class="des_newsletter">
+        جهت دریافت عنوان های تازه ترین  محصولات و محصولات فروش ویژه میتوانید ایمیل خود را در زیر وارد نمایید.
+    </div>
+
+</div>
+<div class="block_content row">
+    <div class="col-md-6 col-md-offset-3">
+        <div class="input-field text-center">
+            <input type="text" name="Email" class="form-control text-center" id="newsletter" />
+            <label for="newsletter">ایمیل خود را وارد نمایید</label>
+        </div>
+
+        <a class="submit pull-right">
+            <i class="fa fa-arrow-right"></i>
+        </a>
+    </div>
+</div>
+<script>
+    $("body").on("submit", "#NewsletterSubscribe", function (e) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        if ($("#Email").val() == "") {
+            return false;
+        }
+        //document.getElementById("loading").style.display = "block";
+        var form = e.target;
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.open(form.method, form.action);
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                if (form.dataset.ajaxUpdate) {
+                    var updateTarget = document.querySelector(form.dataset.ajaxUpdate);
+                    if (updateTarget) {
+                        updateTarget.innerHTML = xmlhttp.responseText;
+                    }
+                }
+            }
+        };
+        xmlhttp.send(new FormData(form));
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                //document.getElementById("loading").style.display = "none";
+                var result = JSON.parse(xmlhttp.responseText);
+                alert(result.message);
+                $("#Email").val("");
+            }
+        }
+    })
+</script>

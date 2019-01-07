@@ -1,0 +1,76 @@
+﻿@model Seldino.Application.Query.MembershipService.AuthenticateQueryRequest
+
+@{
+    Layout = null;
+    var actionName = ViewContext.Controller.ValueProvider.GetValue("action").RawValue;
+    var controllerName = ViewContext.Controller.ValueProvider.GetValue("controller").RawValue;
+}
+
+@if ((string)controllerName != "Account" && (string)actionName != "signin")
+{
+    <div class="modal fade modal-login" id="modalLogin" role="dialog">
+        <div class="modal-dialog center">
+            <div class="modal-content">
+                <form class="login-form">
+                    <div class="modal-header">
+                        <h5>
+                            <b>ورود به کادوبین</b>
+                        </h5>
+
+                        <button class="btn btn-default btn-flat pull-left" data-dismiss="modal">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="modal-body">
+                        @Html.Hidden("ReturnUrl", (string) ViewBag.ReturnUrl)
+                        <div class="form-group">
+                            <div class="col-lg-3">
+                                <label for="email">پست الکترونیک</label>
+                            </div>
+                            <div class="col-lg-9">
+                                @Html.TextBoxFor(model => model.Email, new {@class = "form-control text-center", id = "email", placeholder = "Email", autocomplete = "off"})
+                            </div>
+                        </div>
+
+                        <div class="col-lg-9 col-lg-offset-3">
+                            <small class="forget">
+                                <a href="@Url.Action("ForgotPassword", "Account")">
+                                    بازیابی رمز عبور
+                                </a>
+                            </small>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-lg-3">
+                                <label for="password">کلمه عبور</label>
+                            </div>
+                            <div class="col-lg-9">
+                                @Html.PasswordFor(model => model.Password, new {@class = "form-control text-center", id = "password", placeholder = "Password", autocomplete = "off"})
+                            </div>
+                        </div>
+
+                        <div class="col-lg-9 col-lg-offset-3">
+                            <div class="form-group checkbox">
+                                <input id="rememberMe" name="RememberMe" type="checkbox">
+                                <label for="rememberMe">مرا بخاطر بسپار</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <!--Footer-->
+                    <div class="modal-footer">
+                        <button type="button" class="btn pull-right btn-flat btn-primary waves-effect waves-light" data-login>
+                            ورود به فروشگاه
+                        </button>
+
+                        <small> قبلا در کادوبین ثبت نام نکرده اید؟</small>
+                        <a href="@Url.Action("Register", "Account")">
+                            <small>ثبت نام در سایت</small>
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+}

@@ -1,0 +1,108 @@
+﻿@using Seldino.CrossCutting.Web.ViewMessages
+@model  Seldino.Application.Query.ProductService.ProductQueryResponse
+
+@if (Model.Product != null)
+{
+    <div class="row">
+        <div class="col-lg-12">
+            <h4 class="page-header">@Model.Product.ProductName</h4>
+        </div>
+
+        <div>
+            @Html.DisplayFor(model => model.Product.ProductName)
+        </div>
+
+        <div>
+            @Html.DisplayFor(model => model.Product.OriginalName)
+        </div>
+
+        <div>
+            @Html.DisplayFor(model => model.Product.Description)
+        </div>
+
+        <div>
+            @Html.DisplayFor(model => model.Product.CreationDate)
+        </div>
+
+        <div>
+            @Html.DisplayFor(model => model.Product.CreationDate)
+        </div>
+
+        <div>
+            @Html.DisplayFor(model => model.Product.DollarPrice)
+        </div>
+
+        <div>
+            @Html.DisplayFor(model => model.Product.IsInSpecialState)
+        </div>
+
+        <div>
+            @Html.DisplayFor(model => model.Product.IsInactive)
+        </div>
+
+        <div>
+            @Html.DisplayFor(model => model.Product.IsUnAvailable)
+        </div>
+
+        <div>
+            @Html.DisplayFor(model => model.Product.LastUpdateDate)
+        </div>
+
+        <div>
+            @Html.DisplayFor(model => model.Product.MetKeywords)
+        </div>
+
+        <div>
+            @Html.DisplayFor(model => model.Product.NotExist)
+        </div>
+
+        <div>
+            @Html.DisplayFor(model => model.Product.OldDollarPrice)
+        </div>
+
+        <div>
+            @foreach (var store in Model.Product.Stores)
+            {
+                <div>
+                    @Html.DisplayFor(c => store.Name)
+                </div>
+            }
+        </div>
+
+        <div>
+            @Html.DisplayFor(model => model.Product.ProductCategory.Name)
+        </div>
+
+        <div>
+            @foreach (var tag in Model.Product.ProductTags)
+            {
+                <div>
+                    @Html.DisplayFor(c => tag.Name)
+                </div>
+            }
+        </div>
+
+        <div>
+            @Html.DisplayFor(model => model.Product.ProductBrand.Name)
+        </div>
+
+        <div>
+            @foreach (var tag in Model.Product.ProductTags)
+            {
+                <div>
+                    @Html.DisplayFor(c => tag.Name)
+                </div>
+            }
+        </div>
+
+        <div>
+            @foreach (var picture in Model.Product.ProductPictures)
+            {
+                <div>
+                    @Html.DisplayFor(c => picture.Name)
+                    <div class="sl-p img-rounded" style="background-image: url(@picture.Address.Replace("~", "")@picture.Name)"></div>
+                </div>
+            }
+        </div>
+    </div>
+}

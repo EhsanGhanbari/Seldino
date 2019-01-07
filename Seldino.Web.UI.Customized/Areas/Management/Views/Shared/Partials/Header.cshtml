@@ -1,0 +1,126 @@
+﻿<header>
+    <section>
+        <div id="userdet" class="dropdown">
+            <div class="container clearfix">
+                <div class="pull-right">
+                    <div class="clearfix">
+                        <div class="dropdown pull-right">
+                            <a aria-expanded="false" class="btn btn-link btn-xs dropdown-toggle" data-toggle="dropdown"><i class="icon-user icon-white"></i> حساب کاربری</a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <div class="navbar-login">
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <p class="text-center">
+                                                    <img class="img-circle profile-img" src="@Url.Content("~/Content/Images/132056473416.jpg")">
+                                                </p>
+                                            </div>
+                                            <div class="col-lg-8">
+                                                <p class="text-righ">نام شما</p>
+                                                <p class="text-right small">username@gmail.com</p>
+                                                <p class="text-right">
+                                                    <a href="#" class="btn btn-default btn-block btn-sm"> حساب کاربری</a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a href="#" class="btn btn-link btn-sm btn-block"> خروج از حساب کاربری</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="dropdown pull-right">
+                            <a aria-expanded="false" class="dropdown-toggle btn btn-link btn-xs" data-toggle="dropdown"><i class="icon-shopping-cart"></i> سبد کالا <span class="icun">(4)</span> <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <table class="navbar-cart">
+                                        <tr>
+                                            <td>
+                                                <div class="img-rounded d-img he-50" style="background-image: url(http://placehold.it/50x50)"></div>
+                                            </td>
+                                            <td>
+                                                <span class="cart-cel">نام محصول</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="img-rounded d-img he-50" style="background-image: url(http://placehold.it/50x50)"></div>
+                                            </td>
+                                            <td>
+                                                <span class="cart-cel">نام محصول</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="img-rounded d-img he-50" style="background-image: url(http://placehold.it/50x50)"></div>
+                                            </td>
+                                            <td>
+                                                <span class="cart-cel">نام محصول</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="img-rounded d-img he-50" style="background-image: url(http://placehold.it/50x50)"></div>
+                                            </td>
+                                            <td>
+                                                <span class="cart-cel">نام محصول</span>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a class="text-center">خرید محصولات</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class=" pull-right">
+                            <a class="btn btn-link btn-xs" href="@Url.Action("List", "Favorite")"><i class="icon-heart"></i> علاقه مندی ها <span class="icun">(25)</span></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="pull-left">
+                    <a class="btn btn-link btn-xs" href="#">همکاری با ما</a>
+                    <a class="btn btn-link btn-xs" href="#">قوانین سایت</a>
+                    <a class="btn btn-link btn-xs" href="#">راهنما</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-2"><a id="headerlogo"><img src="@Url.Content("~/Content/Images/logo.png")" /></a></div>
+                <div class="col-md-10">
+
+                    <div id="searchform">
+                        <form>
+                            <div class="input-group input-group-lg">
+                                <input type="text" class="form-control" aria-label="Text input with segmented button dropdown" placeholder="جستجو...">
+                                <div class="input-group-btn">
+                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                        <span class="text">همه محصولات</span>
+                                        <span class="caret"></span>
+                                        <span class="sr-only">Toggle Dropdown</span>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="#">گل</a></li>
+                                        <li><a href="#">عطر</a></li>
+                                        <li><a href="#">عروسک</a></li>
+                                        <li><a href="#">شکلات</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="#">همه محصولات</a></li>
+                                    </ul>
+                                    <button type="button" class="btn btn-default"><i class="icon-search"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</header>

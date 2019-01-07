@@ -1,0 +1,44 @@
+﻿@model Seldino.Application.Query.BasketService.BasketQueryResponse
+@using Seldino.CrossCutting.Web.Extensions
+
+<div class="container on-banner white">
+
+    <div class="products_block">
+        <h4 class="page-subheading">
+            <span>سبد خرید</span>
+            <em class="line"><i class="fa fa-shopping-cart"></i></em>
+        </h4>
+        <div class="clearfix"></div>
+
+        <table class="table table-bordered shoping-cart">
+            @foreach (var item in Model.Basket.BasketItems)
+            {
+                var address = item.Product.ProductPictures.FirstOrDefault().Address.Replace("~", "");
+                var image = address + "/" + item.Product.ProductPictures.FirstOrDefault().Name;
+                <tr class="@item.Product.ProductId">
+                    <td class="col-lg-1">
+                        <img src="@image" alt="@item.Product.ProductName">
+                    </td>
+                    <td class="col-lg-4">
+                        <b>@item.Product.ProductName</b>
+                    </td>
+                    <td class="col-lg-2 price amount">@item.Product.Price</td>
+                    <td class="col-lg-2">
+                        <div class="input-number" data-in-cart="true">
+                            <div class="plus">+</div>
+                            <div class="minus">-</div>
+                            <div class="input">
+                                <input type="number" min="0" value="1" />
+                            </div>
+                        </div>
+                    </td>
+                    <td class="col-lg-2 row-sum amount">@item.Product.Price</td>
+                    <td class="col-lg-1">
+                        <a href="#" data-id="@item.Product.ProductId" data-remove-item>حذف</a>
+                    </td>
+                </tr>
+            }
+        </table>
+
+    </div>
+</div>

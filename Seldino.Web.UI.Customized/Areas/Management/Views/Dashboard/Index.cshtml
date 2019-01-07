@@ -1,0 +1,83 @@
+﻿@model Seldino.Application.Query.DashboardService.DashboardLayoutQueryResponse
+
+<div class="page-header">
+    <h4>داشبورد</h4>
+</div>
+
+
+<div class="col-lg-6">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <a href="@(Url.Action("List", "Product"))">
+                محصولات
+            </a>
+            <a class="pull-left" href="@(Url.Action("Create", "Product"))">
+                <i class="fa fa-plus"></i>
+            </a>
+        </div>
+        <div class="panel-body text-center">
+            <h6 class="text-muted">تعداد محصولات فعال</h6>
+            <h3>@Model.DashboardLayout.ActiveProducts</h3>
+
+            <h6 class="text-muted">تعداد محصولات غیرفعال</h6>
+            <h3>@Model.DashboardLayout.InactiveProducts</h3>
+        </div>
+    </div>
+</div>
+
+<div class="col-lg-6">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <a href="@(Url.Action("List", "Banner"))">
+                مدیریت بنرها
+            </a>
+            <a class="pull-left" href="@(Url.Action("Create", "Banner"))">
+                <i class="fa fa-plus"></i>
+            </a>
+        </div>
+        <div class="panel-body text-center">
+            <h6 class="text-muted">تعداد بنرهای فعال</h6>
+            <h3>@Model.DashboardLayout.ActiveBanners</h3>
+
+            <h6 class="text-muted">تعداد بنرهای غیر فعال</h6>
+            <h3>@Model.DashboardLayout.InactiveBanners</h3>
+        </div>
+    </div>
+</div>
+
+<div class="col-lg-6">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <a href="@(Url.Action("List", "Store"))">
+                مدیریت فروشگاه ها
+            </a>
+            <a class="pull-left" href="@(Url.Action("Create", "Store"))">
+                <i class="fa fa-plus"></i>
+            </a>
+        </div>
+        <div class="panel-body text-center">
+            <h6 class="text-muted">تعداد محصولات</h6>
+            <h3>@Model.DashboardLayout.ActiveProducts</h3>
+        </div>
+    </div>
+</div>
+
+<div class="col-lg-6">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <a href="@Url.Action("List", "Discount")">
+                مدیریت تخفیفات
+            </a>
+            <a class="pull-left" href="@Url.Action("Create", "Discount")">
+                <i class="fa fa-plus"></i>
+            </a>
+        </div>
+        <div class="panel-body text-center">
+            <h6 class="text-muted">تعداد تخفیفات فعال</h6>
+            <h3>@Model.DashboardLayout.ActiveDiscounts</h3>
+
+            <h6 class="text-muted">تعداد تخفیفات غیر فعال</h6>
+            <h3>@Model.DashboardLayout.InactiveDiscounts</h3>
+        </div>
+    </div>
+</div>

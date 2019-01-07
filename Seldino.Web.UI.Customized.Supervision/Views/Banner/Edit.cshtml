@@ -1,0 +1,221 @@
+﻿@model Seldino.Application.Command.BannerHandler.EditBannerCommand
+@using Seldino.CrossCutting.Enums
+@using Seldino.CrossCutting.Web.ViewMessages
+@System.Web.Optimization.Styles.Render("~/Content/Datepicker")
+<div class="row">
+    <div class="col-lg-12">
+        <h4 class="page-header">@BannerViewMessage.CreateBannerPageTitle</h4>
+        @using (Html.BeginForm("Edit", "Banner", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal" }))
+        {
+            @Html.HiddenFor(model => model.BannerId)
+            @Html.HiddenFor(model => model.Picture.Address)
+            @Html.HiddenFor(model => model.Picture.Name)
+            @Html.HiddenFor(model => model.Picture.PictureId)
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        @Html.Label(BannerViewMessage.StartDate, new { @class = "col-xs-4 col-sm-3 col-md-2 control-label" })
+                        <div class="col-xs-6 col-sm-4 col-md-3">
+                            @Html.TextBoxFor(p => p.StartDate, new { @class = "form-control date", placeholder = BannerViewMessage.StartDate })
+                        </div>
+                        @Html.ValidationMessageFor(c => c.StartDate)
+                    </div>
+                    <div class="form-group">
+                        @Html.Label(BannerViewMessage.EndDate, new { @class = "col-xs-4 col-sm-3 col-md-2 control-label" })
+                        <div class="col-xs-6 col-sm-4 col-md-3">
+                            @Html.TextBoxFor(p => p.EndDate, new { @class = "form-control date", placeholder = BannerViewMessage.EndDate })
+                        </div>
+                        @Html.ValidationMessageFor(c => c.EndDate)
+                    </div>
+                    <div class="form-group">
+                        @Html.Label(BannerViewMessage.Fee, new { @class = "col-xs-4 col-sm-3 col-md-2 control-label" })
+                        <div class="col-xs-6 col-sm-4 col-md-3">
+                            @Html.TextBoxFor(p => p.Fee, new { @class = "form-control", placeholder = BannerViewMessage.Fee })
+                        </div>
+                        @Html.ValidationMessageFor(c => c.Fee)
+                    </div>
+                    <div class="form-group">
+                        @Html.Label(BannerViewMessage.Url, new { @class = "col-xs-4 col-sm-3 col-md-2 control-label" })
+                        <div class="col-xs-6 col-sm-4 col-md-3">
+                            @Html.TextBoxFor(p => p.Url, new { @class = "form-control", placeholder = BannerViewMessage.Url })
+                        </div>
+                        @Html.ValidationMessageFor(c => c.Url)
+                    </div>
+                    <div class="form-group">
+                        @Html.Label(BannerViewMessage.Caption, new { @class = "col-xs-12 col-sm-3 col-md-2 control-label" })
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            @Html.TextAreaFor(p => p.Caption, new { @class = "form-control", placeholder = BannerViewMessage.Caption })
+                        </div>
+                        @Html.ValidationMessageFor(c => c.Caption)
+                    </div>
+                    <div class="form-group">
+                        @Html.Label(BannerViewMessage.BannerType, new { @class = "col-xs-4 col-sm-3 col-md-2 control-label" })
+                        <div class="col-xs-6 col-sm-4 col-md-3">
+                            @Html.EnumDropDownListFor(model => model.BannerType, new { @class = "form-control", placeholder = BannerViewMessage.BannerType })
+                        </div>
+                        @Html.ValidationMessageFor(c => c.BannerType)
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-9 col-md-10 col-sm-offset-3 col-md-offset-2 ">
+                    <input type="file" name="image" style="display: none" data-target="ImgID" />
+                   @switch (Model.BannerType)
+{
+    case BannerType.Slider:
+        <div class="unknowimg img-thumbnail filerep sliderw"
+             id="ImgID"
+             data-file="ImgID"
+             style='background-image: url("@Model.Picture.Address.Replace("~", string.Empty)/@Model.Picture.Name"); background-size: auto 100%;'></div>
+        break;
+    case BannerType.Fixed:
+    <div class="unknowimg img-thumbnail filerep fixedw"
+         id="ImgID"
+         data-file="ImgID"
+         style='background-image: url("@Model.Picture.Address.Replace("~", string.Empty)/@Model.Picture.Name"); background-size: auto 100%;'></div>
+        break;
+}
+
+                </div>
+            </div>
+            <hr />
+            <div class="btn-group">
+                <button class="btn btn-sm btn-success" type="submit">@CommonViewMessage.Create</button>
+            </div>
+            <hr class="transparent" />
+        }
+        @Html.ValidationSummary(true)
+    </div>
+</div>
+@System.Web.Optimization.Scripts.Render("~/bundles/datepicker")
+@System.Web.Optimization.Scripts.Render("~/bundles/jqueryval")
+<script>
+    $(function () {
+        $.each($(".date"), function (i, e) {
+            $(e).after($("<input />").attr("type", "hidden").attr("name", $(e).attr("name")).attr("id", $(e).attr("id")).val($(e).val())).removeAttr("id").attr("data-name", $(e).attr("name")).removeAttr("name");
+            $(e).val(toJalaliDate(new Date($(e).val())));
+        })
+        $("body").on("change", ".date", function () {
+            var date = $(this);
+            $("#" + date.attr("data-name")).val(toGargDate(new Date(date.val())));
+        })
+    })
+    function toGargDate(date) {
+        var day = date.getDate();
+        var month = date.getMonth() + 1; //January is 0!
+        var year = date.getFullYear();
+        if (day < 10) day = '0' + day;
+        if (month < 10) month = '0' + month;
+        date = day + '-' + month + '-' + year;
+        console.log(day)
+        return moment(date, 'jD/jM/jYYYY').format('D/M/YYYY');
+    }
+    function toJalaliDate(date) {
+        var day = date.getDate();
+        var month = date.getMonth() + 1; //January is 0!
+        var year = date.getFullYear();
+        if (day < 10) day = '0' + day;
+        if (month < 10) month = '0' + month;
+        date = day + '-' + month + '-' + year;
+        return moment(date, 'D/M/YYYY').format('jD/jM/jYYYY');
+    }
+    var hasImage = true;
+    $(function () {
+        switch ($("#BannerType").val()) {
+            case "0":
+                $(".filerep").addClass("sliderw");
+                break;
+            case "1":
+                $(".filerep").addClass("fixedw");
+                break;
+            case "2":
+                $(".filerep").addClass("fixedw");
+                break;
+        }
+        $("body").on("click", "div.filerep", function (e) {
+            $("input[data-target=" + $(this).attr('data-file') + "]").click();
+        });
+        $('input[type=file]').on('change', prepareUpload);
+        $(".date").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            minDate: new Date()
+        });
+    });
+    $("body").on("change", "#BannerType", function () {
+        console.log($(this).val());
+        switch ($(this).val()) {
+            case "0":
+                $(".fixedw").addClass("sliderw").removeClass("fixedw");
+                break;
+            case "1":
+                $(".sliderw").addClass("fixedw").removeClass("sliderw");
+                break;
+            case "2":
+                $(".sliderw").addClass("fixedw").removeClass("sliderw");
+                break;
+        }
+    })
+    $("body").on("submit", "form", function (e) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        if (hasImage) {
+            document.getElementById("loading").style.display = "block";
+            var form = e.target;
+            if (form.getAttribute("enctype") === "multipart/form-data") {
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.open(form.method, form.action);
+                xmlhttp.onreadystatechange = function () {
+                    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                        if (form.dataset.ajaxUpdate) {
+                            var updateTarget = document.querySelector(form.dataset.ajaxUpdate);
+                            if (updateTarget) {
+                                updateTarget.innerHTML = xmlhttp.responseText;
+                            }
+                        }
+                    }
+                };
+                xmlhttp.send(new FormData(form));
+                xmlhttp.onreadystatechange = function () {
+                    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                        document.getElementById("loading").style.display = "none";
+                        var result = JSON.parse(xmlhttp.responseText);
+                        if (result.Success) {
+                            alertify.success(result.Message);
+                            @*window.location.href = "@Url.Action("List", "BannerSuperviser")";*@
+                        }
+                        else {
+                            alertify.error(result.Message);
+                        }
+                    }
+                }
+            }
+        }
+        else {
+            alertify.alert("@BannerViewMessage.ChooseImage");
+        }
+    })
+    function prepareUpload(event) {
+        deletepreimg();
+        hasImage = true;
+        var target = $("#" + $(this).attr("data-target"));
+        var dataTarget = $(this).attr("data-target");
+        target.find(".imgremove").remove();
+        target.removeClass("icon-plus");
+        target.css("background-image", "url(" + URL.createObjectURL(event.target.files[0]) + ")").css("background-size", "auto 100%").append($("<i></i>").addClass("imgremove").addClass("btn").addClass("btn-danger").addClass("fa").addClass("icon-remove").on("click", function () { hasImage = false; deletepreimg(); target.html("").removeAttr("style"); target.addClass("icon-plus"); $("[data-target=" + dataTarget + "]").val(""); }));
+    }
+    function deletepreimg() {
+        $("#Picture_Address, #Picture_Name, #Picture_PictureId").remove();
+    }
+</script>
+<style>
+    .form-horizontal .control-label {
+        text-align: right;
+    }
+
+    .form-horizontal .control-label {
+        margin-bottom: 5px;
+    }
+
+    .field-validation-error {
+        max-width: none;
+    }
+</style>

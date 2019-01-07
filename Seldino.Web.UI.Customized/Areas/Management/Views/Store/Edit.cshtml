@@ -1,0 +1,238 @@
+﻿@using Seldino.CrossCutting.Web.ViewMessages
+@model Seldino.Application.Command.StoreHandler.EditStoreCommand
+@{
+    ViewBag.Title = "Create";
+    string MapId = Guid.NewGuid().ToString("N");
+}
+@System.Web.Optimization.Styles.Render("~/Content/SelectList")
+<div class="panel panel-default">
+    <div class="panel-heading">@StoreViewMessage.CreateStorePageTitle</div>
+    <div class="panel-body">
+        @using (Html.BeginForm("Edit", "Store", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal" }))
+        {
+            @Html.HiddenFor(model => model.Location.Latitude)
+            @Html.HiddenFor(model => model.Location.Longitude)
+            @Html.HiddenFor(model => model.LastUpdateDate)
+            @Html.HiddenFor(model => model.CreationDate)
+            <div class="form-group">
+                @Html.Label(StoreViewMessage.Name, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-8 col-md-6">
+                    @Html.TextBoxFor(p => p.Name, new { @class = "form-control", placeholder = StoreViewMessage.Name })
+                </div>
+                @Html.ValidationMessageFor(c => c.Name)
+            </div>
+            <div class="form-group">
+                @Html.Label(StoreViewMessage.Phone, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-6 col-md-4">
+                    @Html.TextBoxFor(p => p.Phone, new { @class = "form-control", placeholder = StoreViewMessage.Phone })
+                </div>
+                @Html.ValidationMessageFor(c => c.Phone)
+            </div>
+            <div class="form-group">
+                @Html.Label(StoreViewMessage.State, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-8 col-md-6">
+                    @Html.DropDownListFor(p => p.Location.State.Name, ((List<Seldino.Application.Query.LocationService.StateDto>)ViewBag.States).Select(m => new SelectListItem { Text = m.Name, Value = m.Name }), new Dictionary<string, Object> { { "class", "form-control" } })
+                </div>
+                @Html.ValidationMessageFor(p => p.Location.State.Name)
+            </div>
+            <div class="form-group">
+                @Html.Label(StoreViewMessage.City, new { @class = "col-md-2 control-label" })
+                <div class="col-sm-7 col-md-5">
+                    @Html.TextBoxFor(p => p.Location.Address.City, new { @class = "form-control", placeholder = StoreViewMessage.City })
+                </div>
+                @Html.ValidationMessageFor(c => c.Location.Address.City)
+            </div>
+            <div class="form-group">
+                @Html.Label(StoreViewMessage.ZipCode, new { @class = "col-md-2 control-label" })
+                <div class="col-sm-6 col-md-4">
+                    @Html.TextBoxFor(p => p.Location.Address.ZipCode, new { @class = "form-control", placeholder = StoreViewMessage.ZipCode })
+                </div>
+                @Html.ValidationMessageFor(c => c.Location.Address.ZipCode)
+            </div>
+            <div class="form-group">
+                @Html.Label(StoreViewMessage.Address, new { @class = "col-md-2 control-label" })
+                <div class="col-md-8">
+                    @Html.TextAreaFor(p => p.Location.Address.AddressLine, new { @class = "form-control", placeholder = StoreViewMessage.Address })
+                </div>
+                @Html.ValidationMessageFor(c => c.Location.Address.AddressLine)
+            </div>
+            <div class="row">
+                @Html.Label(ProductViewMessage.ProductPicture, new { @class = "col-sm-2 control-label" })
+                <div class="clearfix col-sm-10">
+                    @for (int i = 0; i < 5; i++)
+                    {
+                        string imgId = Guid.NewGuid().ToString("N");
+                        if (Model.Pictures != null && Model.Pictures.Count != 0)
+                        {
+                            <div class="pull-right prmarg">
+                                <input type="file" name="HttpPostedFileBases" style="display: none" data-target="@imgId" />
+                                <div @((Model.Pictures.Count >= (i + 1) && !string.IsNullOrEmpty(Model.Pictures[i].Address)) ? "style=background-image:url(" + Url.Content(string.Format(Model.Pictures[i].Address + "/{0}", Model.Pictures[i].Name)) + ") " : null)
+                                     class="unknowimg img-thumbnail filerep primg @((Model.Pictures.Count < (i + 1)) ? "icon-building" : "")"
+                                     data-file="@imgId"
+                                     id="@imgId">
+                                    @if (Model.Pictures.Count >= (i + 1) && !string.IsNullOrEmpty(Model.Pictures[i].Address))
+                                    {
+                                        <i class="imgremove btn btn-danger icon-remove" data-iid="@imgId"></i>
+                                        <div data-imageid="@imgId">
+                                            <input type="hidden" name="ProductPictures[@i].PictureId" value="@Model.Pictures[i].PictureId" />
+                                            <input type="hidden" name="ProductPictures[@i].Name" value="@Model.Pictures[i].Name" />
+                                            <input type="hidden" name="ProductPictures[@i].AdSeldino" value="@Model.Pictures[i].Address" />
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="pull-right prmarg">
+                                <input type="file" name="HttpPostedFileBases" style="display: none" data-target="@imgId" />
+                                <div class="unknowimg img-thumbnail filerep primg icon-building" id="@imgId" data-file="@imgId"></div>
+                            </div>
+                        }
+
+                    }
+                </div>
+            </div>
+
+            <hr class="transparent" />
+            <div class="row">
+                <div class="col-xs-12">
+                    <div id="@MapId" style="min-height: 380px;"></div>
+                </div>
+            </div>
+            <hr class="transparent" />
+            <div class="btn-group">
+                <button class="btn btn-sm btn-success" type="submit">@CommonViewMessage.Create</button>
+            </div>
+            <hr class="transparent" />
+            @Html.ValidationSummary(true)
+        }
+    </div>
+</div>
+@System.Web.Optimization.Scripts.Render("~/bundles/jqueryval")
+@System.Web.Optimization.Scripts.Render("~/bundles/SelectList")
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+<script type="text/javascript">
+    var map;
+    var mapProp;
+    var addressField;
+    var geocoder;
+    var markers = [];
+    var pos;
+    $("#Location_Country_Name").select2({
+        language: "@CommonViewMessage.SelectFarsi",
+        dir: "rtl"
+    }).on("change", function (e) {
+        var $this = $(this);
+        $.ajax({
+            url: "@Url.Action("FillStates", "Store")" + "?country=" + $this.val(),
+            success: function (data) {
+                console.log(data);
+            }
+        })
+        $("#Location_Country_Name").html("<option value='123'>123</option>");
+    });
+    $("#Location_State_Name").select2({
+        language: "@CommonViewMessage.SelectFarsi",
+        dir: "rtl"
+    });
+    function initialize() {
+        mapProp = {
+            zoom: 16,
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            disableDoubleClickZoom: true
+        };
+        map = new google.maps.Map(document.getElementById("@MapId"), mapProp);
+
+        pos = new google.maps.LatLng($("#Location").val());
+
+        map.setCenter(pos);
+        placeMarker(pos, map);
+        addressField = document.getElementById('search_address');
+        geocoder = new google.maps.Geocoder();
+    }
+    function placeMarker(position, map) {
+        var marker = new google.maps.Marker({
+            position: position,
+            map: map,
+            draggable: true
+        });
+        map.panTo(position);
+        markers.push(marker);
+
+        google.maps.event.addListener(marker, 'drag', function (e) {
+            $("#Location").val(e.latLng.lat() + ", " + e.latLng.lng());
+        });
+
+        google.maps.event.addListener(map, 'click', function (e) {
+            for (var i = 0; i < markers.length; i++) {
+                markers[i].setMap(null);
+            }
+            placeMarker(e.latLng, map);
+            $("#Location").val(e.latLng.lat() + ", " + e.latLng.lng());
+        });
+    }
+    $(function () {
+        initialize();
+        $("body").on("submit", "form", function (e) {
+            e.preventDefault();
+            e.stopImmediatePropagation();
+            document.getElementById("loading").style.display = "block";
+            var form = e.target;
+            if (form.getAttribute("enctype") === "multipart/form-data") {
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.open(form.method, form.action);
+                xmlhttp.onreadystatechange = function () {
+                    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                        if (form.dataset.ajaxUpdate) {
+                            var updateTarget = document.querySelector(form.dataset.ajaxUpdate);
+                            if (updateTarget) {
+                                updateTarget.innerHTML = xmlhttp.responseText;
+                            }
+                        }
+                    }
+                };
+                xmlhttp.send(new FormData(form));
+                xmlhttp.onreadystatechange = function () {
+                    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                        document.getElementById("loading").style.display = "none";
+                        var result = JSON.parse(xmlhttp.responseText);
+                        if (result.Success) {
+                            alertify.success(result.Message);
+                            window.location.href = "@Url.Action("List", "Store")";
+                        }
+                        else {
+                            alertify.error(result.Message);
+                        }
+
+                    }
+                }
+            }
+        })
+    })
+
+    $(function () {
+        $("body").on("click", "div.filerep", function (e) {
+            $("input[data-target=" + $(this).attr('data-file') + "]").click();
+        });
+        $('input[type=file]').on('change', prepareUpload);
+    });
+    function prepareUpload(event) {
+        if (this.files[0].type == "image/jpeg" || this.files[0].type == "image/png") {
+            if (this.files[0].size <= 524288) {
+                var target = $("#" + $(this).attr("data-target"));
+                var dataTarget = $(this).attr("data-target");
+                target.css("background-image", "url(" + URL.createObjectURL(event.target.files[0]) + ")").removeClass("icon-building").append($("<i></i>").addClass("imgremove").addClass("btn").addClass("btn-danger").addClass("fa").addClass("icon-remove").on("click", function () { target.html("").removeAttr("style").addClass("icon-building"); $("[data-target=" + dataTarget + "]").val(""); }));
+            }
+            else {
+                alertify.alert("@ProductViewMessage.ImageSizeValidation")
+                $('#Image').val("");
+            }
+        }
+        else {
+            alertify.alert("@ProductViewMessage.ImageTypeValidation")
+            $('#Image').val("");
+        }
+
+    }
+</script>

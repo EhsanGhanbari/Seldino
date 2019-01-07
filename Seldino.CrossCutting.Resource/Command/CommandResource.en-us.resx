@@ -1,0 +1,447 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AccountActivatedSuccessfully" xml:space="preserve">
+    <value>Account Activated Successfully</value>
+  </data>
+  <data name="AccountCreatedSuccessfully" xml:space="preserve">
+    <value>Account Created Successfully</value>
+  </data>
+  <data name="AccountCreationFailed" xml:space="preserve">
+    <value>Account Creation Failed</value>
+  </data>
+  <data name="AccountDeactivatedSuccessfully" xml:space="preserve">
+    <value>Account DeactivatedSuccessfully</value>
+  </data>
+  <data name="AccountDeactivationFailed" xml:space="preserve">
+    <value>Account Deactivation Failed</value>
+  </data>
+  <data name="AccountDeletedSuccessfully" xml:space="preserve">
+    <value>Account Deleted Successfully</value>
+  </data>
+  <data name="AccountDeletionFailed" xml:space="preserve">
+    <value>Account Deletion Failed</value>
+  </data>
+  <data name="AccountEditedSuccessfully" xml:space="preserve">
+    <value>Account Edited Successfully</value>
+  </data>
+  <data name="AccountEditionFailed" xml:space="preserve">
+    <value>Account Edition Failed</value>
+  </data>
+  <data name="AccountIsInactive" xml:space="preserve">
+    <value>Account Is Inactive</value>
+  </data>
+  <data name="AccountUserActivationFaild" xml:space="preserve">
+    <value>Account User Activation Faild</value>
+  </data>
+  <data name="AddingEmailToNewsletterFaild" xml:space="preserve">
+    <value>Adding Email To Newsletter Faild</value>
+  </data>
+  <data name="AuthenticationFaild" xml:space="preserve">
+    <value>Authentication Faild</value>
+  </data>
+  <data name="AuthenticattionWasSuccessfully" xml:space="preserve">
+    <value>Authenticattion Was Successfully</value>
+  </data>
+  <data name="BannerActivatedSuccssfully" xml:space="preserve">
+    <value>Banner Activated Succssfully</value>
+  </data>
+  <data name="BannerActivationFaild" xml:space="preserve">
+    <value>Banner Activation Faild</value>
+  </data>
+  <data name="BannerConfirmationFaild" xml:space="preserve">
+    <value>Banner Confirmation Faild</value>
+  </data>
+  <data name="BannerConfirmedSuccessfully" xml:space="preserve">
+    <value>Banner Confirmed Successfully</value>
+  </data>
+  <data name="BannerCreatedSuccessfully" xml:space="preserve">
+    <value>Banner Created Successfully</value>
+  </data>
+  <data name="BannerCreationFaild" xml:space="preserve">
+    <value>Banner Creation Faild</value>
+  </data>
+  <data name="BannerDeactivatedSuccssfully" xml:space="preserve">
+    <value>Banner Deactivated Succssfully</value>
+  </data>
+  <data name="BannerDeactivationFaild" xml:space="preserve">
+    <value>Banner Deactivation Faild</value>
+  </data>
+  <data name="BannerDeletedSuccessfully" xml:space="preserve">
+    <value>Banner Deleted Successfully</value>
+  </data>
+  <data name="BannerDeletionFailed" xml:space="preserve">
+    <value>Banner Deletion Failed</value>
+  </data>
+  <data name="BannerEditedSuccessfully" xml:space="preserve">
+    <value>Banner Edited Successfully</value>
+  </data>
+  <data name="BannerEditionFaild" xml:space="preserve">
+    <value>Banner Edition Faild</value>
+  </data>
+  <data name="BannerEndDateIsRequired" xml:space="preserve">
+    <value>Banner EndDate Is Required</value>
+  </data>
+  <data name="BannerFeeIsRequired" xml:space="preserve">
+    <value>Banner Fee Is Required</value>
+  </data>
+  <data name="BannerStartDateIsRequired" xml:space="preserve">
+    <value>Banner StartDate Is Required</value>
+  </data>
+  <data name="BannerTypeIsRequired" xml:space="preserve">
+    <value>Banner Type Is Required</value>
+  </data>
+  <data name="BasketItemAddedToSuccessfully" xml:space="preserve">
+    <value>Item Added To Basket Successfully</value>
+  </data>
+  <data name="BasketItemAddingFaild" xml:space="preserve">
+    <value>Adding Item To Basket Faild!</value>
+  </data>
+  <data name="BlogCategoryDeletedSuccessfully" xml:space="preserve">
+    <value>Blog Category Deleted Successfully</value>
+  </data>
+  <data name="BlogCategoryDeletionFaild" xml:space="preserve">
+    <value>Blog Category Deletion Faild</value>
+  </data>
+  <data name="BlogPostCreationFaild" xml:space="preserve">
+    <value>Blog Post Creation Faild</value>
+  </data>
+  <data name="BlogPostDeletedSuccessfully" xml:space="preserve">
+    <value>Blog Post Deleted Successfully</value>
+  </data>
+  <data name="BlogPostDeletionFaild" xml:space="preserve">
+    <value>Blog Post Deletion Faild</value>
+  </data>
+  <data name="BlogTagDeletedSuccessfully" xml:space="preserve">
+    <value>Blog Tag Deleted Successfully</value>
+  </data>
+  <data name="BlogTagDeletionFaild" xml:space="preserve">
+    <value>Blog Tag Deletion Faild</value>
+  </data>
+  <data name="CellPhoneNumerIsIncorrect" xml:space="preserve">
+    <value>CellPhone Numer Is Incorrect</value>
+  </data>
+  <data name="ConfirmPasswordDoesNotMatchWithPassword" xml:space="preserve">
+    <value>Confirm Password Does Not Match With Password!</value>
+  </data>
+  <data name="ConfirmPasswrdIsRequiredConfirmPasswrdIsRequired" xml:space="preserve">
+    <value>Confirm Passwrd Is Required!</value>
+  </data>
+  <data name="DiscountAlreadyStarted" xml:space="preserve">
+    <value>Discount Already Started</value>
+  </data>
+  <data name="DiscountAlreadyStoped" xml:space="preserve">
+    <value>Discount Already Stoped</value>
+  </data>
+  <data name="DiscountCreatedSuccessfully" xml:space="preserve">
+    <value>Discount Created Successfully</value>
+  </data>
+  <data name="DiscountCreationFailed" xml:space="preserve">
+    <value>Discount Creation Failed</value>
+  </data>
+  <data name="DiscountDeletedSuccessfully" xml:space="preserve">
+    <value>Discount Deleted Successfully</value>
+  </data>
+  <data name="DiscountDeletionFailed" xml:space="preserve">
+    <value>Discount Deletion Failed</value>
+  </data>
+  <data name="DiscountEditedSuccessfully" xml:space="preserve">
+    <value>Discount Edited Successfully</value>
+  </data>
+  <data name="DiscountEditionFailed" xml:space="preserve">
+    <value>Discount Edition Failed</value>
+  </data>
+  <data name="DiscountStartedSuccessfully" xml:space="preserve">
+    <value>Discount Started Successfully</value>
+  </data>
+  <data name="DiscountStartingFailed" xml:space="preserve">
+    <value>Discount Starting Failed</value>
+  </data>
+  <data name="DiscountStopedSuccessfully" xml:space="preserve">
+    <value>Discount Stopped Successfully</value>
+  </data>
+  <data name="DiscountStoppingFailed" xml:space="preserve">
+    <value>Discount Stopping Failed</value>
+  </data>
+  <data name="DiscountTemplateNameIsRequired" xml:space="preserve">
+    <value>Discount Template Name Is Required</value>
+  </data>
+  <data name="DocumentAddedSuccessfully" xml:space="preserve">
+    <value>Document Added Successfully</value>
+  </data>
+  <data name="DocumentAddingFaild" xml:space="preserve">
+    <value>Document Adding Faild</value>
+  </data>
+  <data name="DocumentUpdatedSuccsfully" xml:space="preserve">
+    <value>Document Updated Succsfully</value>
+  </data>
+  <data name="EmailAddedToNewslettersuccessfully" xml:space="preserve">
+    <value>Email Added To Newsletter Successfully</value>
+  </data>
+  <data name="EmailDoesNotExist" xml:space="preserve">
+    <value>Email Does Not Exist</value>
+  </data>
+  <data name="EmailFormatIsIncorrect" xml:space="preserve">
+    <value>Email Format Is Incorrect</value>
+  </data>
+  <data name="EmailIsAlreadyInNewsletter" xml:space="preserve">
+    <value>Email Is Already In Newsletter</value>
+  </data>
+  <data name="EmailIsRequired" xml:space="preserve">
+    <value>Email Is Required</value>
+  </data>
+  <data name="EmailIsTaken" xml:space="preserve">
+    <value>Email is taken</value>
+  </data>
+  <data name="EmailRemovedFromNewsletterSuccessfully" xml:space="preserve">
+    <value>Email Removed FromNewsletter Successfully</value>
+  </data>
+  <data name="ForgotPasswordOperationFaild" xml:space="preserve">
+    <value>Forgot Password Operation Faild</value>
+  </data>
+  <data name="ForgotPasswordOperationSucceded" xml:space="preserve">
+    <value>Forgot Password Operation Succeded</value>
+  </data>
+  <data name="IncorrectOldPassword" xml:space="preserve">
+    <value>Password is incorrect</value>
+  </data>
+  <data name="InvalidData" xml:space="preserve">
+    <value>Invalid Data</value>
+  </data>
+  <data name="LastNameIsNotInRegularLenght" xml:space="preserve">
+    <value>LastName is too long!</value>
+  </data>
+  <data name="MessageBodyIsNotInReqularLenght" xml:space="preserve">
+    <value>Message body should be at least 500 character</value>
+  </data>
+  <data name="MessageBodyIsRquired" xml:space="preserve">
+    <value>Message Body Is Rquired</value>
+  </data>
+  <data name="MessageCreatedSuccessfully" xml:space="preserve">
+    <value>Message Created Successfully</value>
+  </data>
+  <data name="MessageCreationFailed" xml:space="preserve">
+    <value>Message Creation Failed</value>
+  </data>
+  <data name="MessageDeletedSuccessufully" xml:space="preserve">
+    <value>Message Deleted Successufully</value>
+  </data>
+  <data name="MessageDeletionFailed" xml:space="preserve">
+    <value>Message Deletion Failed</value>
+  </data>
+  <data name="MessageResponseCreatedSuccessfully" xml:space="preserve">
+    <value>Message Response Created Successfully</value>
+  </data>
+  <data name="MessageResponseCreationFailed" xml:space="preserve">
+    <value>Message Response Creation Failed</value>
+  </data>
+  <data name="MessageResponseDeletedSuccessufully" xml:space="preserve">
+    <value>Message Response Deleted Successufully</value>
+  </data>
+  <data name="MessageResponseDeletionFailed" xml:space="preserve">
+    <value>Message Response Deletion Failed</value>
+  </data>
+  <data name="MessagesDeletionFailed" xml:space="preserve">
+    <value>Messages Deletion Failed</value>
+  </data>
+  <data name="MesssageIsNotInRegularLenght" xml:space="preserve">
+    <value>Messsage should be at least 100 character</value>
+  </data>
+  <data name="MesssageTitleIsEmpty" xml:space="preserve">
+    <value>Messsage Title Is Empty</value>
+  </data>
+  <data name="NameIsNotInReguarLenght" xml:space="preserve">
+    <value>Name is too long!</value>
+  </data>
+  <data name="NotifactionCreationFaild" xml:space="preserve">
+    <value>Notifaction Creation Faild</value>
+  </data>
+  <data name="NotifcationEditedSuccessfully" xml:space="preserve">
+    <value>Notifcation Edited Successfully</value>
+  </data>
+  <data name="NotificationCreatedSuccessfully" xml:space="preserve">
+    <value>Notification Created Successfully</value>
+  </data>
+  <data name="NotificationDeletedSuccessufully" xml:space="preserve">
+    <value>Notification Deleted Successufully</value>
+  </data>
+  <data name="NotificationDeletionFailed" xml:space="preserve">
+    <value>Notification Deletion Failed</value>
+  </data>
+  <data name="NotificationTerminatedSuccessfully" xml:space="preserve">
+    <value>Notification Terminated Successfully</value>
+  </data>
+  <data name="NotificationTerminationFaild" xml:space="preserve">
+    <value>Notification Termination Faild</value>
+  </data>
+  <data name="OrderCanceledSuccessfully" xml:space="preserve">
+    <value>Order Canceled Successfully</value>
+  </data>
+  <data name="OrderCreatedSuccessfully" xml:space="preserve">
+    <value>Order Created Successfully</value>
+  </data>
+  <data name="OrderCreationFailed" xml:space="preserve">
+    <value>Order Creation Failed</value>
+  </data>
+  <data name="OrderDeletedSuccessfully" xml:space="preserve">
+    <value>Order Deleted Successfully</value>
+  </data>
+  <data name="OrderDeletionFailed" xml:space="preserve">
+    <value>Order Deletion Failed</value>
+  </data>
+  <data name="OrderEditedSuccessfully" xml:space="preserve">
+    <value>Order Edited Successfully</value>
+  </data>
+  <data name="OrderEditionFailed" xml:space="preserve">
+    <value>Order Edition Failed</value>
+  </data>
+  <data name="OrderOperationHasBeenCompleted" xml:space="preserve">
+    <value>Order Operation Has Been Completed, deleting and canceling is not allowed!</value>
+  </data>
+  <data name="PasswordChangedSuccessfully" xml:space="preserve">
+    <value>Password Changed Successfully</value>
+  </data>
+  <data name="PasswordChangingFaild" xml:space="preserve">
+    <value>Password Changing Faild</value>
+  </data>
+  <data name="PasswordLenghtIsNotInRegularForm" xml:space="preserve">
+    <value>Password should be in minimum lenght of 6 character</value>
+  </data>
+  <data name="PasswordResetFaild" xml:space="preserve">
+    <value>Password Reset Faild</value>
+  </data>
+  <data name="PasswordResetSuccessfully" xml:space="preserve">
+    <value>Password Reset Successfully</value>
+  </data>
+  <data name="PhoneNumerIsIncorrect" xml:space="preserve">
+    <value>Phone Numer Is Incorrect</value>
+  </data>
+  <data name="RemovingEmailFromNewsletterFaild" xml:space="preserve">
+    <value>Removing Email From Newsletter Faild</value>
+  </data>
+  <data name="RoleNameIsRequired" xml:space="preserve">
+    <value>Role Name Is Required</value>
+  </data>
+  <data name="UpdatedingDocumentFaild" xml:space="preserve">
+    <value>Updateding Document Faild</value>
+  </data>
+  <data name="UserDoesNotExist" xml:space="preserve">
+    <value>User Does Not Exist!</value>
+  </data>
+</root>

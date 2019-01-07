@@ -1,0 +1,49 @@
+﻿@using Seldino.CrossCutting.Web.ViewMessages
+@model Seldino.Application.Query.StoreService.StoreQueryResponse
+
+<div class="row">
+    <div class="col-lg-12">
+        <h4 class="page-header">@StoreViewMessage.Stores</h4>
+    </div>
+
+    @{
+        if (Model.Store != null)
+        {
+            <div>
+                @Html.DisplayFor(model => model.Store.Name)
+            </div>
+
+            <div>
+                @Html.DisplayFor(model => model.Store.Phone)
+            </div>
+            
+            <div>
+                @Html.DisplayFor(model => model.Store.Location)
+            </div>
+
+            <div>
+                @{
+                    foreach (var discount in Model.Store.Discounts)
+                    {
+                        <div>
+                            @discount.Name 
+                        </div> 
+                    }
+                }
+            </div>
+
+            <div>
+                @{
+                    foreach (var product in Model.Store.Products)
+                    {
+                        <div>
+                            @product.Name
+                        </div>
+                    }
+                }
+            </div>
+        }
+    }
+    
+</div>
+

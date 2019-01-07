@@ -1,0 +1,315 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Account" xml:space="preserve">
+    <value>Account</value>
+  </data>
+  <data name="AddToCart" xml:space="preserve">
+    <value>Add to cart</value>
+  </data>
+  <data name="AreYouSure" xml:space="preserve">
+    <value>Are You Sure</value>
+  </data>
+  <data name="BannerActivateConfirm" xml:space="preserve">
+    <value>Do you want to enable this banner?</value>
+  </data>
+  <data name="BannerActiveList" xml:space="preserve">
+    <value>List of active banners</value>
+  </data>
+  <data name="BannerConfirm" xml:space="preserve">
+    <value>Do you want to be confirmed banners?</value>
+  </data>
+  <data name="BannerDeactivateConfirm" xml:space="preserve">
+    <value>Do you want to disable this banner?</value>
+  </data>
+  <data name="BannerDeleteConfirm" xml:space="preserve">
+    <value>Do you want to delete this banner?</value>
+  </data>
+  <data name="BannerImage" xml:space="preserve">
+    <value>Banner image</value>
+  </data>
+  <data name="BannerInActiveList" xml:space="preserve">
+    <value>List of deactive banners</value>
+  </data>
+  <data name="BannerList" xml:space="preserve">
+    <value>Banner list</value>
+  </data>
+  <data name="Banners" xml:space="preserve">
+    <value>Banners</value>
+  </data>
+  <data name="BannerType" xml:space="preserve">
+    <value>Banner type</value>
+  </data>
+  <data name="Basket" xml:space="preserve">
+    <value>cart</value>
+  </data>
+  <data name="BuyProducts" xml:space="preserve">
+    <value>Buy products</value>
+  </data>
+  <data name="Cansel" xml:space="preserve">
+    <value>Cansel</value>
+  </data>
+  <data name="Caption" xml:space="preserve">
+    <value>Caption</value>
+  </data>
+  <data name="CheckAuthenticatedForComment" xml:space="preserve">
+    <value>For comment please {0} or {1}</value>
+  </data>
+  <data name="ChooseBannerType" xml:space="preserve">
+    <value>Choose banner type</value>
+  </data>
+  <data name="ChooseImage" xml:space="preserve">
+    <value>Choose image</value>
+  </data>
+  <data name="CommaSeparate" xml:space="preserve">
+    <value>,</value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>Comment</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>Create</value>
+  </data>
+  <data name="CreateBannerPageTitle" xml:space="preserve">
+    <value>Create banner</value>
+  </data>
+  <data name="CreationDate" xml:space="preserve">
+    <value>Creation Date</value>
+  </data>
+  <data name="Dashboard" xml:space="preserve">
+    <value>Dashboard</value>
+  </data>
+  <data name="Deactivate" xml:space="preserve">
+    <value>Deactivate</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Detail" xml:space="preserve">
+    <value>Detail</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="EditBannerPageTitle" xml:space="preserve">
+    <value>Edit banner</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="EndDate" xml:space="preserve">
+    <value>End date</value>
+  </data>
+  <data name="Enter" xml:space="preserve">
+    <value>Enter</value>
+  </data>
+  <data name="Fee" xml:space="preserve">
+    <value>Fee</value>
+  </data>
+  <data name="Flowus" xml:space="preserve">
+    <value>Follow us on social networks</value>
+  </data>
+  <data name="ForbiddenMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ForgetPassword" xml:space="preserve">
+    <value>I forgot my password</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="InternalErrorMessage" xml:space="preserve">
+    <value>Internal error. please try again</value>
+  </data>
+  <data name="LangKey" xml:space="preserve">
+    <value>en</value>
+  </data>
+  <data name="LastUpdateDate" xml:space="preserve">
+    <value>Last update</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="LoginManager" xml:space="preserve">
+    <value>Login Manager</value>
+  </data>
+  <data name="Message" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="Messages" xml:space="preserve">
+    <value>Messages</value>
+  </data>
+  <data name="NotFoundPageMessage" xml:space="preserve">
+    <value>The page was not found ...</value>
+  </data>
+  <data name="PanelDealers" xml:space="preserve">
+    <value>Panel dealers</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="PaymentRequiredMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PostComment" xml:space="preserve">
+    <value>Post comment</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Register</value>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>Remember Me</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="SendMail" xml:space="preserve">
+    <value>Send mail</value>
+  </data>
+  <data name="Signout" xml:space="preserve">
+    <value>Signout</value>
+  </data>
+  <data name="StartDate" xml:space="preserve">
+    <value>Start date</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="SubscribeToNewsletter" xml:space="preserve">
+    <value>Subscribe To Newsletter</value>
+  </data>
+  <data name="SubscribeToNewsletterMessage" xml:space="preserve">
+    <value>For newsletter enter your e-mail address</value>
+  </data>
+  <data name="UnauthorizedMessage" xml:space="preserve">
+    <value>Application requirements, user authentication is ...</value>
+  </data>
+  <data name="UnConfirmedBannerList" xml:space="preserve">
+    <value>List of unconfirmed banners</value>
+  </data>
+  <data name="Url" xml:space="preserve">
+    <value>Link</value>
+  </data>
+  <data name="Users" xml:space="preserve">
+    <value>Users</value>
+  </data>
+  <data name="Waiting" xml:space="preserve">
+    <value>Please wait</value>
+  </data>
+</root>

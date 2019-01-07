@@ -1,0 +1,111 @@
+﻿@using Seldino.CrossCutting.Web.ViewMessages
+<div class="navbar-default sidebar" role="navigation">
+    <div class="sidebar-nav navbar-collapse">
+        <ul class="nav" id="side-menu">
+            <li>
+                <a href="#"><i class="icon-dashboard fa-fw"></i> @CommonViewMessage.Dashboard</a>
+            </li>
+            <li>
+                <a href="#"><i class="icon-files-o fa-fw"></i> @NotificationViewMessage.Notification<span class="icon-angle-right"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        @Html.ActionLink(NotificationViewMessage.SystemMessage, "Notifications", "Notification", new {pageIndex = 1, pageSize = 50}, null)
+                    </li>
+                    <li>
+                        @Html.ActionLink(NotificationViewMessage.UserMessage, "Messages", "Notification", new { pageIndex = 1, pageSize = 50 }, null)
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#"><i class="icon-files-o fa-fw"></i> @OrderViewMessage.Orders<span class="icon-angle-right"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        @Html.ActionLink(OrderViewMessage.Orders, "List", "Order", new { pageIndex = 1, pageSize = 50 }, null)
+                    </li>
+
+                    <li>
+                        @Html.ActionLink(OrderViewMessage.Pending, "Pending", "Order", new { pageIndex = 1, pageSize = 50 }, null)
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#"><i class="icon-files-o fa-fw"></i> @MembershipViewMessage.Users<span class="icon-angle-right"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        @Html.ActionLink(CommonViewMessage.Users, "Users", "Membership", new { pageIndex = 1, pageSize = 50 }, null)
+                    </li>
+
+                    <li>
+                        @Html.ActionLink(CommonViewMessage.InactiveUsers, "InactiveUsers", "Membership", new { pageIndex = 1, pageSize = 50 }, null)
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#"><i class="icon-files-o fa-fw"></i> @DocumentViewMessage.Document<span class="icon-angle-right"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        @Html.ActionLink(CommonViewMessage.Users, "", "Document", new { pageIndex = 1, pageSize = 50 }, null)
+                    </li>
+
+                </ul>
+            </li>
+
+            <li>
+                <a href="#"><i class="icon-files-o fa-fw"></i> @ProductViewMessage.Products<span class="icon-angle-right"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        @Html.ActionLink(ProductViewMessage.ProductList, "List", "Product", new { pageIndex = 1 }, null)
+                    </li>
+                    <li>
+                        @Html.ActionLink(ProductViewMessage.ProductBrand, "Brands", "Product", new { pageIndex = 1 }, null)
+                    </li>
+                    <li>
+                        @Html.ActionLink(ProductViewMessage.ProductCategory, "Categories", "Product", new { pageIndex = 1 }, null)
+                    </li>
+
+                    <li>
+                        @Html.ActionLink(ProductViewMessage.ProductTag, "Tags", "Product", new { pageIndex = 1 }, null)
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="#"><i class="icon-files-o fa-fw"></i> @PaymentViewMessage.Payments<span class="icon-angle-right"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        @Html.ActionLink(PaymentViewMessage.Payments, "List", "Payment", new { pageIndex = 1 }, null)
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="#"><i class="icon-files-o fa-fw"></i> @BannerViewMessage.Banners<span class="icon-angle-right"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        @Html.ActionLink(BannerViewMessage.BannerActiveList, "Active", "Banner", new { pageIndex = 1, pageSize = 50 }, null)
+                    </li>
+                    <li>
+                        @Html.ActionLink(BannerViewMessage.BannerInActiveList, "Inactive", "Banner", new { pageIndex = 1, pageSize = 50 }, null)
+                    </li>
+                    <li>
+                        @Html.ActionLink(BannerViewMessage.UnConfirmedBannerList, "UnConfirmed", "Banner", new { pageIndex = 1, pageSize = 50 }, null)
+                    </li>
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+            <li>
+                <a href="#"><i class="icon-files-o fa-fw"></i> @StoreViewMessage.Stores<span class="icon-angle-right"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        @Html.ActionLink(StoreViewMessage.Stores, "List", "Store", new { pageIndex = 1, pageSize = 50 }, null)
+                    </li>
+                    <li>
+                        @Html.ActionLink(StoreViewMessage.InActiveStores, "Inactive", "Store", new { pageIndex = 1, pageSize = 50 }, null)
+                    </li>
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+        </ul>
+    </div>
+    <!-- /.sidebar-collapse -->
+</div>

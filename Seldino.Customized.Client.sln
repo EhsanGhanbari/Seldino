@@ -1,0 +1,69 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Seldino.Web.UI.Customized", "Seldino.Web.UI.Customized\Seldino.Web.UI.Customized.csproj", "{E0C2D53E-7CC8-44AE-8B34-864DEF8AE61E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Seldino.Web.API.Customized", "Seldino.Web.API.Customized\Seldino.Web.API.Customized.csproj", "{5A687885-DB10-41FE-A042-D67E5530B0BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Seldino.Web.UI.Customized.Supervision", "Seldino.Web.UI.Customized.Supervision\Seldino.Web.UI.Customized.Supervision.csproj", "{BB8CF85C-B375-48F9-A895-06683AA8CF42}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|ARM = Debug|ARM
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|ARM = Release|ARM
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E0C2D53E-7CC8-44AE-8B34-864DEF8AE61E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0C2D53E-7CC8-44AE-8B34-864DEF8AE61E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0C2D53E-7CC8-44AE-8B34-864DEF8AE61E}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{E0C2D53E-7CC8-44AE-8B34-864DEF8AE61E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E0C2D53E-7CC8-44AE-8B34-864DEF8AE61E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0C2D53E-7CC8-44AE-8B34-864DEF8AE61E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0C2D53E-7CC8-44AE-8B34-864DEF8AE61E}.Release|ARM.ActiveCfg = Release|Any CPU
+		{E0C2D53E-7CC8-44AE-8B34-864DEF8AE61E}.Release|x86.ActiveCfg = Release|Any CPU
+		{5A687885-DB10-41FE-A042-D67E5530B0BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A687885-DB10-41FE-A042-D67E5530B0BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A687885-DB10-41FE-A042-D67E5530B0BC}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{5A687885-DB10-41FE-A042-D67E5530B0BC}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5A687885-DB10-41FE-A042-D67E5530B0BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A687885-DB10-41FE-A042-D67E5530B0BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A687885-DB10-41FE-A042-D67E5530B0BC}.Release|ARM.ActiveCfg = Release|Any CPU
+		{5A687885-DB10-41FE-A042-D67E5530B0BC}.Release|x86.ActiveCfg = Release|Any CPU
+		{BB8CF85C-B375-48F9-A895-06683AA8CF42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB8CF85C-B375-48F9-A895-06683AA8CF42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB8CF85C-B375-48F9-A895-06683AA8CF42}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{BB8CF85C-B375-48F9-A895-06683AA8CF42}.Debug|ARM.Build.0 = Debug|Any CPU
+		{BB8CF85C-B375-48F9-A895-06683AA8CF42}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{BB8CF85C-B375-48F9-A895-06683AA8CF42}.Debug|x86.Build.0 = Debug|Any CPU
+		{BB8CF85C-B375-48F9-A895-06683AA8CF42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB8CF85C-B375-48F9-A895-06683AA8CF42}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB8CF85C-B375-48F9-A895-06683AA8CF42}.Release|ARM.ActiveCfg = Release|Any CPU
+		{BB8CF85C-B375-48F9-A895-06683AA8CF42}.Release|ARM.Build.0 = Release|Any CPU
+		{BB8CF85C-B375-48F9-A895-06683AA8CF42}.Release|x86.ActiveCfg = Release|Any CPU
+		{BB8CF85C-B375-48F9-A895-06683AA8CF42}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 4
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://seldino.visualstudio.com/defaultcollection
+		SccProjectUniqueName0 = Seldino.Web.UI.Customized\\Seldino.Web.UI.Customized.csproj
+		SccProjectName0 = Seldino.Web.UI.Customized
+		SccLocalPath0 = Seldino.Web.UI.Customized
+		SccProjectUniqueName1 = Seldino.Web.API.Customized\\Seldino.Web.API.Customized.csproj
+		SccProjectName1 = Seldino.Web.API.Customized
+		SccLocalPath1 = Seldino.Web.API.Customized
+		SccProjectUniqueName2 = Seldino.Web.UI.Customized.Supervision\\Seldino.Web.UI.Customized.Supervision.csproj
+		SccProjectName2 = Seldino.Web.UI.Customized.Supervision
+		SccLocalPath2 = Seldino.Web.UI.Customized.Supervision
+		SccLocalPath3 = .
+	EndGlobalSection
+EndGlobal

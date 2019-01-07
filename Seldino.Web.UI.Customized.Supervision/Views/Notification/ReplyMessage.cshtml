@@ -1,0 +1,17 @@
+﻿@using Seldino.CrossCutting.Web.ViewMessages
+@model Seldino.Application.Query.NotificationService.MessageQueryResponse
+
+@{
+    ViewBag.Title = NotificationViewMessage.MessageTitle;
+}
+
+@using (Html.BeginForm())
+{
+    <div>
+        @Html.TextAreaFor(model => model.NotificationMessage.Body)
+    </div>
+
+        <div>
+            <input type="submit" value="@CommonViewMessage.Reply" />
+        </div>
+}

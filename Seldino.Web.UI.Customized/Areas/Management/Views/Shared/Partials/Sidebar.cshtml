@@ -1,0 +1,42 @@
+﻿@using Seldino.CrossCutting.Web.ViewMessages
+<nav class="bs-docs-sidebar hidden-print">
+    <ul class="nav bs-docs-sidenav">
+        <li class="">
+            @Html.ActionLink(CommonViewMessage.Dashboard, "Index", "Dashboard", new { area = "Management" }, null)
+        </li>
+        <li class="">
+            <a aria-expanded="false" role="button" data-toggle="dropdown" class="dropdown-toggle" href="#">@ProductViewMessage.Products <span class="caret"></span></a>
+            <ul role="menu" class="dropdown-menu">
+                <li>@Html.ActionLink(ProductViewMessage.ProductList, "List", "Product", new {area = "Management"}, null)</li>
+                <li>@Html.ActionLink(CommonViewMessage.Create, "Create", "Product", new {area = "Management"}, null)</li>
+            </ul>
+
+
+
+        </li>
+        <li class="">
+            <a aria-expanded="false" role="button" data-toggle="dropdown" class="dropdown-toggle" href="#">تخفیف ها <span class="caret"></span></a>
+            <ul role="menu" class="dropdown-menu">
+                <li>@Html.ActionLink(CommonViewMessage.Create, "Create", "Discount", new { area = "Management" }, null)</li>
+                <li>@Html.ActionLink("لیست تخفیف ها", "List", "Discount", new { area = "Management" }, null)</li>
+                <li>@Html.ActionLink("تخفیف های فعال", "Active", "Discount", new { area = "Management" }, null)</li>
+                <li>@Html.ActionLink("تخفیف های غیرفعال", "Inactive", "Discount", new { area = "Management" }, null)</li>
+            </ul>
+        </li>
+        <li class="">
+            <a aria-expanded="false" role="button" data-toggle="dropdown" class="dropdown-toggle" href="#">@BannerViewMessage.Banners <span class="caret"></span></a>
+            <ul role="menu" class="dropdown-menu">
+                <li>@Html.ActionLink(CommonViewMessage.Create, "Create", "Banner", new { area = "Management" }, null)</li>
+                <li>@Html.ActionLink(BannerViewMessage.BannerActiveList, "Active", "Banner", new { area = "Management" }, null)</li>
+                <li>@Html.ActionLink(BannerViewMessage.BannerInActiveList, "InActive", "Banner", new { area = "Management" }, null)</li>
+            </ul>
+        </li>
+        <li class="">
+            <a aria-expanded="false" role="button" data-toggle="dropdown" class="dropdown-toggle" href="#">@StoreViewMessage.Store <span class="caret"></span></a>
+            <ul role="menu" class="dropdown-menu">
+                <li>@Html.ActionLink(StoreViewMessage.Stores, "List", "Store", new { area = "Management" }, null)</li>
+                <li>@Html.ActionLink(CommonViewMessage.Create, "Create", "Store", new { area = "Management" }, null)</li>
+            </ul>
+        </li>
+    </ul>
+</nav>

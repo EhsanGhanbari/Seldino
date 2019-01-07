@@ -1,0 +1,482 @@
+﻿@model Seldino.Application.Query.StoreService.StoreQueryResponse
+@using Seldino.CrossCutting.Web.Extensions
+@using Seldino.CrossCutting.Web.Helpers
+@using Seldino.CrossCutting.Web.ViewMessages
+
+@{
+    string MapId = Guid.NewGuid().ToString("N");
+}
+<link href="@Url.Content("~/Content/Css/bootstrap-image-gallery.min.css")" rel="stylesheet" />
+<link href="@Url.Content("~/Content/Css/blueimp-gallery_min.css")" rel="stylesheet" />
+<script src="@Url.Content("~/Scripts/jquery.blueimp-gallery_min.js")"></script>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="panel panel-default">
+            <div class="panel-body storDetail">
+                <div class="clearfix">
+                    <div class="pull-right">
+                        <div class="logo  mdc-text-grey-50 mdc-bg-grey-500">
+                            <i class="zmdi zmdi-store"></i>
+                        </div>
+                    </div>
+                    <div class="pull-right">
+                        <h4 class="title">@Model.Store.Name</h4>
+                        <details>
+                            <summary>
+                                توضیح کوتاه در مورد فروشگاه
+                            </summary>
+                        </details>
+                        <address>
+                            @Model.Store.Location.Country.Name @CommonViewMessage.CommaSeparate
+                            @Model.Store.Location.State.Name @CommonViewMessage.CommaSeparate
+                            @Model.Store.Location.Address.City @CommonViewMessage.CommaSeparate
+                            @Model.Store.Location.Address.AddressLine
+                        </address>
+                    </div>
+                </div>
+                <hr />
+                <div class="clearfix dan-alt">
+                    <div class="pull-right"><a target="_blank" href="http://maps.google.com/maps?daddr=@Model.Store.Location.Latitude, @Model.Store.Location.Longitude"><i class="zmdi zmdi-pin mdc-text-grey-50 mdc-bg-grey-500"></i>نقشه</a></div>
+                    <div class="pull-right"><i class="zmdi zmdi-phone mdc-text-grey-50 mdc-bg-grey-500"></i>@Model.Store.Phone</div>
+                </div>
+                <hr />
+                <div class="clearfix">
+                    <div class="pull-right">
+                        <span class="label label-success"><sup><span itemprop="bestRating">10</span>/</sup> 7.9 </span>
+                    </div>
+                    <div class="pull-left">
+                        <div class="btn-group">
+                            <a class="btn btn-info btn-sm"><i class="zmdi zmdi-thumb-up"></i></a>
+                            <a class="btn btn-info btn-sm"><i class="zmdi zmdi-thumb-down"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @if (Model.Store.Pictures.Count != 0)
+        {
+            <div class="panel panel-default">
+                <div class="panel-heading">تصاویر فروشگاه</div>
+                <div class="panel-body">
+                    <div class="storDetail owl-carousel">
+                        @foreach (var item in Model.Store.Pictures)
+                        {
+                            <div class="item">
+                                <a href="@Html.GetImageUrl(item.FullPath)" class="image">
+                                    <img src="@Html.GetImageUrl(item.FullPath)" style="height: 150px;" />
+                                </a>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+            <script>
+            $(function () {
+                $('.storDetail.owl-carousel').owlCarousel({
+                    rtl: true,
+                    navText: ["<i class='icon-angle-right'></i>", "<i class='icon-angle-left'></i>"],
+                    //loop: true,
+                    //lazyLoad: true,
+                    dots: false,
+                    margin: 10,
+                    responsiveClass: true,
+                    nav: true,
+                    responsive: {
+                        480: {
+                            items: 2
+                        },
+                        768: {
+                            items: 3
+                        }
+                    }
+                });
+            })
+            </script>
+        }
+
+        @if (Model.Store.StoreComments != null && Model.Store.StoreComments.Count != 0)
+        {
+            <div class="panel panel-default">
+                <div class="panel-heading">دیدگاه کاربران</div>
+                <div class="panel-body">
+                    @foreach (var item in Model.Store.StoreComments)
+                    {
+                        <div class="media">
+                            <div class="media-left">
+                                <img class="media-object img-circle" src="http://placehold.it/70x70">
+                            </div>
+                            <div class="media-body">
+                                <div class="clearfix">
+                                    <div class="pull-right"><h4 class="media-heading" id="media-heading">آریا<a class="anchorjs-link" href="#media-heading"><span class="anchorjs-icon"></span></a></h4></div>
+                                    <div class="pull-left">
+                                        <div class="btn-group">
+                                            <button class="btn btn-primary btn-xs"><i class="icon-thumbs-up-alt"></i> 15</button>
+                                            <button class="btn btn-danger btn-xs"><i class="icon-thumbs-down-alt"></i> 10</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="media-body-text">
+                                    @item.Body
+                                </div>
+                            </div>
+                        </div>
+                        if (Model.Store.StoreComments.IndexOf(item) + 1 != Model.Store.StoreComments.Count)
+                        {
+                            <hr />
+                        }
+                    }
+                </div>
+            </div>
+        }
+        @if (!User.Identity.IsAuthenticated)
+        {
+            <p class="bg-danger">
+                @Html.Raw(string.Format(CommonViewMessage.CheckIsAuthenticatedForComment, "<a href='/account/Signin'>" + CommonViewMessage.SignIn + "</a>", "<a href='/account/Register'>" + CommonViewMessage.Register + "</a>"))
+            </p>
+        }
+        else
+        {
+            @Html.Action("CreateComment", "store", new { area = "", productId = Model.Store.StoreId })
+        }
+    </div>
+    <div class="col-md-4">
+        <div class="map" id="@MapId"></div>
+        <div class="similarStore">
+            <div class="row">
+                <div class="col-xs-3 pd-0">
+                    <img src="http://placehold.it/150x150" />
+                </div>
+                <div class="col-xs-9">
+                    <div class="clearfix">
+                        <a class="pull-right">
+                            <h5 class="title">@Model.Store.Name</h5>
+                        </a>
+                        <div class="pull-left">
+                            <span class="label label-success">7.9</span>
+                        </div>
+                    </div>
+                    <address>
+                        @Model.Store.Location.Country.Name @CommonViewMessage.CommaSeparate
+                        @Model.Store.Location.State.Name @CommonViewMessage.CommaSeparate
+                        @Model.Store.Location.Address.City @CommonViewMessage.CommaSeparate
+                        @Model.Store.Location.Address.AddressLine
+                    </address>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <details>
+                        <summary>
+                            توضیح کوتاه در مورد فروشگاه
+                            توضیح کوتاه در مورد فروشگاه
+                            توضیح کوتاه در مورد فروشگاه
+                            توضیح کوتاه در مورد فروشگاه
+
+                        </summary>
+                    </details>
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-xs-3 pd-0">
+                    <img src="http://placehold.it/150x150" />
+                </div>
+                <div class="col-xs-9">
+                    <div class="clearfix">
+                        <a class="pull-right">
+                            <h5 class="title">@Model.Store.Name</h5>
+                        </a>
+                        <div class="pull-left">
+                            <span class="label label-danger">3.2</span>
+                        </div>
+                    </div>
+                    <address>
+                        @Model.Store.Location.Country.Name @CommonViewMessage.CommaSeparate
+                        @Model.Store.Location.State.Name @CommonViewMessage.CommaSeparate
+                        @Model.Store.Location.Address.City @CommonViewMessage.CommaSeparate
+                        @Model.Store.Location.Address.AddressLine
+                    </address>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <details>
+                        <summary>
+                            توضیح کوتاه در مورد فروشگاه
+                            توضیح کوتاه در مورد فروشگاه
+                            توضیح کوتاه در مورد فروشگاه
+                            توضیح کوتاه در مورد فروشگاه
+
+                        </summary>
+                    </details>
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-xs-3 pd-0">
+                    <img src="http://placehold.it/150x150" />
+                </div>
+                <div class="col-xs-9">
+                    <div class="clearfix">
+                        <a class="pull-right">
+                            <h5 class="title">@Model.Store.Name</h5>
+                        </a>
+                        <div class="pull-left">
+                            <span class="label label-warning">5.4</span>
+                        </div>
+                    </div>
+                    <address>
+                        @Model.Store.Location.Country.Name @CommonViewMessage.CommaSeparate
+                        @Model.Store.Location.State.Name @CommonViewMessage.CommaSeparate
+                        @Model.Store.Location.Address.City @CommonViewMessage.CommaSeparate
+                        @Model.Store.Location.Address.AddressLine
+                    </address>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <details>
+                        <summary>
+                            توضیح کوتاه در مورد فروشگاه
+                            توضیح کوتاه در مورد فروشگاه
+                            توضیح کوتاه در مورد فروشگاه
+                            توضیح کوتاه در مورد فروشگاه
+
+                        </summary>
+                    </details>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row prList" id="prList">
+    @foreach (var item in Model.Store.Products)
+    {
+        <div class="col-xs-6 col-sm-6 col-md-4">
+            <div class="pr-l">
+                <div class="tp">
+                    <a href="@Url.Action("Detail", "Product", new { productId = item.Id })">
+                        @if (item.ProductPictures.Count != 0)
+                        {
+                            <div class="d-img he-200" style="background-image: url(@item.ProductPictures.FirstOrDefault().Address.Replace("~/", "../")/@item.ProductPictures.FirstOrDefault().Name)"></div>
+                        }
+                        else
+                        {
+                            <div class="d-img he-200 noimg"><i class="icon-picture"></i></div>
+                        }
+                    </a>
+                    <div class="group">
+                        <a class="btn btn-xs btn-info" data-toggle="tooltip" title="@ProductViewMessage.MyFavorite" href="#"><i class="icon-heart-empty"></i></a>
+                        @if (CurrentUser != null)
+                        {
+                            @Ajax.ActionLink("اضافه به سبد خرید", "AddItem", "Basket", new { productIds = item.Id }, new AjaxOptions
+                            {
+                                HttpMethod = "Post",
+                                LoadingElementId = "loading",
+                                OnSuccess = "AddItemSuccess(data)"
+                            }, new { @class = "btn btn-xs btn-info" })
+                        }
+                        else
+                        {
+                            <a class="btn btn-xs btn-info" data-toggle="tooltip" title="@ProductViewMessage.BuySigninRequire">اضافه به سبد خرید</a>
+                        }
+                        <a class="btn btn-xs btn-info" data-toggle="tooltip" title="@ProductViewMessage.SimilarProducts" href="#"><i class="zmdi zmdi-eye"></i></a>
+                    </div>
+                </div>
+                <div class="caption det-cap">
+                    <div id="title" class="clearfix">
+                        <div class="pull-right">
+                            <h5>@item.Name</h5>
+                        </div>
+                        <div class="pull-left prl-menu">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-link btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="icon-reorder icon-large"></span>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-left">
+                                    @if (CurrentUser != null)
+                                    {
+                                        <li>
+                                            @Ajax.RawActionLink(string.Format("<i class='icon-shopping-cart'></i>&nbsp;{0:c}", BasketViewMessage.AddToCart), "AddItem", "Basket", new { productIds = item.Id }, new AjaxOptions
+                                       {
+                                           HttpMethod = "Post",
+                                           LoadingElementId = "loading",
+                                           OnSuccess = "AddItemSuccess(data)"
+                                       }, null)
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li>
+                                            <a data-toggle="tooltip" title="@ProductViewMessage.BuySigninRequire"><i class="icon-shopping-cart"></i>&nbsp;@BasketViewMessage.AddToCart</a>
+                                        </li>
+                                    }
+                                    <li><a href="#"><i class="icon-heart-empty"></i>&nbsp;@ProductViewMessage.MyFavorite</a></li>
+                                    <li><a href="#"><i class="icon-th-large"></i>&nbsp;@ProductViewMessage.SimilarProducts</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix">
+                        <div class="pull-right">
+                            <p><span class="price">@item.Price @ProductViewMessage.CurrencyToman</span></p>
+                        </div>
+                    </div>
+                    <p class="des-c"><strong>@CommonViewMessage.Detail: </strong> @ProductViewMessage.ProductDescription</p>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<style>
+    .map {
+        min-height: 320px;
+        box-shadow: rgba(0,0,0,0.25) 0 1px 3px 0;
+        border-radius: 4px;
+    }
+
+    .dan-alt i {
+        border-radius: 2px;
+        height: 16px;
+        line-height: 16px;
+        margin-left: 7px;
+        text-align: center;
+        vertical-align: top;
+        width: 16px;
+    }
+
+    .dan-alt > div {
+        margin-left: 15px;
+    }
+
+    .storDetail .title {
+        margin-bottom: 20px;
+        margin-top: 5px;
+    }
+
+    .similarStore h5.title {
+        margin-bottom: 20px;
+        margin-top: 5px;
+    }
+
+    summary {
+        font-size: 12px;
+        margin-bottom: 10px;
+    }
+
+    address {
+        color: #848484;
+        font-size: 12px;
+        margin: 0;
+    }
+
+    .similarStore {
+        padding-top: 10px;
+    }
+
+        .similarStore .row {
+            margin: 10px 0 15px 0;
+        }
+
+        .similarStore img {
+            width: 100%;
+            border-radius: 4px;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.25);
+        }
+
+        .similarStore .title {
+        }
+
+        .similarStore details {
+            margin-left: -15px;
+            margin-right: -15px;
+            line-height: 25px;
+        }
+
+    .owl-prev {
+        background-color: #fff !important;
+        border-radius: 4px 0 0 4px !important;
+        color: #000 !important;
+        margin: 0 !important;
+        padding: 0 3px 0 10px !important;
+        position: absolute;
+        right: 0;
+        top: 45px;
+        height: 68px;
+        line-height: 68px;
+    }
+
+    .owl-next {
+        background-color: #fff !important;
+        border-radius: 0 4px 4px 0 !important;
+        color: #000 !important;
+        margin: 0 !important;
+        padding: 0 10px 0 3px !important;
+        position: absolute;
+        left: 0;
+        top: 45px;
+        height: 68px;
+        line-height: 68px;
+    }
+
+    .storDetail .label {
+        border-radius: 0 0 4px;
+        color: #fff;
+        display: block;
+        font-size: 26px;
+        margin: -10px -15px -22px;
+        padding: 16px 27px;
+        text-align: center;
+        vertical-align: baseline;
+        white-space: nowrap;
+    }
+</style>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+<script>
+    $(function () {
+        initialize();
+        $("body").on("click", ".owl-stage-outer", function (event) {
+            event = event || window.event;
+            var target = event.target || event.srcElement,
+                link = target.src ? target.parentNode : target,
+                options = {
+                    index: link,
+                    event: event
+                },
+                links = this.getElementsByTagName('a');
+            blueimp.Gallery(links, options);
+        })
+    })
+    var map;
+    var mapProp;
+    var geocoder;
+    var markers = [];
+    var pos;
+    function initialize() {
+        mapProp = {
+            zoom: 16,
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            disableDoubleClickZoom: true
+        };
+        map = new google.maps.Map(document.getElementById("@MapId"), mapProp);
+        pos = new google.maps.LatLng("@Model.Store.Location.Latitude.ToString()" + ", " + "@Model.Store.Location.Longitude.ToString()");
+        map.setCenter(pos);
+        placeMarker(pos, map);
+        geocoder = new google.maps.Geocoder();
+    }
+    function placeMarker(position, map) {
+        var marker = new google.maps.Marker({
+            position: position,
+            map: map,
+            draggable: true
+        });
+        map.panTo(position);
+        markers.push(marker);
+    }
+
+
+</script>

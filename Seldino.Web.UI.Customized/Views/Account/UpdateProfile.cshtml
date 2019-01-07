@@ -1,0 +1,173 @@
+﻿@model Seldino.Application.Command.MembershipHandler.UpdateProfileCommand
+@using Seldino.CrossCutting.Web.Helpers
+@using Seldino.CrossCutting.Web.ViewMessages
+@{
+    Layout = "~/Views/Shared/_Account.cshtml";
+    string imgId = Guid.NewGuid().ToString("N");
+}
+
+@System.Web.Optimization.Styles.Render("~/Content/Datepicker")
+@using (Html.BeginForm("UpdateProfile", "Account", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal" }))
+{
+    <div class="row">
+        <div class="col-sm-4 col-md-3">
+            <input type="file" name="Picture.HttpPostedFileBase" style="display: none" data-target="@imgId" />
+            <div @((Model.Picture != null && !string.IsNullOrEmpty(Model.Picture.Address)) ? "style=background-image:url(" + @Html.GetImageUrl(Model.Picture.FullPath) + ") " : null)
+                 class="avatar icon-user img-thumbnail filerep"
+                 data-file="@imgId"
+                 id="@imgId">
+                @if (Model.Picture != null && !string.IsNullOrEmpty(Model.Picture.Address))
+                {
+                    <i class="imgremove btn btn-danger icon-remove" data-iid="@imgId"></i>
+                    <div data-imageid="@imgId">
+                        <input type="hidden" name="Picture.PictureId" value="@Model.Picture.PictureId" />
+                        <input type="hidden" name="Picture.Name" value="@Model.Picture.Name" />
+                        <input type="hidden" name="Picture.Address" value="@Model.Picture.Address" />
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="col-sm-8 col-md-9">
+            <div class="form-group">
+                @Html.Label("نام", new { @class = "col-md-2 control-label" })
+                <div class="col-md-6">
+                    @Html.TextBoxFor(p => p.FirstName, new { @class = "form-control", placeholder = "نام" })
+                </div>
+                @Html.ValidationMessageFor(c => c.FirstName)
+            </div>
+            <div class="form-group">
+                @Html.Label("نام خانوادگی", new { @class = "col-md-2 control-label" })
+                <div class="col-md-6">
+                    @Html.TextBoxFor(p => p.LastName, new { @class = "form-control", placeholder = "نام خانوادگی" })
+                </div>
+                @Html.ValidationMessageFor(c => c.LastName)
+            </div>
+            <div class="form-group">
+                @Html.Label("تاریخ تولد", new { @class = "col-md-2 control-label" })
+                <div class="col-md-6">
+                    @Html.TextBox("BirthDate", (Model.BirthDate != null) ? Model.BirthDate.Value.Date.ToString("d") : string.Empty, new { @class = "form-control date", placeholder = "تاریخ تولد" })
+                </div>
+                @Html.ValidationMessageFor(c => c.BirthDate)
+            </div>
+            <div class="form-group">
+                @Html.Label("شماره همراه", new { @class = "col-md-2 control-label" })
+                <div class="col-md-6">
+                    @Html.TextBoxFor(p => p.CellPhone, new { @class = "form-control", placeholder = "شماره تماس" })
+                </div>
+                @Html.ValidationMessageFor(c => c.CellPhone)
+            </div>
+        </div>
+    </div>
+    <hr />
+    <div class="btn-group">
+        <button class="btn btn-sm btn-success" type="submit">@CommonViewMessage.Create</button>
+    </div>
+    <hr class="transparent" />
+    @Html.ValidationSummary(true)
+}
+
+
+@System.Web.Optimization.Scripts.Render("~/bundles/datepicker")
+@System.Web.Optimization.Scripts.Render("~/bundles/jqueryval")
+<script type="text/javascript">
+    function toGargDate(date) {
+        var day = date.getDate();
+        var month = date.getMonth() + 1; //January is 0!
+        var year = date.getFullYear();
+        if (day < 10) day = '0' + day;
+        if (month < 10) month = '0' + month;
+        date = year + '-' + month + '-' + day;
+        return moment(date, 'jYYYY/jM/jD').format('YYYY/M/D');
+    }
+    $(function () {
+        $.each($(".date"), function (i, e) {
+            $(e).after($("<input />").attr("type", "hidden").attr("name", $(e).attr("name")).attr("id", $(e).attr("id")).val($(e).val())).removeAttr("id").attr("data-name", $(e).attr("name")).removeAttr("name");
+
+        })
+        $("body").on("change", ".date", function () {
+            var date = $(this);
+            $("#" + date.attr("data-name")).val(toGargDate(new Date(date.val())));
+        })
+        var birthDate = new Date(@((Model.BirthDate != null) ? '"' + Model.BirthDate.Value.Date.ToString("d") + '"' : string.Empty)),
+        momentval = "";
+        var a = "@(Model.BirthDate != null)";
+        if (a == "True") {
+            var day = birthDate.getDate();
+            var month = birthDate.getMonth() + 1; //January is 0!
+            var year = birthDate.getFullYear();
+            if (day < 10) day = '0' + day;
+            if (month < 10) month = '0' + month;
+            birthDate = year + '-' + month + '-' + day;
+            momentval = moment(birthDate, 'YYYY-M-D').format('jYYYY/jM/jD');
+        }
+        $(".date").val(momentval).datepicker({
+            changeMonth: true,
+            changeYear: true,
+            isRTL: true,
+            dateFormat: "yy/m/d",
+            maxDate: new Date("@(DateTime.Today.AddYears(-5).ToString())")
+        });
+        @*$("body").on("submit", "form", function (e) {
+            e.preventDefault();
+            e.stopImmediatePropagation();
+            document.getElementById("loading").style.display = "block";
+            var form = e.target;
+            if (form.getAttribute("enctype") === "multipart/form-data") {
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.open(form.method, form.action);
+                xmlhttp.onreadystatechange = function () {
+                    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                        if (form.dataset.ajaxUpdate) {
+                            var updateTarget = document.querySelector(form.dataset.ajaxUpdate);
+                            if (updateTarget) {
+                                updateTarget.innerHTML = xmlhttp.responseText;
+                            }
+                        }
+                    }
+                };
+                xmlhttp.send(new FormData(form));
+                xmlhttp.onreadystatechange = function () {
+                    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                        document.getElementById("loading").style.display = "none";
+                        var result = JSON.parse(xmlhttp.responseText);
+                        if (result.Success) {
+                            alertify.success(result.Message);
+                            //window.location.href = "@Url.Action("List", "Product")";
+                        }
+                        else {
+                            alertify.error(result.Message);
+                        }
+
+                    }
+                }
+            }
+        })*@
+    })
+
+    $(function () {
+        $("body").on("click", "div.filerep", function (e) {
+            $("input[data-target=" + $(this).attr('data-file') + "]").click();
+        });
+        $('input[type=file]').on('change', prepareUpload);
+    });
+    function prepareUpload(event) {
+        if (this.files[0].type == "image/jpeg" || this.files[0].type == "image/png") {
+            if (this.files[0].size <= 524288) {
+                var target = $("#" + $(this).attr("data-target"));
+                var dataTarget = $(this).attr("data-target");
+                target.removeClass("icon-user");
+                target.css("background-image", "url(" + URL.createObjectURL(event.target.files[0]) + ")").append($("<i></i>").addClass("imgremove").addClass("btn").addClass("btn-danger").addClass("fa").addClass("icon-remove").on("click", function () { target.html("").removeAttr("style"); target.addClass("icon-user"); $("[data-target=" + dataTarget + "]").val(""); }));
+            }
+            else {
+                alertify.alert("@ProductViewMessage.ImageSizeValidation")
+                $('#Image').val("");
+            }
+        }
+        else {
+            alertify.alert("@ProductViewMessage.ImageTypeValidation")
+            $('#Image').val("");
+        }
+
+    }
+</script>
+

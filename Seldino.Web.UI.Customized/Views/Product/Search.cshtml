@@ -1,0 +1,204 @@
+﻿@using Seldino.CrossCutting.Web.Extensions
+@using Seldino.CrossCutting.Web.ViewMessages
+@model Seldino.Application.Query.ProductService.ProductsQueryResponse
+@{
+    ViewBag.Title = "List";
+}
+<div class="row">
+    <div class="col-xs-12 col-sm-8 col-sm-offset-4 col-md-9 col-md-offset-3">
+        <div class="clearfix">
+            <div id="showMode" class="pull-right">
+                <div class="pull-right">
+                    <form name="sh-t">
+                        <label class="label-sm">@ProductViewMessage.ShowMode</label>
+                        <div class="btn-group" data-toggle="buttons">
+                            <label class="btn btn-default btn-sm active">
+                                <input type="radio" id="q156" name="showType" checked="checked" value="grid" /> <i class="icon-th-large"></i>
+                            </label>
+                            <label class="btn btn-default btn-sm">
+                                <input type="radio" id="q157" name="showType" value="list" /> <i class="icon-reorder"></i>
+                            </label>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="pull-right">
+                <form name="sr-l">
+                    <label class="label-sm">@ProductViewMessage.OrderBy</label>
+                    <select class="btn selectpicker show-tick" data-width="150px" data-style="btn-default btn-sm" name="orderby">
+                        <option value="0" selected>جدیدترین</option>
+                        <option value="1">پر فروش ترین</option>
+                        <option value="2">محبوب ترین</option>
+                        <option value="3">پر بازدیدترین</option>
+                        <option value="4">قیمت</option>
+                        <option value="5">برند</option>
+                    </select>
+                    <select class="btn selectpicker show-tick" data-width="110px" data-style="btn-default btn-sm" name="sortby">
+                        <option value="0" selected>@ProductViewMessage.Ascending</option>
+                        <option value="1">@ProductViewMessage.Descending</option>
+                    </select>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<hr class="transparent" />
+<div class="row">
+    <div class="hidden-xs hidden-sm col-md-3">
+        <div class="sdbar">
+            @Html.Action("Fixed", "Banner", new { area = "" })
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-9">
+        <div class="row prList" id="prList">
+            @if (Model.Products != null)
+            {
+                foreach (var item in Model.Products.Result)
+                {
+                    <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3">
+                        <div class="pr-l">
+                            <div class="tp">
+                                <a href="@Url.Action("Detail", "Product", new {productId = item.ProductId})">
+                                    @if (item.ProductPictures.Count != 0)
+                                    {
+                                        <div class="d-img he-200" style="background-image: url(@item.ProductPictures.FirstOrDefault().Address.Replace("~/", "../") / @item.ProductPictures.FirstOrDefault().Name)"></div>
+                                    }
+                                    else
+                                    {
+                                        <div class="d-img he-200 noimg">
+                                            <i class="icon-picture"></i>
+                                        </div>
+                                    }
+                                </a>
+                                <div class="group row mg-0">
+                                    @if (CurrentUser != null)
+                                    {
+                                        <a class="btn btn-default col-xs-4"
+                                           data-ajax="true"
+                                           data-ajax-loading="#loading"
+                                           data-ajax-method="Post"
+                                           data-ajax-success="AddItemSuccess(data)"
+                                           href="@Url.Action("AddItem", "Basket", new {productIds = item.ProductId})"><i class="zmdi zmdi-shopping-cart-plus mdc-text-light-green-600 zmdi-hc-2x"></i></a>
+                                    }
+                                    else
+                                    {
+                                        <a class="btn btn-default col-xs-4" data-toggle="tooltip" title="@ProductViewMessage.BuySigninRequire"><i class="zmdi zmdi-shopping-cart-plus mdc-text-light-green-600 zmdi-hc-2x"></i></a>
+                                    }
+                                    <a class="btn btn-default col-xs-4" href="#"><i class="zmdi zmdi-favorite-outline mdc-text-pink-700 zmdi-hc-2x"></i></a>
+                                    <a class="btn btn-default col-xs-4" href="#"><i class="zmdi zmdi-eye mdc-text-cyan-600 zmdi-hc-2x"></i></a>
+                                </div>
+                            </div>
+                            <div class="caption det-cap">
+                                <div id="title" class="clearfix">
+                                    <div class="pull-right">
+                                        <h5>@item.ProductName</h5>
+                                    </div>
+                                    <div class="pull-left prl-menu">
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-link btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <span class="icon-reorder icon-large"></span>
+                                            </button>
+                                            <ul class="dropdown-menu dropdown-menu-left">
+                                                @if (CurrentUser != null)
+                                                {
+                                                    <li>
+                                                        @Ajax.RawActionLink(string.Format("<i class='icon-shopping-cart'></i>&nbsp;{0:c}", BasketViewMessage.AddToCart), "AddItem", "Basket", new { productIds = item.ProductId }, new AjaxOptions
+                                               {
+                                                   HttpMethod = "Post",
+                                                   LoadingElementId = "loading",
+                                                   OnSuccess = "AddItemSuccess(data)"
+                                               }, null)
+                                                    </li>
+                                                }
+                                                else
+                                                {
+                                                    <li>
+                                                        <a data-toggle="tooltip" title="@ProductViewMessage.BuySigninRequire"><i class="icon-shopping-cart"></i>&nbsp;@BasketViewMessage.AddToCart</a>
+                                                    </li>
+                                                }
+                                                <li><a href="#"><i class="icon-heart-empty"></i>&nbsp;@ProductViewMessage.MyFavorite</a></li>
+                                                <li><a href="#"><i class="icon-th-large"></i>&nbsp;@ProductViewMessage.SimilarProducts</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix">
+                                    <div class="pull-right">
+                                        <p><span class="price">@Math.Truncate(item.Price).ToString("N0") @ProductViewMessage.CurrencyToman</span></p>
+                                    </div>
+                                </div>
+                                <p class="des-c"><strong>@CommonViewMessage.Detail: </strong> @ProductViewMessage.ProductDescription</p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        
+        </div>
+        <div class="text-center showmore loading">
+            <div class="spinner">
+                <div class="rect1"></div>
+                <div class="rect2"></div>
+                <div class="rect3"></div>
+                <div class="rect4"></div>
+                <div class="rect5"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var pageIndex = 1;
+    $(function () {
+        $(window).bind('scroll', bindScroll);
+        $("body").on("click", "form[name=sh-t] .btn", function (s) {
+            if (s.preventDefault(), !$(this).hasClass("active")) {
+                setTimeout(function () {
+                    var s = $("form[name=sh-t]").serializeArray();
+                    switch (s[0].value) {
+                        case "grid": $(".ch-s").removeClass("col-xs-12").addClass("col-sm-4").find(".pr-l").removeClass("row").find(".rounded").removeClass("col-sm-4").parent().find(".det-cap").removeClass("col-sm-8").addClass("caption").find(".prl-menu").css("display", "none").parents(".ch-s").find(".prg-menu").css("display", "block"); $(".des-c").hide();
+                            break;
+                        case "list": $(".ch-s").removeClass("col-sm-4").addClass("col-xs-12").find(".pr-l").addClass("row").find(".rounded").addClass("col-sm-4").parent().find(".det-cap").addClass("col-sm-8").removeClass("caption").find(".prl-menu").css("display", "block").parents(".ch-s").find(".prg-menu").css("display", "none"); $(".des-c").show();
+                            break
+                    }
+                }, 100)
+            }
+        }); $("body").on("change", "form[name=sr-l] select", function (s) { console.log($("form[name=sr-l]").serializeArray()) });
+    });
+    var Isloading = false;
+    function loadMore() {
+        Isloading = true;
+        pageIndex++;
+        loadingStart();
+        var timeOut = setTimeout(function () {
+            $.ajax({
+                url: "@Url.Action(ViewBag.Action, "Product")",
+                data: { pageIndex: pageIndex, pageSize: "@Model.Products.PageSize" },
+                success: function (data) {
+                    $("#prList").append(data);
+                    loadingEnd();
+                    Isloading = false;
+                }
+            })
+        }, 3000)
+
+        $(window).bind('scroll', bindScroll);
+    }
+    function loadingStart() {
+        $(".showmore").css('visibility', 'visible');
+    }
+    function loadingEnd() {
+        $(".showmore").css('visibility', 'hidden');
+    }
+    function bindScroll() {
+        if ($(window).scrollTop() + $(window).height() == $(document).height() && !Isloading) {
+            $(window).unbind('scroll');
+            loadMore();
+        }
+    }
+</script>
+<style>
+    .showmore {
+        visibility: hidden;
+    }
+</style>

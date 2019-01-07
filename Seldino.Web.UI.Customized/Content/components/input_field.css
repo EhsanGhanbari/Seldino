@@ -1,0 +1,39 @@
+﻿.input-field {
+    position: relative;
+    margin-bottom: 50px;
+}
+
+    .input-field.text-center input {
+        text-align: center;
+    }
+
+    .input-field.text-center label {
+        left: 50%;
+        transform: translate(-50%, 0);
+    }
+
+    .input-field input {
+        background: transparent;
+        box-shadow: none;
+        border-radius: 0;
+        z-index: 1;
+        border: none;
+        border-bottom: solid 1px #888;
+    }
+
+        .input-field input:focus {
+            box-shadow: none;
+        }
+
+    .input-field label {
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: 2;
+        transition: all 0.3s ease;
+    }
+
+    .input-field.active label {
+        top: -20px;
+        font-size: 0.9em;
+    }

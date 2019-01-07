@@ -1,0 +1,78 @@
+﻿@model Array
+@{
+    Layout = null;
+}
+
+<div class="row">
+    <div class="clearfix">
+        @foreach (string path in Model)
+        {
+            var url = "/Pictures/Document/" + path.Split('\\')[path.Split('\\').Length - 1];
+            <div class="item float-right">
+                <div class="img img-thumbnail" style="background-image: url(@url)" data-url="@url">
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<script src="~/Scripts/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("body").on("click", ".item .img", function (e) {
+            var urlImage = $(this).attr("data-url");
+            jQuery.each(window.opener.document.getElementsByClassName('cke_dialog_ui_text'), function (i, element) {
+                if ($(element).parents(".cke_dialog_page_contents").attr("name") == "info") {
+                    if ($(element).find("label").text() == "URL") {
+                        var id = $(this).find("input[type=text]").attr("id");
+                        var preview = $(window.opener.document.getElementsByClassName('ImagePreviewBox')).children().find("a").attr("id");
+                        var imgId = $(window.opener.document.getElementsByClassName('ImagePreviewBox')).children().find("img").attr("id")
+                        console.log(urlImage);
+                        window.opener.updateImage(preview, '<img id="' + imgId + '" alt="" title="" src="' + urlImage + '" style="width: 100%; display: block">');
+                        window.opener.updateValue(id, urlImage);
+                        window.close();
+                    }
+                }
+            });
+
+        });
+    });
+</script>
+
+<style>
+    .clearfix::before, .clearfix::after {
+        content: " ";
+        display: table;
+    }
+
+    .clearfix::after {
+        clear: both;
+    }
+
+    .float-right {
+        float: right;
+    }
+
+    .item {
+        cursor: pointer;
+        display: inline-block;
+        margin-bottom: 10px;
+        width: 25%;
+        height: 30%;
+        opacity: .8;
+        transition: all 0.2s ease-in-out 0s;
+    }
+
+        .item:hover, .item:focus {
+            opacity: 1;
+        }
+
+    .img-thumbnail {
+        background-color: #fff;
+        border-radius: 4px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.75);
+        display: block;
+        height: 100%;
+        margin: 5px;
+        background-size: cover;
+    }
+</style>

@@ -1,0 +1,92 @@
+﻿@using Seldino.CrossCutting.Web.ViewMessages
+@{
+    Layout = null;
+}
+
+<div class="clearfix"></div>
+
+<div class="parallax-window">
+
+    <h4 class="page-subheading">
+        تازه ترین محصولات
+    </h4>
+
+    <h5>
+        جهت دریافت عنوان های تازه ترین  محصولات و محصولات فروش ویژه میتوانید ایمیل خود را در زیر وارد نمایید.
+    </h5>
+
+    <div class="col-md-6 col-md-offset-3" data-action="/Notification/AddToNewsletter" data-command="Email">
+
+        <a class="submit col-lg-1" data-submit="newsletter" data-refer="notification">
+            <i class="fa fa-arrow-right"></i>
+        </a>
+
+        <div class="input-field text-center col-lg-11">
+            <input type="text" name="Email" id="news_email" class="form-control"/>
+            <label for="news_email">ایمیل خود را وارد کنید</label>
+        </div>
+        
+    </div>
+
+</div>
+
+<footer id="footer" role="contentinfo">
+    <div class="footer-container">
+        <section class="footer-nav">
+            <div class="container">
+
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="page-header">
+                        بخش های کاربردی
+                    </div>
+                    <ul class="list-unstyled">
+                        <li>@Html.ActionLink("محصولات پرفروش", "BestSellings", "Product")</li>
+                        <li><a href="/Management/Dashboard">حساب کاربری شما</a></li>
+                        <li>@Html.ActionLink("خرید خود را نهایی کنید", "Card", "Basket")</li>
+                        <li>@Html.ActionLink("ورود به حساب کاربری", "SignIn", "Account")</li>
+                        <li>@Html.ActionLink("ایجاد حساب کاربری", "Register", "Account")</li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="page-header">
+                        اطلاعات
+                    </div>
+                    <ul class="list-unstyled">
+                        <li>@Html.ActionLink("درباره ما", "About", "Home")</li>
+                        <li>@Html.ActionLink("تماس با ما", "Contact", "Home")</li>
+                        <li>@Html.ActionLink("شرایط و قوانین", "Rule", "Home")</li>
+                        <li>@Html.ActionLink("سیاست حفظ حریم خصوصی", "Register", "Account")</li>
+                        <li><a href="">نقشه سایت</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="page-header">
+                        خدمات و پشتیبانی
+                    </div>
+                    <ul class="list-unstyled">
+                        <li>@Html.ActionLink("درباره ما", "About", "Home")</li>
+                        <li><a href="">فرصت های شغلی</a></li>
+                        <li><a href="">همکاران</a></li>
+                        <li>@Html.ActionLink("تماس با ما", "Contact", "Home")</li>
+                        <li>@Html.ActionLink("بلاگ", "Index", "Blog")</li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="page-header">
+                        درباره فروشگاه
+                    </div>
+
+                    <ul class="list-unstyled">
+                        @*<li><b>واحد فروش</b></li>*@
+                        @*<li>تهران, صادقیه، خیابان سلیمی جهرمی، پلاک 1، واحد 6</li>*@
+                        @*<li>شماره های تماس: 02144033550</li>*@
+                    </ul>
+                </div>
+
+                <div class="clearfix"></div>
+                <hr />
+                تمامی حقوق وب سایت متعلق به <a href="/">کادوبین</a> میباشد.
+            </div>
+        </section>
+    </div>
+</footer>

@@ -1,0 +1,234 @@
+﻿@using Seldino.CrossCutting.Web.ViewMessages
+@model Seldino.Application.Command.StoreHandler.CreateStoreCommand
+
+@{
+    ViewBag.Title = StoreViewMessage.CreateStorePageTitle;
+    var mapId = Guid.NewGuid().ToString("N");
+}
+
+@System.Web.Optimization.Styles.Render("~/Content/SelectList")
+<div class="panel panel-default">
+    <div class="panel-heading">@StoreViewMessage.CreateStorePageTitle</div>
+    <div class="panel-body">
+        @using (Html.BeginForm("Create", "Store", FormMethod.Post, new {enctype = "multipart/form-data", @class = "form-horizontal"}))
+        {
+            @*@Html.HiddenFor(model => model.Location.Coordinate)*@
+            <div class="form-group">
+                @Html.Label(StoreViewMessage.Name, new {@class = "col-sm-2 control-label"})
+                <div class="col-sm-8 col-md-6">
+                    @Html.TextBoxFor(p => p.Name, new {@class = "form-control", placeholder = StoreViewMessage.Name})
+                </div>
+                @Html.ValidationMessageFor(c => c.Name)
+            </div>
+            <div class="form-group">
+                @Html.Label(StoreViewMessage.Phone, new {@class = "col-sm-2 control-label"})
+                <div class="col-sm-6 col-md-4">
+                    @Html.TextBoxFor(p => p.Phone, new {@class = "form-control", placeholder = StoreViewMessage.Phone})
+                </div>
+                @Html.ValidationMessageFor(c => c.Phone)
+            </div>
+
+            <div class="form-group">
+                @Html.Label(StoreViewMessage.State, new {@class = "col-sm-2 control-label"})
+                <div class="col-sm-8 col-md-6">
+                    <input type="hidden" name="Location.Country.Name" value="ایران">
+                    <select name="Location.State.Name" id="Location_State_Name" class="form-control"></select>
+                </div>
+                @Html.ValidationMessageFor(p => p.Location.State.Name)
+            </div>
+            <div class="form-group">
+                @Html.Label(StoreViewMessage.City, new {@class = "col-md-2 control-label"})
+                <div class="col-sm-7 col-md-5">
+                    @Html.TextBoxFor(p => p.Location.Address.City, new {@class = "form-control", placeholder = StoreViewMessage.City})
+                </div>
+                @Html.ValidationMessageFor(c => c.Location.Address.City)
+            </div>
+            <div class="form-group">
+                @Html.Label(StoreViewMessage.ZipCode, new {@class = "col-md-2 control-label"})
+                <div class="col-sm-6 col-md-4">
+                    @Html.TextBoxFor(p => p.Location.Address.ZipCode, new {@class = "form-control", placeholder = StoreViewMessage.ZipCode})
+                </div>
+                @Html.ValidationMessageFor(c => c.Location.Address.ZipCode)
+            </div>
+            <div class="form-group">
+                @Html.Label(StoreViewMessage.Address, new {@class = "col-md-2 control-label"})
+                <div class="col-md-8">
+                    @Html.TextAreaFor(p => p.Location.Address.AddressLine, new {@class = "form-control", placeholder = StoreViewMessage.Address})
+                </div>
+                @Html.ValidationMessageFor(c => c.Location.Address.AddressLine)
+            </div>
+            <div class="row">
+                @Html.Label(ProductViewMessage.ProductPicture, new {@class = "col-sm-2 control-label"})
+                <div class="clearfix col-sm-10">
+                    @for (int i = 0; i < 5; i++)
+                    {
+                        string imgId = Guid.NewGuid().ToString("N");
+                        <div class="pull-right prmarg">
+                            <input type="file" name="HttpPostedFileBases" style="display: none" data-target="@imgId"/>
+                            <div class="unknowimg img-thumbnail filerep primg icon-building" id="@imgId" data-file="@imgId"></div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <hr class="transparent"/>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div id="@mapId" style="min-height: 380px;"></div>
+                </div>
+            </div>
+            <hr class="transparent"/>
+            <div class="btn-group">
+                <button class="btn btn-sm btn-success" type="submit">@CommonViewMessage.Create</button>
+            </div>
+            <hr class="transparent"/>
+            @Html.ValidationSummary(true)
+        }
+    </div>
+</div>
+
+@System.Web.Optimization.Scripts.Render("~/bundles/jqueryval")
+@System.Web.Optimization.Scripts.Render("~/bundles/SelectList")
+
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+<script type="text/javascript">
+    var map;
+    var mapProp;
+    var addressField;
+    var geocoder;
+    var markers = [];
+    var pos;
+
+    $.ajax({
+        url: "@Url.Action("GetStates", "Store")" + "?country=ایران",
+        success: function (data) {
+            var option;
+            $.each(data,
+                function (i, element) {
+                    console.log(element)
+                    option += "<option value=" + element.Name + ">" + element.Name + "</option>";
+                });
+            $("#Location_State_Name").html(option);
+        }
+    });
+
+    $("#Location_State_Name").select2({
+        language: "@CommonViewMessage.SelectFarsi",
+        dir: "rtl"
+    });
+    function initialize() {
+        mapProp = {
+            zoom: 16,
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            disableDoubleClickZoom: true
+        };
+        map = new google.maps.Map(document.getElementById("@mapId"), mapProp);
+
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                for (var i = 0; i < markers.length; i++) {
+                    markers[i].setMap(null);
+                }
+                pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                map.setCenter(pos);
+                placeMarker(pos, map);
+                $("#Location_Coordinate").val(pos.lat() + ", " + pos.lng());
+            }, function () {
+                handleNoGeolocation(true);
+            });
+        } else {
+            handleNoGeolocation(false);
+        }
+        pos = new google.maps.LatLng(35.68837519005023, 51.360740661621094);
+        map.setCenter(pos);
+        placeMarker(pos, map);
+        $("#Location_Coordinate").val(pos.lat() + ", " + pos.lng());
+
+        addressField = document.getElementById('search_address');
+        geocoder = new google.maps.Geocoder();
+    }
+    function placeMarker(position, map) {
+        var marker = new google.maps.Marker({
+            position: position,
+            map: map,
+            draggable: true
+        });
+        map.panTo(position);
+        markers.push(marker);
+
+        google.maps.event.addListener(marker, 'drag', function (e) {
+            $("#Location_Coordinate").val(e.latLng.lat() + ", " + e.latLng.lng());
+        });
+
+        google.maps.event.addListener(map, 'click', function (e) {
+            for (var i = 0; i < markers.length; i++) {
+                markers[i].setMap(null);
+            }
+            placeMarker(e.latLng, map);
+            $("#Location_Coordinate").val(e.latLng.lat() + ", " + e.latLng.lng());
+        });
+    }
+
+    $(function() {
+        initialize();
+        $("body").on("submit", "form", function(e) {
+            e.preventDefault();
+            e.stopImmediatePropagation();
+            document.getElementById("loading").style.display = "block";
+            var form = e.target;
+            if (form.getAttribute("enctype") === "multipart/form-data") {
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.open(form.method, form.action);
+                xmlhttp.onreadystatechange = function() {
+                    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                        if (form.dataset.ajaxUpdate) {
+                            var updateTarget = document.querySelector(form.dataset.ajaxUpdate);
+                            if (updateTarget) {
+                                updateTarget.innerHTML = xmlhttp.responseText;
+                            }
+                        }
+                    }
+                };
+
+                xmlhttp.send(new FormData(form));
+                xmlhttp.onreadystatechange = function() {
+                    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                        document.getElementById("loading").style.display = "none";
+                        var result = JSON.parse(xmlhttp.responseText);
+                        if (result.Success) {
+                            alertify.success(result.Message);
+                            window.location.href = "@Url.Action("List", "Store")";
+                        } else {
+                            alertify.error(result.Message);
+                        }
+                    }
+                }
+            }
+        });
+    });
+
+    $(function () {
+        $("body").on("click", "div.filerep", function (e) {
+            $("input[data-target=" + $(this).attr('data-file') + "]").click();
+        });
+        $('input[type=file]').on('change', prepareUpload);
+    });
+
+    function prepareUpload(event) {
+        if (this.files[0].type == "image/jpeg" || this.files[0].type == "image/png") {
+            if (this.files[0].size <= 524288) {
+                var target = $("#" + $(this).attr("data-target"));
+                var dataTarget = $(this).attr("data-target");
+                target.css("background-image", "url(" + URL.createObjectURL(event.target.files[0]) + ")").removeClass("icon-building").append($("<i></i>").addClass("imgremove").addClass("btn").addClass("btn-danger").addClass("fa").addClass("icon-remove").on("click", function () { target.html("").removeAttr("style").addClass("icon-building"); $("[data-target=" + dataTarget + "]").val(""); }));
+            }
+            else {
+                alertify.alert("@ProductViewMessage.ImageSizeValidation");
+                $('#Image').val("");
+            }
+        }
+        else {
+            alertify.alert("@ProductViewMessage.ImageTypeValidation");
+            $('#Image').val("");
+        }
+    }
+
+</script>

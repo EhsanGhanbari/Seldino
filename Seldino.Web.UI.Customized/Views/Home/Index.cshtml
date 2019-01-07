@@ -1,0 +1,9 @@
+﻿@using Seldino.Domain.LocationAggregation
+
+@{
+    ViewBag.Title = "فروشگاه اینترنتی کادوبین";
+}
+
+@Html.Action("Latest", "Product", new { area = "" })
+
+@Html.Partial("Partials/Tabs")

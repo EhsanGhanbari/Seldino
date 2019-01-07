@@ -1,0 +1,17 @@
+﻿@model Seldino.Application.Query.NotificationService.NotificationQueryResponse
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div>
+    @Html.DisplayTextFor(c => c.Notification.Title)
+</div>
+
+<div>
+    @Html.DisplayTextFor(c => c.Notification.Body)
+</div>
+
+<div>
+    @Html.DisplayTextFor(c => c.Notification.IsActive)
+</div>

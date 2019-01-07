@@ -1,0 +1,444 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AccountActivatedSuccessfully" xml:space="preserve">
+    <value>حساب کاربری با موفقیت فعال شد</value>
+  </data>
+  <data name="AccountCreatedSuccessfully" xml:space="preserve">
+    <value>ایحاد حساب کاربری با موفقیت انجام شد</value>
+  </data>
+  <data name="AccountCreationFailed" xml:space="preserve">
+    <value>ایجاد حساب کاربری با خطا مواجه شد</value>
+  </data>
+  <data name="AccountDeactivatedSuccessfully" xml:space="preserve">
+    <value>حساب کاربری غیر فعال گردید</value>
+  </data>
+  <data name="AccountDeactivationFailed" xml:space="preserve">
+    <value>غیر فعال سازی حساب کاربری با خطا مواجه گردید</value>
+  </data>
+  <data name="AccountDeletedSuccessfully" xml:space="preserve">
+    <value>حساب کاربری با موفقیت حذف گردید</value>
+  </data>
+  <data name="AccountDeletionFailed" xml:space="preserve">
+    <value>حذف حساب کاربری با خطا مواجه گردید</value>
+  </data>
+  <data name="AccountEditionFailed" xml:space="preserve">
+    <value>ویرایش حساب کاربری با خطا مواجه شد</value>
+  </data>
+  <data name="AccountIsInactive" xml:space="preserve">
+    <value>حساب کاربری مورد نظر مسدود میباشد</value>
+  </data>
+  <data name="AccountUserActivationFaild" xml:space="preserve">
+    <value>فعال سازی حساب کاربری با خطا مواجه شد</value>
+  </data>
+  <data name="AddingEmailToNewsletterFaild" xml:space="preserve">
+    <value>وارد شدن ایمیل شما در خبرنامه با خطا مواجه شد</value>
+  </data>
+  <data name="AuthenticationFaild" xml:space="preserve">
+    <value>ورود به حساب کاربری به خطا مواجه شد، ایمیل یا رمز عبور اشتباه است</value>
+  </data>
+  <data name="AuthenticattionWasSuccessfully" xml:space="preserve">
+    <value>ورود به حساب کاربری با موفقیت انجام شد</value>
+  </data>
+  <data name="BannerActivatedSuccssfully" xml:space="preserve">
+    <value>بنر با موفقیت فعال شد</value>
+  </data>
+  <data name="BannerActivationFaild" xml:space="preserve">
+    <value>فعال سازی بنر با خطا مواجه شد</value>
+  </data>
+  <data name="BannerConfirmationFaild" xml:space="preserve">
+    <value>تایید بنر با خطا مواجه شد</value>
+  </data>
+  <data name="BannerConfirmedSuccessfully" xml:space="preserve">
+    <value>بنر با موفقیت تایید شد</value>
+  </data>
+  <data name="BannerCreatedSuccessfully" xml:space="preserve">
+    <value>بنر با موفقیت ایجاد شد</value>
+  </data>
+  <data name="BannerCreationFaild" xml:space="preserve">
+    <value>ایجاد بنر با خطا مواجه شد</value>
+  </data>
+  <data name="BannerDeactivatedSuccssfully" xml:space="preserve">
+    <value>بنر با موفقیت غیرفعال شد</value>
+  </data>
+  <data name="BannerDeactivationFaild" xml:space="preserve">
+    <value>غیر فعال کردن بنر با خطا مواجه شد</value>
+  </data>
+  <data name="BannerDeletedSuccessfully" xml:space="preserve">
+    <value>حذف بنر با موفقیت انجام شد</value>
+  </data>
+  <data name="BannerDeletionFailed" xml:space="preserve">
+    <value>حذف بنر با خطا مواجه شد</value>
+  </data>
+  <data name="BannerEditedSuccessfully" xml:space="preserve">
+    <value>بنر با موفقیت ویرایش گردید</value>
+  </data>
+  <data name="BannerEditionFaild" xml:space="preserve">
+    <value>ویرایش بنر با خطا مواجه شد</value>
+  </data>
+  <data name="BannerEndDateIsRequired" xml:space="preserve">
+    <value>تاریخ خاتمه بنر الزامی است</value>
+  </data>
+  <data name="BannerFeeIsRequired" xml:space="preserve">
+    <value>هزینه مربوط به بنر الزامی است</value>
+  </data>
+  <data name="BannerStartDateIsRequired" xml:space="preserve">
+    <value>تاریخ شروع بنر الزامی است</value>
+  </data>
+  <data name="BannerTypeIsRequired" xml:space="preserve">
+    <value>انتخاب نوع بنر الزامی است</value>
+  </data>
+  <data name="BasketItemAddedToSuccessfully" xml:space="preserve">
+    <value>محصول مورد نظر به سبد خرید اضافه شد</value>
+  </data>
+  <data name="BasketItemAddingFaild" xml:space="preserve">
+    <value>اضافه نمودن محصول مورد نظر به سبد خرید با خطا مواجه شد</value>
+  </data>
+  <data name="BlogCategoryDeletedSuccessfully" xml:space="preserve">
+    <value>حذف گروه با موفقیت انجام شد</value>
+  </data>
+  <data name="BlogCategoryDeletionFaild" xml:space="preserve">
+    <value>حذف دسته پست با خطا مواجه شد</value>
+  </data>
+  <data name="BlogPostCreatedSuccessfully" xml:space="preserve">
+    <value>ایجاد پست با موفقیت انجام شد</value>
+  </data>
+  <data name="BlogPostCreationFaild" xml:space="preserve">
+    <value>ایجاد پست با خطا مواجه شد</value>
+  </data>
+  <data name="BlogPostDeletedSuccessfully" xml:space="preserve">
+    <value>حذف پست با موفقیت انجام شد</value>
+  </data>
+  <data name="BlogPostDeletionFaild" xml:space="preserve">
+    <value>حذف پست با خطا مواجه شد</value>
+  </data>
+  <data name="BlogTagDeletedSuccessfully" xml:space="preserve">
+    <value>حذف تگ با موفقیت انجام شد</value>
+  </data>
+  <data name="BlogTagDeletionFaild" xml:space="preserve">
+    <value>حذف تگ با خطا مواجه شد</value>
+  </data>
+  <data name="CellPhoneNumerIsIncorrect" xml:space="preserve">
+    <value>شماره موبایل اشتباه می باشد</value>
+  </data>
+  <data name="ConfirmPasswordDoesNotMatchWithPassword" xml:space="preserve">
+    <value>تکرار رمز عبور و رمز عبور یکی نیستند</value>
+  </data>
+  <data name="ConfirmPasswrdIsRequiredConfirmPasswrdIsRequired" xml:space="preserve">
+    <value>تکرار رمز عبوراجباری می باشد!</value>
+  </data>
+  <data name="DiscountAlreadyStarted" xml:space="preserve">
+    <value>تخفیف مورد نظر هم اکنون شروع شده است</value>
+  </data>
+  <data name="DiscountAlreadyStoped" xml:space="preserve">
+    <value>تخفیف مورد نظر هم اکنون غیرفعال است</value>
+  </data>
+  <data name="DiscountCreatedSuccessfully" xml:space="preserve">
+    <value>تخفیف با موفقیت ایجاد شد</value>
+  </data>
+  <data name="DiscountCreationFailed" xml:space="preserve">
+    <value>ایجاد تخفیف با خطا مواجه شد</value>
+  </data>
+  <data name="DiscountDeletedSuccessfully" xml:space="preserve">
+    <value>تخفیف مورد نظر حذف گردید</value>
+  </data>
+  <data name="DiscountDeletionFailed" xml:space="preserve">
+    <value>حذف تخفیف مورد نظر با خطا مواجه شد</value>
+  </data>
+  <data name="DiscountEditedSuccessfully" xml:space="preserve">
+    <value>تخفیف با موفقیت ویرایش شد</value>
+  </data>
+  <data name="DiscountEditionFailed" xml:space="preserve">
+    <value>ویرایش تخفیف با خطا مواجه شد</value>
+  </data>
+  <data name="DiscountStartedSuccessfully" xml:space="preserve">
+    <value>اعمال تخفیف با موفقیت شروع شد</value>
+  </data>
+  <data name="DiscountStartingFailed" xml:space="preserve">
+    <value>اعمال تخفیف با خطا مواجه شد</value>
+  </data>
+  <data name="DiscountStopedSuccessfully" xml:space="preserve">
+    <value>تخفیف مورد نظر با موفقیت خاتمه یافت</value>
+  </data>
+  <data name="DiscountStoppingFailed" xml:space="preserve">
+    <value>پایان تخفیف مورد نظر با خطا مواجه شد</value>
+  </data>
+  <data name="DiscountTemplateNameIsRequired" xml:space="preserve">
+    <value>لطفا یک نام برای قالب تخفیف خود وارد نمایید</value>
+  </data>
+  <data name="DocumentAddedSuccessfully" xml:space="preserve">
+    <value>تغییرات با موفقیت ایجاد شد</value>
+  </data>
+  <data name="DocumentAddingFaild" xml:space="preserve">
+    <value>تغییرات با خطا مواجه شد</value>
+  </data>
+  <data name="DocumentUpdatedSuccsfully" xml:space="preserve">
+    <value>تغییرات با موفقیت ذخیره شد</value>
+  </data>
+  <data name="EmailAddedToNewslettersuccessfully" xml:space="preserve">
+    <value>ایمیل شما با موفقیت در خبرنامه وارد شد</value>
+  </data>
+  <data name="EmailDoesNotExist" xml:space="preserve">
+    <value>این ایمیل در سیستم وجود ندارد</value>
+  </data>
+  <data name="EmailFormatIsIncorrect" xml:space="preserve">
+    <value>فرمت ایمیل صحیح نمی باشد</value>
+  </data>
+  <data name="EmailIsAlreadyInNewsletter" xml:space="preserve">
+    <value>ایمیل مورد نظر شما در لیست خبر نامه موجود است</value>
+  </data>
+  <data name="EmailIsRequired" xml:space="preserve">
+    <value>ایمیل اجباری می باشد!</value>
+  </data>
+  <data name="EmailIsTaken" xml:space="preserve">
+    <value>!ایمیل مورد نظر قبلا در سیستم ثبت شده است</value>
+  </data>
+  <data name="EmailRemovedFromNewsletterSuccessfully" xml:space="preserve">
+    <value>ایمیل شما از لیست خبر نامه حذف شد</value>
+  </data>
+  <data name="ForgotPasswordOperationFaild" xml:space="preserve">
+    <value>ارسال لینک فراموشی رمز عبور با خطا مواجه شد</value>
+  </data>
+  <data name="ForgotPasswordOperationSucceded" xml:space="preserve">
+    <value>لینک بازیابی رمز عبور به ایملتان ارسال شد</value>
+  </data>
+  <data name="IncorrectOldPassword" xml:space="preserve">
+    <value>رمز عبور قبلی اشتباه می باشد</value>
+  </data>
+  <data name="InvalidData" xml:space="preserve">
+    <value>اطلاعات وارد شده صحیح نیست</value>
+  </data>
+  <data name="LastNameIsNotInRegularLenght" xml:space="preserve">
+    <value>نام خانوادگی وارد شده طولانی است!</value>
+  </data>
+  <data name="MessageBodyIsNotInReqularLenght" xml:space="preserve">
+    <value>متن پیغام حداکثر می تواند 500 کاراکتر داشته باشد</value>
+  </data>
+  <data name="MessageBodyIsRquired" xml:space="preserve">
+    <value>متن پیغام خالی است</value>
+  </data>
+  <data name="MessageCreatedSuccessfully" xml:space="preserve">
+    <value>پیغام با موفقیت ارسال شد</value>
+  </data>
+  <data name="MessageCreationFailed" xml:space="preserve">
+    <value>ارسال پیغام با خطا مواجه شد</value>
+  </data>
+  <data name="MessageDeletedSuccessufully" xml:space="preserve">
+    <value>حذف پیغام با موفقیت انجام شد</value>
+  </data>
+  <data name="MessageDeletionFailed" xml:space="preserve">
+    <value>حذف پیغام با خطا مواجه شد</value>
+  </data>
+  <data name="MessageResponseCreatedSuccessfully" xml:space="preserve">
+    <value>پیغام با موفقیت ارسال شد</value>
+  </data>
+  <data name="MessageResponseCreationFailed" xml:space="preserve">
+    <value>ارسال پیغام با خطا مواجه شد</value>
+  </data>
+  <data name="MessageResponseDeletedSuccessufully" xml:space="preserve">
+    <value>حذف پیغام با موفقیت انجام شد</value>
+  </data>
+  <data name="MessageResponseDeletionFailed" xml:space="preserve">
+    <value>حذف پیغام با خطا مواجه شد</value>
+  </data>
+  <data name="MesssageIsNotInRegularLenght" xml:space="preserve">
+    <value>عنوان متن حداکثر می تواند 100 کاراکتر داشته باشد</value>
+  </data>
+  <data name="MesssageTitleIsEmpty" xml:space="preserve">
+    <value>عنوان متن خالی می باشد</value>
+  </data>
+  <data name="NameIsNotInReguarLenght" xml:space="preserve">
+    <value>نام وارد شده طولانی است!</value>
+  </data>
+  <data name="NotifactionCreationFaild" xml:space="preserve">
+    <value>ایجاد اعلان با خطا مواجه شد</value>
+  </data>
+  <data name="NotifcationEditedSuccessfully" xml:space="preserve">
+    <value>اعلان با موفقیت ویرایش گردید</value>
+  </data>
+  <data name="NotificationCreatedSuccessfully" xml:space="preserve">
+    <value>اعلان با موفقیت ایجاد شد</value>
+  </data>
+  <data name="NotificationDeletedSuccessufully" xml:space="preserve">
+    <value>حذف پیغام با موفقیت انجام شد</value>
+  </data>
+  <data name="NotificationDeletionFailed" xml:space="preserve">
+    <value>حذف اعلان با خطا مواجه شد</value>
+  </data>
+  <data name="NotificationTerminatedSuccessfully" xml:space="preserve">
+    <value>اعلان با موفقیت خاتمه یافت</value>
+  </data>
+  <data name="NotificationTerminationFaild" xml:space="preserve">
+    <value>خاتمه دادن اعلان با خطا مواجه شد</value>
+  </data>
+  <data name="OrderCanceledSuccessfully" xml:space="preserve">
+    <value>سفارش شما با موفقیت لغو شد</value>
+  </data>
+  <data name="OrderCreatedSuccessfully" xml:space="preserve">
+    <value>ایجاد سفارش با موفقیت انجام شد</value>
+  </data>
+  <data name="OrderCreationFailed" xml:space="preserve">
+    <value>لغو سفارش با خطا مواجه شد</value>
+  </data>
+  <data name="OrderDeletedSuccessfully" xml:space="preserve">
+    <value>حذف سفارش با موفقیت صورت گرفت</value>
+  </data>
+  <data name="OrderDeletionFailed" xml:space="preserve">
+    <value>حذف سفارش با با خطا مواجه شد، لطفا لحظاتی بعد دوباره تلاش کنید</value>
+  </data>
+  <data name="OrderEditedSuccessfully" xml:space="preserve">
+    <value>ویرایش محتوای سفارش با موفقیت انجام شد</value>
+  </data>
+  <data name="OrderEditionFailed" xml:space="preserve">
+    <value>ویرایش محتوای سفارش  با خطا مواجه شد</value>
+  </data>
+  <data name="OrderOperationHasBeenCompleted" xml:space="preserve">
+    <value>عملیات مریوط به تهیه سفارش این محصول انجام شده و امکان لغو یا حذف آن وجود ندارد</value>
+  </data>
+  <data name="PasswordChangedSuccessfully" xml:space="preserve">
+    <value>رمز عبور با موفقیت تغییر یافت</value>
+  </data>
+  <data name="PasswordChangingFaild" xml:space="preserve">
+    <value>تغییر رمز عبور با خطا مواجه شد</value>
+  </data>
+  <data name="PasswordLenghtIsNotInRegularForm" xml:space="preserve">
+    <value>رمز عبور حداقل بایستی 6 کاراکتر باشد</value>
+  </data>
+  <data name="PasswordResetFaild" xml:space="preserve">
+    <value>بازیابی کلمه عبور با خطا مواجه شد</value>
+  </data>
+  <data name="PasswordResetSuccessfully" xml:space="preserve">
+    <value>بازیابی کلمه عبور با موفقیت انجام شد، یک ایمیل حاوی کد فعال سازی برای شما ارسال خواهد شد</value>
+  </data>
+  <data name="PhoneNumerIsIncorrect" xml:space="preserve">
+    <value>شماره تلفن اشتباه می باشد</value>
+  </data>
+  <data name="RemovingEmailFromNewsletterFaild" xml:space="preserve">
+    <value>حذف ایمیل از خبرنامه با خطا مواجه شد</value>
+  </data>
+  <data name="RoleNameIsRequired" xml:space="preserve">
+    <value>عنوان سمت اجباری است</value>
+  </data>
+  <data name="UpdatedingDocumentFaild" xml:space="preserve">
+    <value>ذخیره تغییرات با خطا مواجه شد</value>
+  </data>
+  <data name="UserDoesNotExist" xml:space="preserve">
+    <value>کاربری با این ایمیل در سیستم وجود ندارد</value>
+  </data>
+</root>

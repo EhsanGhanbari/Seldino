@@ -1,0 +1,179 @@
+﻿@using Seldino.CrossCutting.Web.ViewMessages
+@model  Seldino.Application.Query.StoreService.StoresQueryResponse
+@{
+    ViewBag.Title = StoreViewMessage.Stores;
+} 
+<div class="panel panel-default">
+    <div class="panel-heading">@StoreViewMessage.Stores</div>
+    <div class="panel-body">
+        @if (Model.Stores != null && Model.Stores.TotalCount != 0)
+        {
+        <div class="btn-toolbar propbar">
+            <div class="pull-right">
+                <div class="progroup">
+                    @Html.ActionLink(StoreViewMessage.CreateStorePageTitle, "Create", "Store", new { @class = "btn btn-default btn-sm" })
+                </div>
+            </div>
+            <div class="pull-left clearfix">
+                <div class=" pull-right">
+                    <p class="pgsize">@((Model.Stores.CurrentPage * Model.Stores.PageSize) - (Model.Stores.PageSize - 1) + "-" + Model.Stores.CurrentPage * Model.Stores.PageSize) از @Model.Stores.TotalCount</p>
+                </div>
+                <div class="btn-group pull-left">
+                    @if (Model.Stores.CurrentPage == Model.Stores.TotalPages)
+                    {
+                        <button disabled class="btn btn-default"><i class="icon-chevron-right"></i></button>
+                    }
+                    else
+                    {
+                        <a class="btn btn-default" href="@Url.Action("List", "Store", new { pageIndex = Model.Stores.CurrentPage + 1 })"><i class="icon-chevron-right"></i></a>
+                    }
+                    @if (Model.Stores.CurrentPage - 1 == 0)
+                    {
+                        <button disabled class="btn btn-default"><i class="icon-chevron-left"></i></button>
+                    }
+                    else
+                    {
+                        <a class="btn btn-default" href="@Url.Action("List", "Store", new { pageIndex = Model.Stores.CurrentPage - 1 })"><i class="icon-chevron-left"></i></a>
+                    }
+                </div>
+            </div>
+        </div>
+        <hr />
+        <table id="storeList" class="table">
+            <thead>
+                <tr>
+                    <th><input type="checkbox" class="datapropfull" /></th>
+                    <th>@StoreViewMessage.Name</th>
+                    <th>@StoreViewMessage.Phone</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Stores.Result)
+                {
+                    <tr class="center-td">
+                        <td><input type="checkbox" class="dataprop" value="@item.StoreId" /></td>
+                        <td>@item.Name</td>
+                        <td>@item.Phone</td>
+                        <td>@item.IsInactive</td>
+                        <td>
+                            <div class="btn-group">
+                                @Html.ActionLink(CommonViewMessage.Detail, "Detail", "Store", new { storeId = item.StoreId }, new { @class = "btn btn-default btn-sm" })
+                                @Html.ActionLink(CommonViewMessage.Edit, "Edit", "Store", new { storeId = item.StoreId }, new { @class = "btn btn-default btn-sm" })
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        }
+        else
+        {
+                <p class="text-danger">@Model.Message</p>
+        }            
+    </div>
+</div>
+@section scripts{
+    <script type="text/javascript">
+        function generateGUID() {
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+                var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            });
+        }
+        function unMarkList() {
+            $.each($(".fa-check-square-o"), function (i, element) {
+                $(this).removeClass("fa-check-square-o").addClass("fa-square-o");
+            });
+            $.each($(".prop input[type=hidden]"), function (i, index) {
+                $("#" + $(this).val()).remove();
+            })
+            $(".prop").remove();
+        }
+        function ajaxLoading() {
+            $("#loading").show();
+        }
+        function remopveAjaxLoading() {
+            $("#loading").hide();
+        }
+        var guid = generateGUID();
+        $(function () {
+            var message = "@ViewBag.message";
+            if (message != "") {
+                alertify.success(message);
+            }
+            $(".dataprop, .datapropfull").attr("checked", false);
+            var SelectedCount = 0
+            $("body").on("click", ".dataprop", function () {
+                if ($(this).is(':checked')) {
+                    $(this).parents("tr").addClass("rowchecked");
+                    SelectedCount++;
+                }
+                else {
+                    $(".datapropfull").prop('checked', false);
+                    $(this).parents("tr").removeClass("rowchecked");
+                    SelectedCount--;
+                }
+                if (SelectedCount == 0) {
+                    $("#_delPrdS").remove();
+                }
+                else {
+                    if ($("#_delPrdS").html() === undefined) {
+                        $(".progroup").append('<button id="_delPrdS" onclick="DeleteSelectedStore()" class="btn btn-default btn-sm" title="@CommonViewMessage.Delete" ><i class="icon-trash"></i></button>')
+                    }
+                }
+            });
+
+            $("body").on("click", ".datapropfull", function () {
+                if ($(this).is(':checked')) {
+                    $.each($(".dataprop"), function (index, element) {
+                        $(this).prop('checked', true);
+                        $(this).parents("tr").addClass("rowchecked");
+                    });
+                    if ($("#_delPrdS").html() === undefined) {
+                        $(".progroup").append('<button id="_delPrdS" onclick="DeleteSelectedStore()" class="btn btn-default btn-sm" title="@CommonViewMessage.Delete" ><i class="icon-trash"></i></button>')
+                    }
+                }
+                else {
+                    $("#_delPrdS").remove();
+                    $.each($(".dataprop"), function (index, element) {
+                        $(this).prop('checked', false);
+                        $(this).parents("tr").removeClass("rowchecked");
+                    });
+                }
+            });
+        });
+        function DeleteSelectedStore() {
+            alertify.confirm('@StoreViewMessage.StoreDeleteConfirm',
+                function () {
+                    ajaxLoading();
+                    var deletedList = [];
+                    $.each($(".dataprop"), function (i, element) {
+                        if ($(this).is(':checked')) {
+                            deletedList.push($(this).val());
+                        }
+                    });
+                    $.ajax({
+                        type: "POST",
+                        url: '@Url.Action("Delete", "Store", new { area = "Management" })',
+                        data: $.param({ storeIds: deletedList }, true),
+                        success: function (data) {
+                            alertify.success(data.Message);
+                            $("tr.rowchecked").remove();
+                            $("#_delPrdS").remove();
+                            remopveAjaxLoading();
+                        },
+                        datatype: "json",
+                        traditional: true,
+                        error: function (xhr, ajaxOptions, thrownError) {
+                            alertify.error(xhr.status);
+                            alertify.error(thrownError);
+                            remopveAjaxLoading();
+                        }
+                    })
+                })
+        }
+    </script>
+}
+
+

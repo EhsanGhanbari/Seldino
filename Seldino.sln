@@ -1,0 +1,281 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.Seldino.ClientBlock", "1.Seldino.ClientBlock", "{334FC28E-E772-4129-B1D5-7D152EFAF2A8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.Seldino.ServerBlock", "4.Seldino.ServerBlock", "{E66B88C4-0340-44D6-A5EB-ADCB27DD539D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Seldino.Application.Command", "Seldino.Application.Command\Seldino.Application.Command.csproj", "{33BDB171-B4E6-4B59-9D15-9E5D0C5CB5E6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Seldino.Application.Query", "Seldino.Application.Query\Seldino.Application.Query.csproj", "{4E731CB8-2A2C-4C66-82C7-F535D784E351}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Seldino.CrossCutting", "Seldino.CrossCutting\Seldino.CrossCutting.csproj", "{E6160CEB-9431-46E1-8E04-42657AC23A86}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Seldino.Domain", "Seldino.Domain\Seldino.Domain.csproj", "{EBC94A7C-2559-4B92-AFD5-E194D32FDF05}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Seldino.Infrastructure", "Seldino.Infrastructure\Seldino.Infrastructure.csproj", "{F8A98EEA-8606-4CF0-8256-937291614D92}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Seldino.Repository", "Seldino.Repository\Seldino.Repository.csproj", "{B0719FA4-0114-483F-91AE-389B97D30E02}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5.Seldino.TestBlock", "5.Seldino.TestBlock", "{0DCFDC51-58AE-4CC4-B6E1-BF535ED8EF6D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Seldino.Application.Test", "Seldino.Application.Test\Seldino.Application.Test.csproj", "{06E97651-F21A-4257-8BF3-69C4BAAA66B8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Seldino.Web.Test", "Seldino.Web.Test\Seldino.Web.Test.csproj", "{F4EB0A62-2AD4-41F1-9004-7BBFABA4FC9C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Seldino.Web.Performance.Test", "Seldino.Web.Performance.Test\Seldino.Web.Performance.Test.csproj", "{F326FAD9-A22F-47E1-9AA0-589E49CAAC95}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Seldino.Web.API", "Seldino.Web.API.Customized\Seldino.Web.API.csproj", "{5A687885-DB10-41FE-A042-D67E5530B0BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Seldino.Web.CodedUI.Test", "Seldino.Web.CodedUI.Test\Seldino.Web.CodedUI.Test.csproj", "{5CA30164-2184-44B8-BEAB-6DB24F2FA28F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Seldino.Web.UI.Supervision", "Seldino.Web.UI.Customized.Supervision\Seldino.Web.UI.Supervision.csproj", "{BB8CF85C-B375-48F9-A895-06683AA8CF42}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.Seldino.CrossCuttingBlock", "3.Seldino.CrossCuttingBlock", "{21A69EB6-4D3F-47E1-AF9B-18CF4F55B014}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Seldino.CrossCutting.Resource", "Seldino.CrossCutting.Resource\Seldino.CrossCutting.Resource.csproj", "{A7FAC6C5-6BEA-411A-9174-588A55098B41}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Seldino.CrossCutting.Web", "Seldino.CrossCutting.Web\Seldino.CrossCutting.Web.csproj", "{EADFCDED-5110-4692-8052-6C09C3B1598C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Seldino.Web.UI", "Seldino.Web.UI.Customized\Seldino.Web.UI.csproj", "{E0C2D53E-7CC8-44AE-8B34-864DEF8AE61E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|ARM = Debug|ARM
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|ARM = Release|ARM
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{33BDB171-B4E6-4B59-9D15-9E5D0C5CB5E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33BDB171-B4E6-4B59-9D15-9E5D0C5CB5E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33BDB171-B4E6-4B59-9D15-9E5D0C5CB5E6}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{33BDB171-B4E6-4B59-9D15-9E5D0C5CB5E6}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{33BDB171-B4E6-4B59-9D15-9E5D0C5CB5E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33BDB171-B4E6-4B59-9D15-9E5D0C5CB5E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33BDB171-B4E6-4B59-9D15-9E5D0C5CB5E6}.Release|ARM.ActiveCfg = Release|Any CPU
+		{33BDB171-B4E6-4B59-9D15-9E5D0C5CB5E6}.Release|x86.ActiveCfg = Release|Any CPU
+		{4E731CB8-2A2C-4C66-82C7-F535D784E351}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E731CB8-2A2C-4C66-82C7-F535D784E351}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E731CB8-2A2C-4C66-82C7-F535D784E351}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{4E731CB8-2A2C-4C66-82C7-F535D784E351}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{4E731CB8-2A2C-4C66-82C7-F535D784E351}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E731CB8-2A2C-4C66-82C7-F535D784E351}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E731CB8-2A2C-4C66-82C7-F535D784E351}.Release|ARM.ActiveCfg = Release|Any CPU
+		{4E731CB8-2A2C-4C66-82C7-F535D784E351}.Release|x86.ActiveCfg = Release|Any CPU
+		{E6160CEB-9431-46E1-8E04-42657AC23A86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6160CEB-9431-46E1-8E04-42657AC23A86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6160CEB-9431-46E1-8E04-42657AC23A86}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{E6160CEB-9431-46E1-8E04-42657AC23A86}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E6160CEB-9431-46E1-8E04-42657AC23A86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6160CEB-9431-46E1-8E04-42657AC23A86}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6160CEB-9431-46E1-8E04-42657AC23A86}.Release|ARM.ActiveCfg = Release|Any CPU
+		{E6160CEB-9431-46E1-8E04-42657AC23A86}.Release|x86.ActiveCfg = Release|Any CPU
+		{EBC94A7C-2559-4B92-AFD5-E194D32FDF05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBC94A7C-2559-4B92-AFD5-E194D32FDF05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBC94A7C-2559-4B92-AFD5-E194D32FDF05}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{EBC94A7C-2559-4B92-AFD5-E194D32FDF05}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{EBC94A7C-2559-4B92-AFD5-E194D32FDF05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBC94A7C-2559-4B92-AFD5-E194D32FDF05}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EBC94A7C-2559-4B92-AFD5-E194D32FDF05}.Release|ARM.ActiveCfg = Release|Any CPU
+		{EBC94A7C-2559-4B92-AFD5-E194D32FDF05}.Release|x86.ActiveCfg = Release|Any CPU
+		{F8A98EEA-8606-4CF0-8256-937291614D92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8A98EEA-8606-4CF0-8256-937291614D92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8A98EEA-8606-4CF0-8256-937291614D92}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{F8A98EEA-8606-4CF0-8256-937291614D92}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F8A98EEA-8606-4CF0-8256-937291614D92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8A98EEA-8606-4CF0-8256-937291614D92}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8A98EEA-8606-4CF0-8256-937291614D92}.Release|ARM.ActiveCfg = Release|Any CPU
+		{F8A98EEA-8606-4CF0-8256-937291614D92}.Release|x86.ActiveCfg = Release|Any CPU
+		{B0719FA4-0114-483F-91AE-389B97D30E02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0719FA4-0114-483F-91AE-389B97D30E02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0719FA4-0114-483F-91AE-389B97D30E02}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{B0719FA4-0114-483F-91AE-389B97D30E02}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B0719FA4-0114-483F-91AE-389B97D30E02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0719FA4-0114-483F-91AE-389B97D30E02}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0719FA4-0114-483F-91AE-389B97D30E02}.Release|ARM.ActiveCfg = Release|Any CPU
+		{B0719FA4-0114-483F-91AE-389B97D30E02}.Release|x86.ActiveCfg = Release|Any CPU
+		{06E97651-F21A-4257-8BF3-69C4BAAA66B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06E97651-F21A-4257-8BF3-69C4BAAA66B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06E97651-F21A-4257-8BF3-69C4BAAA66B8}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{06E97651-F21A-4257-8BF3-69C4BAAA66B8}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{06E97651-F21A-4257-8BF3-69C4BAAA66B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06E97651-F21A-4257-8BF3-69C4BAAA66B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06E97651-F21A-4257-8BF3-69C4BAAA66B8}.Release|ARM.ActiveCfg = Release|Any CPU
+		{06E97651-F21A-4257-8BF3-69C4BAAA66B8}.Release|x86.ActiveCfg = Release|Any CPU
+		{F4EB0A62-2AD4-41F1-9004-7BBFABA4FC9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4EB0A62-2AD4-41F1-9004-7BBFABA4FC9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4EB0A62-2AD4-41F1-9004-7BBFABA4FC9C}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{F4EB0A62-2AD4-41F1-9004-7BBFABA4FC9C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F4EB0A62-2AD4-41F1-9004-7BBFABA4FC9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4EB0A62-2AD4-41F1-9004-7BBFABA4FC9C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4EB0A62-2AD4-41F1-9004-7BBFABA4FC9C}.Release|ARM.ActiveCfg = Release|Any CPU
+		{F4EB0A62-2AD4-41F1-9004-7BBFABA4FC9C}.Release|x86.ActiveCfg = Release|Any CPU
+		{F326FAD9-A22F-47E1-9AA0-589E49CAAC95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F326FAD9-A22F-47E1-9AA0-589E49CAAC95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F326FAD9-A22F-47E1-9AA0-589E49CAAC95}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{F326FAD9-A22F-47E1-9AA0-589E49CAAC95}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F326FAD9-A22F-47E1-9AA0-589E49CAAC95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F326FAD9-A22F-47E1-9AA0-589E49CAAC95}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F326FAD9-A22F-47E1-9AA0-589E49CAAC95}.Release|ARM.ActiveCfg = Release|Any CPU
+		{F326FAD9-A22F-47E1-9AA0-589E49CAAC95}.Release|x86.ActiveCfg = Release|Any CPU
+		{5A687885-DB10-41FE-A042-D67E5530B0BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A687885-DB10-41FE-A042-D67E5530B0BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A687885-DB10-41FE-A042-D67E5530B0BC}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{5A687885-DB10-41FE-A042-D67E5530B0BC}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5A687885-DB10-41FE-A042-D67E5530B0BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A687885-DB10-41FE-A042-D67E5530B0BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A687885-DB10-41FE-A042-D67E5530B0BC}.Release|ARM.ActiveCfg = Release|Any CPU
+		{5A687885-DB10-41FE-A042-D67E5530B0BC}.Release|x86.ActiveCfg = Release|Any CPU
+		{5CA30164-2184-44B8-BEAB-6DB24F2FA28F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5CA30164-2184-44B8-BEAB-6DB24F2FA28F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5CA30164-2184-44B8-BEAB-6DB24F2FA28F}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{5CA30164-2184-44B8-BEAB-6DB24F2FA28F}.Debug|ARM.Build.0 = Debug|Any CPU
+		{5CA30164-2184-44B8-BEAB-6DB24F2FA28F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5CA30164-2184-44B8-BEAB-6DB24F2FA28F}.Debug|x86.Build.0 = Debug|Any CPU
+		{5CA30164-2184-44B8-BEAB-6DB24F2FA28F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5CA30164-2184-44B8-BEAB-6DB24F2FA28F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5CA30164-2184-44B8-BEAB-6DB24F2FA28F}.Release|ARM.ActiveCfg = Release|Any CPU
+		{5CA30164-2184-44B8-BEAB-6DB24F2FA28F}.Release|ARM.Build.0 = Release|Any CPU
+		{5CA30164-2184-44B8-BEAB-6DB24F2FA28F}.Release|x86.ActiveCfg = Release|Any CPU
+		{5CA30164-2184-44B8-BEAB-6DB24F2FA28F}.Release|x86.Build.0 = Release|Any CPU
+		{BB8CF85C-B375-48F9-A895-06683AA8CF42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB8CF85C-B375-48F9-A895-06683AA8CF42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB8CF85C-B375-48F9-A895-06683AA8CF42}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{BB8CF85C-B375-48F9-A895-06683AA8CF42}.Debug|ARM.Build.0 = Debug|Any CPU
+		{BB8CF85C-B375-48F9-A895-06683AA8CF42}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{BB8CF85C-B375-48F9-A895-06683AA8CF42}.Debug|x86.Build.0 = Debug|Any CPU
+		{BB8CF85C-B375-48F9-A895-06683AA8CF42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB8CF85C-B375-48F9-A895-06683AA8CF42}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB8CF85C-B375-48F9-A895-06683AA8CF42}.Release|ARM.ActiveCfg = Release|Any CPU
+		{BB8CF85C-B375-48F9-A895-06683AA8CF42}.Release|ARM.Build.0 = Release|Any CPU
+		{BB8CF85C-B375-48F9-A895-06683AA8CF42}.Release|x86.ActiveCfg = Release|Any CPU
+		{BB8CF85C-B375-48F9-A895-06683AA8CF42}.Release|x86.Build.0 = Release|Any CPU
+		{A7FAC6C5-6BEA-411A-9174-588A55098B41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7FAC6C5-6BEA-411A-9174-588A55098B41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7FAC6C5-6BEA-411A-9174-588A55098B41}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{A7FAC6C5-6BEA-411A-9174-588A55098B41}.Debug|ARM.Build.0 = Debug|Any CPU
+		{A7FAC6C5-6BEA-411A-9174-588A55098B41}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A7FAC6C5-6BEA-411A-9174-588A55098B41}.Debug|x86.Build.0 = Debug|Any CPU
+		{A7FAC6C5-6BEA-411A-9174-588A55098B41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7FAC6C5-6BEA-411A-9174-588A55098B41}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7FAC6C5-6BEA-411A-9174-588A55098B41}.Release|ARM.ActiveCfg = Release|Any CPU
+		{A7FAC6C5-6BEA-411A-9174-588A55098B41}.Release|ARM.Build.0 = Release|Any CPU
+		{A7FAC6C5-6BEA-411A-9174-588A55098B41}.Release|x86.ActiveCfg = Release|Any CPU
+		{A7FAC6C5-6BEA-411A-9174-588A55098B41}.Release|x86.Build.0 = Release|Any CPU
+		{EADFCDED-5110-4692-8052-6C09C3B1598C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EADFCDED-5110-4692-8052-6C09C3B1598C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EADFCDED-5110-4692-8052-6C09C3B1598C}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{EADFCDED-5110-4692-8052-6C09C3B1598C}.Debug|ARM.Build.0 = Debug|Any CPU
+		{EADFCDED-5110-4692-8052-6C09C3B1598C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{EADFCDED-5110-4692-8052-6C09C3B1598C}.Debug|x86.Build.0 = Debug|Any CPU
+		{EADFCDED-5110-4692-8052-6C09C3B1598C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EADFCDED-5110-4692-8052-6C09C3B1598C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EADFCDED-5110-4692-8052-6C09C3B1598C}.Release|ARM.ActiveCfg = Release|Any CPU
+		{EADFCDED-5110-4692-8052-6C09C3B1598C}.Release|ARM.Build.0 = Release|Any CPU
+		{EADFCDED-5110-4692-8052-6C09C3B1598C}.Release|x86.ActiveCfg = Release|Any CPU
+		{EADFCDED-5110-4692-8052-6C09C3B1598C}.Release|x86.Build.0 = Release|Any CPU
+		{E0C2D53E-7CC8-44AE-8B34-864DEF8AE61E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0C2D53E-7CC8-44AE-8B34-864DEF8AE61E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0C2D53E-7CC8-44AE-8B34-864DEF8AE61E}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{E0C2D53E-7CC8-44AE-8B34-864DEF8AE61E}.Debug|ARM.Build.0 = Debug|Any CPU
+		{E0C2D53E-7CC8-44AE-8B34-864DEF8AE61E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E0C2D53E-7CC8-44AE-8B34-864DEF8AE61E}.Debug|x86.Build.0 = Debug|Any CPU
+		{E0C2D53E-7CC8-44AE-8B34-864DEF8AE61E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0C2D53E-7CC8-44AE-8B34-864DEF8AE61E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0C2D53E-7CC8-44AE-8B34-864DEF8AE61E}.Release|ARM.ActiveCfg = Release|Any CPU
+		{E0C2D53E-7CC8-44AE-8B34-864DEF8AE61E}.Release|ARM.Build.0 = Release|Any CPU
+		{E0C2D53E-7CC8-44AE-8B34-864DEF8AE61E}.Release|x86.ActiveCfg = Release|Any CPU
+		{E0C2D53E-7CC8-44AE-8B34-864DEF8AE61E}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{33BDB171-B4E6-4B59-9D15-9E5D0C5CB5E6} = {E66B88C4-0340-44D6-A5EB-ADCB27DD539D}
+		{4E731CB8-2A2C-4C66-82C7-F535D784E351} = {E66B88C4-0340-44D6-A5EB-ADCB27DD539D}
+		{E6160CEB-9431-46E1-8E04-42657AC23A86} = {21A69EB6-4D3F-47E1-AF9B-18CF4F55B014}
+		{EBC94A7C-2559-4B92-AFD5-E194D32FDF05} = {E66B88C4-0340-44D6-A5EB-ADCB27DD539D}
+		{F8A98EEA-8606-4CF0-8256-937291614D92} = {E66B88C4-0340-44D6-A5EB-ADCB27DD539D}
+		{B0719FA4-0114-483F-91AE-389B97D30E02} = {E66B88C4-0340-44D6-A5EB-ADCB27DD539D}
+		{06E97651-F21A-4257-8BF3-69C4BAAA66B8} = {0DCFDC51-58AE-4CC4-B6E1-BF535ED8EF6D}
+		{F4EB0A62-2AD4-41F1-9004-7BBFABA4FC9C} = {0DCFDC51-58AE-4CC4-B6E1-BF535ED8EF6D}
+		{F326FAD9-A22F-47E1-9AA0-589E49CAAC95} = {0DCFDC51-58AE-4CC4-B6E1-BF535ED8EF6D}
+		{5A687885-DB10-41FE-A042-D67E5530B0BC} = {334FC28E-E772-4129-B1D5-7D152EFAF2A8}
+		{5CA30164-2184-44B8-BEAB-6DB24F2FA28F} = {0DCFDC51-58AE-4CC4-B6E1-BF535ED8EF6D}
+		{BB8CF85C-B375-48F9-A895-06683AA8CF42} = {334FC28E-E772-4129-B1D5-7D152EFAF2A8}
+		{A7FAC6C5-6BEA-411A-9174-588A55098B41} = {21A69EB6-4D3F-47E1-AF9B-18CF4F55B014}
+		{EADFCDED-5110-4692-8052-6C09C3B1598C} = {21A69EB6-4D3F-47E1-AF9B-18CF4F55B014}
+		{E0C2D53E-7CC8-44AE-8B34-864DEF8AE61E} = {334FC28E-E772-4129-B1D5-7D152EFAF2A8}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 16
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://seldino.visualstudio.com/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = Seldino.Application.Test\\Seldino.Application.Test.csproj
+		SccProjectTopLevelParentUniqueName1 = Seldino.sln
+		SccProjectName1 = Seldino.Application.Test
+		SccLocalPath1 = Seldino.Application.Test
+		SccProjectUniqueName2 = Seldino.Web.Test\\Seldino.Web.Test.csproj
+		SccProjectTopLevelParentUniqueName2 = Seldino.sln
+		SccProjectName2 = Seldino.Web.Test
+		SccLocalPath2 = Seldino.Web.Test
+		SccProjectUniqueName3 = Seldino.Web.Performance.Test\\Seldino.Web.Performance.Test.csproj
+		SccProjectTopLevelParentUniqueName3 = Seldino.sln
+		SccProjectName3 = Seldino.Web.Performance.Test
+		SccLocalPath3 = Seldino.Web.Performance.Test
+		SccProjectUniqueName4 = Seldino.Application.Command\\Seldino.Application.Command.csproj
+		SccProjectTopLevelParentUniqueName4 = Seldino.sln
+		SccProjectName4 = Seldino.Application.Command
+		SccLocalPath4 = Seldino.Application.Command
+		SccProjectUniqueName5 = Seldino.Application.Query\\Seldino.Application.Query.csproj
+		SccProjectTopLevelParentUniqueName5 = Seldino.sln
+		SccProjectName5 = Seldino.Application.Query
+		SccLocalPath5 = Seldino.Application.Query
+		SccProjectUniqueName6 = Seldino.CrossCutting\\Seldino.CrossCutting.csproj
+		SccProjectTopLevelParentUniqueName6 = Seldino.sln
+		SccProjectName6 = Seldino.CrossCutting
+		SccLocalPath6 = Seldino.CrossCutting
+		SccProjectUniqueName7 = Seldino.Domain\\Seldino.Domain.csproj
+		SccProjectTopLevelParentUniqueName7 = Seldino.sln
+		SccProjectName7 = Seldino.Domain
+		SccLocalPath7 = Seldino.Domain
+		SccProjectUniqueName8 = Seldino.Infrastructure\\Seldino.Infrastructure.csproj
+		SccProjectTopLevelParentUniqueName8 = Seldino.sln
+		SccProjectName8 = Seldino.Infrastructure
+		SccLocalPath8 = Seldino.Infrastructure
+		SccProjectUniqueName9 = Seldino.Repository\\Seldino.Repository.csproj
+		SccProjectTopLevelParentUniqueName9 = Seldino.sln
+		SccProjectName9 = Seldino.Repository
+		SccLocalPath9 = Seldino.Repository
+		SccProjectUniqueName10 = Seldino.Web.CodedUI.Test\\Seldino.Web.CodedUI.Test.csproj
+		SccProjectTopLevelParentUniqueName10 = Seldino.sln
+		SccProjectName10 = Seldino.Web.CodedUI.Test
+		SccLocalPath10 = Seldino.Web.CodedUI.Test
+		SccProjectUniqueName11 = Seldino.CrossCutting.Resource\\Seldino.CrossCutting.Resource.csproj
+		SccProjectTopLevelParentUniqueName11 = Seldino.sln
+		SccProjectName11 = Seldino.CrossCutting.Resource
+		SccLocalPath11 = Seldino.CrossCutting.Resource
+		SccProjectUniqueName12 = Seldino.CrossCutting.Web\\Seldino.CrossCutting.Web.csproj
+		SccProjectTopLevelParentUniqueName12 = Seldino.sln
+		SccProjectName12 = Seldino.CrossCutting.Web
+		SccLocalPath12 = Seldino.CrossCutting.Web
+		SccProjectUniqueName13 = Seldino.Web.API.Customized\\Seldino.Web.API.csproj
+		SccProjectTopLevelParentUniqueName13 = Seldino.sln
+		SccProjectName13 = Seldino.Web.API.Customized
+		SccLocalPath13 = Seldino.Web.API.Customized
+		SccProjectUniqueName14 = Seldino.Web.UI.Customized.Supervision\\Seldino.Web.UI.Supervision.csproj
+		SccProjectTopLevelParentUniqueName14 = Seldino.sln
+		SccProjectName14 = Seldino.Web.UI.Customized.Supervision
+		SccLocalPath14 = Seldino.Web.UI.Customized.Supervision
+		SccProjectUniqueName15 = Seldino.Web.UI.Customized\\Seldino.Web.UI.csproj
+		SccProjectTopLevelParentUniqueName15 = Seldino.sln
+		SccProjectName15 = Seldino.Web.UI.Customized
+		SccLocalPath15 = Seldino.Web.UI.Customized
+	EndGlobalSection
+EndGlobal

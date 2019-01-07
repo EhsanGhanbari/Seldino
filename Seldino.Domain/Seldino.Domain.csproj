@@ -1,0 +1,268 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EBC94A7C-2559-4B92-AFD5-E194D32FDF05}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Seldino.Domain</RootNamespace>
+    <AssemblyName>Seldino.Domain</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BasketAggregation\Unauthorized\IUnauthorizedBasketRepository.cs" />
+    <Compile Include="BasketAggregation\Unauthorized\UnauthorizedBasket.cs" />
+    <Compile Include="BasketAggregation\Unauthorized\UnauthorizedBasketItem.cs" />
+    <Compile Include="BasketAggregation\Unauthorized\UnauthorizedBasketItemFactory.cs" />
+    <Compile Include="GiftDeskAggregation\GiftDesk.cs" />
+    <Compile Include="GiftDeskAggregation\GiftDeskBusinessRule.cs" />
+    <Compile Include="GiftDeskAggregation\IGiftDeskRepository.cs" />
+    <Compile Include="GiftDeskAggregation\Specifications\GiftDeskMatchingInAcceptedUserSpecification.cs" />
+    <Compile Include="GiftDeskAggregation\Specifications\RetrievableGiftDeskSpecification.cs" />
+    <Compile Include="MembershipAggregation\Specifications\MatchingInInactivityUserSpecification.cs" />
+    <Compile Include="MembershipAggregation\Specifications\RetrievableUserSpecification.cs" />
+    <Compile Include="NotificationAggregation\Specificaions\ActiveNotificationSpecification.cs" />
+    <Compile Include="NotificationAggregation\Specificaions\RetrievableMessageSpecification.cs" />
+    <Compile Include="NotificationAggregation\Specificaions\RetrievableNotificationSpecification.cs" />
+    <Compile Include="NotificationAggregation\Specificaions\UnReadMessageSpecification.cs" />
+    <Compile Include="NotificationAggregation\Specificaions\UnRepliedMessageSpecification.cs" />
+    <Compile Include="OrderAggregation\Specifications\OrderMatchingInCancelledStatusSpecification.cs" />
+    <Compile Include="OrderAggregation\Specifications\OrderMatchingInStoreSpecification.cs" />
+    <Compile Include="PaymentAggregation\Invoice.cs" />
+    <Compile Include="PaymentAggregation\Specifications\PaymentMatchingInOwnerSpecification.cs" />
+    <Compile Include="PaymentAggregation\Specifications\RetrievablePaymentSpecification.cs" />
+    <Compile Include="DomainQueryModels\BannerQueryModel.cs" />
+    <Compile Include="BannerAggregation\Specifications\BannerMatchingInOwnerSpecification.cs" />
+    <Compile Include="BannerAggregation\Specifications\BannersMatchingInActivitySpecification.cs" />
+    <Compile Include="BannerAggregation\Specifications\BannersMatchingInConfirmedSpecification.cs" />
+    <Compile Include="BannerAggregation\Specifications\BannersMatchingInInactivitySpecification.cs" />
+    <Compile Include="BannerAggregation\Specifications\RetrievableBannerSpecificaion.cs" />
+    <Compile Include="BasketAggregation\Quantity.cs" />
+    <Compile Include="BasketAggregation\Specifications\RetrievableBasketItems.cs" />
+    <Compile Include="DiscountAggregation\Specifications\DiscountMatchingInStoreSpecification.cs" />
+    <Compile Include="LocationAggregation\Area.cs" />
+    <Compile Include="LocationAggregation\City.cs" />
+    <Compile Include="LocationAggregation\Region.cs" />
+    <Compile Include="OrderAggregation\Specifications\OrderMatchingInCompletedStatusSpecification.cs" />
+    <Compile Include="OrderAggregation\Specifications\OrderMatchingInInProcessStatusSpecification.cs" />
+    <Compile Include="OrderAggregation\Specifications\OrderMatchingInOwnerSpecification.cs" />
+    <Compile Include="OrderAggregation\Specifications\RetrievableOrderSpecification.cs" />
+    <Compile Include="ProductAggregation\Specifications\ProductBrandMatchingInDiscountSpecification.cs" />
+    <Compile Include="ProductAggregation\Specifications\ProductCategoryMatchingInDiscountSpecification.cs" />
+    <Compile Include="ProductAggregation\Specifications\ProductMatchingInSpecialStateSpecification.cs" />
+    <Compile Include="ProductAggregation\Specifications\ProductTagMatchingInDiscountSpecification.cs" />
+    <Compile Include="DomainQueryModels\BasketQueryModel.cs" />
+    <Compile Include="DomainQueryModels\BlogQueryModel.cs" />
+    <Compile Include="DomainQueryModels\DiscountQueryModel.cs" />
+    <Compile Include="DomainQueryModels\DocumentQueryModel.cs" />
+    <Compile Include="DomainQueryModels\LanguageQueryModel.cs" />
+    <Compile Include="DomainQueryModels\MembershipQueryModel.cs" />
+    <Compile Include="DomainQueryModels\NotificationQueryModel.cs" />
+    <Compile Include="DomainQueryModels\OrderQueryModel.cs" />
+    <Compile Include="DomainQueryModels\PaymentQueryModel.cs" />
+    <Compile Include="DomainQueryModels\ProductQueryModel.cs" />
+    <Compile Include="DomainQueryModels\SettingQueryModel.cs" />
+    <Compile Include="DomainQueryModels\ShippingQueryModel.cs" />
+    <Compile Include="DomainQueryModels\StoreQueryModel.cs" />
+    <Compile Include="ProductAggregation\Specifications\SimiliarProductSpecification.cs" />
+    <Compile Include="SettingAggregation\BannerSetting.cs" />
+    <Compile Include="SettingAggregation\BasicSetting.cs" />
+    <Compile Include="SettingAggregation\BasketSetting.cs" />
+    <Compile Include="SettingAggregation\BlogSetting.cs" />
+    <Compile Include="SettingAggregation\DiscountSetting.cs" />
+    <Compile Include="SettingAggregation\DocumentSetting.cs" />
+    <Compile Include="SettingAggregation\OrderSetting.cs" />
+    <Compile Include="SettingAggregation\ProductSetting.cs" />
+    <Compile Include="SettingAggregation\SeoSetting.cs" />
+    <Compile Include="SettingAggregation\Setting.cs" />
+    <Compile Include="SettingAggregation\StoreSetting.cs" />
+    <Compile Include="StoreAggregation\Specifications\StoreMatcingInDiscountSpecification.cs" />
+    <Compile Include="DiscountAggregation\Specifications\DiscountsMatchingInActivitySpecification.cs" />
+    <Compile Include="DiscountAggregation\Specifications\RetrievableDiscountSpecification.cs" />
+    <Compile Include="GlobalizationAggregation\ILanguageRepository.cs" />
+    <Compile Include="GlobalizationAggregation\Language.cs" />
+    <Compile Include="LocationAggregation\ILocationRepository.cs" />
+    <Compile Include="LocationAggregation\Location.cs" />
+    <Compile Include="MembershipAggregation\Favorite.cs" />
+    <Compile Include="MembershipAggregation\Operation.cs" />
+    <Compile Include="MembershipAggregation\Permision.cs" />
+    <Compile Include="MembershipAggregation\ProfileAvatar.cs" />
+    <Compile Include="OrderAggregation\States\IOrderState.cs" />
+    <Compile Include="OrderAggregation\States\OpenOrderState.cs" />
+    <Compile Include="OrderAggregation\States\OrderStates.cs" />
+    <Compile Include="OrderAggregation\States\SubmittedOrderState.cs" />
+    <Compile Include="LocationAggregation\Address.cs" />
+    <Compile Include="BannerAggregation\BannerAggregationMessages.cs" />
+    <Compile Include="BannerAggregation\BannerBusinessRule.cs" />
+    <Compile Include="BannerAggregation\BannerPicture.cs" />
+    <Compile Include="BannerAggregation\Specifications\BannersMatchingInUnconfirmedSpecification.cs" />
+    <Compile Include="BannerAggregation\IBannerRepository.cs" />
+    <Compile Include="BasketAggregation\Basket.cs" />
+    <Compile Include="BasketAggregation\BasketBusinessRules.cs" />
+    <Compile Include="BasketAggregation\BasketItem.cs" />
+    <Compile Include="BasketAggregation\BasketItemFactory.cs" />
+    <Compile Include="BasketAggregation\Specifications\BasketMatchingInOwnerSpecification.cs" />
+    <Compile Include="BasketAggregation\IBasketRepository.cs" />
+    <Compile Include="BlogAggregation\BlogCategory.cs" />
+    <Compile Include="BlogAggregation\BlogComments\BlogComment.cs" />
+    <Compile Include="BlogAggregation\BlogComments\IBlogCommentRepository.cs" />
+    <Compile Include="BlogAggregation\BlogPicture.cs" />
+    <Compile Include="BlogAggregation\BlogPost.cs" />
+    <Compile Include="BlogAggregation\BlogTag.cs" />
+    <Compile Include="BlogAggregation\IBlogRepository.cs" />
+    <Compile Include="LocationAggregation\Country.cs" />
+    <Compile Include="LocationAggregation\LocationExceptions.cs" />
+    <Compile Include="LocationAggregation\LocationMessages.cs" />
+    <Compile Include="LocationAggregation\LocationBusinessRule.cs" />
+    <Compile Include="LocationAggregation\State.cs" />
+    <Compile Include="ProductAggregation\ProductAttributeOption.cs" />
+    <Compile Include="ProductAggregation\ProductIcon.cs" />
+    <Compile Include="ProductAggregation\ProductSpecialState.cs" />
+    <Compile Include="ProductAggregation\ProductSpecificAttribute.cs" />
+    <Compile Include="ProductAggregation\Specifications\ProductBrandMatchingInCategprySpecification.cs" />
+    <Compile Include="ProductAggregation\Specifications\ProductMatchingInInactivitySpecification.cs" />
+    <Compile Include="ProductAggregation\Specifications\ProductMatchingInOwnerSpecification.cs" />
+    <Compile Include="ProductAggregation\Specifications\ProductSizeMatchingInTagSpecification.cs" />
+    <Compile Include="ProductAggregation\Specifications\ProductsMatchingInBrandSpecification.cs" />
+    <Compile Include="ProductAggregation\Specifications\ProductsMatchingInCategorySpecification.cs" />
+    <Compile Include="ProductAggregation\Specifications\ProductsMatchingInSizeSpecification.cs" />
+    <Compile Include="ProductAggregation\Specifications\ProductsMatchingInTagSpecification.cs" />
+    <Compile Include="ProductAggregation\Specifications\ProductTagMatchingInCategprySpecification.cs" />
+    <Compile Include="ProductAggregation\Specifications\RetrievableProductSpecification.cs" />
+    <Compile Include="SettingAggregation\ISettingRepository.cs" />
+    <Compile Include="ShippingAggregation\Courier.cs" />
+    <Compile Include="ShippingAggregation\DeliveryOption.cs" />
+    <Compile Include="ShippingAggregation\IDeliveryOption.cs" />
+    <Compile Include="ShippingAggregation\IDeliveryOptionRepository.cs" />
+    <Compile Include="ShippingAggregation\NullDeliveryOption.cs" />
+    <Compile Include="ShippingAggregation\ShippingService.cs" />
+    <Compile Include="StoreAggregation\Specifications\StoreMatchingInInactivitySpecification.cs" />
+    <Compile Include="StoreAggregation\Specifications\StoreMatchingInOwnerSpecificaion.cs" />
+    <Compile Include="StoreAggregation\StoreComments\IStoreCommentRepository.cs" />
+    <Compile Include="StoreAggregation\StoreComments\StoreComment.cs" />
+    <Compile Include="StoreAggregation\StoreComments\StoreCommentSpecification.cs" />
+    <Compile Include="StoreAggregation\StorePicture.cs" />
+    <Compile Include="ValidationCheck.cs" />
+    <Compile Include="DiscountAggregation\Discount.cs" />
+    <Compile Include="DiscountAggregation\DiscountBusinessRule.cs" />
+    <Compile Include="DiscountAggregation\Specifications\DiscountsMatchingInInactivitySpecification.cs" />
+    <Compile Include="DiscountAggregation\IDiscountRepository.cs" />
+    <Compile Include="DocumentAggregation\About.cs" />
+    <Compile Include="BannerAggregation\Banner.cs" />
+    <Compile Include="DocumentAggregation\Document.cs" />
+    <Compile Include="DocumentAggregation\DocumentPicture.cs" />
+    <Compile Include="DocumentAggregation\Guide.cs" />
+    <Compile Include="DocumentAggregation\IDocumentRepository.cs" />
+    <Compile Include="DocumentAggregation\Information.cs" />
+    <Compile Include="DocumentAggregation\Rule.cs" />
+    <Compile Include="DocumentAggregation\SocialMedia.cs" />
+    <Compile Include="DocumentAggregation\SocialMediaOption.cs" />
+    <Compile Include="DomainExceptions.cs" />
+    <Compile Include="MembershipAggregation\IMembershipRepository.cs" />
+    <Compile Include="MembershipAggregation\Specifications\InactiveUserSpecification.cs" />
+    <Compile Include="MembershipAggregation\Profile.cs" />
+    <Compile Include="MembershipAggregation\Role.cs" />
+    <Compile Include="NotificationAggregation\IMessageResponseRepository.cs" />
+    <Compile Include="NotificationAggregation\INewsletterRepository.cs" />
+    <Compile Include="NotificationAggregation\INotificationRepository.cs" />
+    <Compile Include="NotificationAggregation\Newsletter.cs" />
+    <Compile Include="NotificationAggregation\Notification.cs" />
+    <Compile Include="OrderAggregation\OrderEvents.cs" />
+    <Compile Include="OrderAggregation\OrderItemFactory.cs" />
+    <Compile Include="OrderAggregation\States\OrderState.cs" />
+    <Compile Include="OrderAggregation\OrderItem.cs" />
+    <Compile Include="OrderAggregation\IOrderRepository.cs" />
+    <Compile Include="OrderAggregation\OrderBusinessRules.cs" />
+    <Compile Include="OrderAggregation\OrderAggregationMessages.cs" />
+    <Compile Include="OrderAggregation\OrderAggregationExceptions.cs" />
+    <Compile Include="OrderAggregation\Order.cs" />
+    <Compile Include="PaymentAggregation\PaymentExceptions.cs" />
+    <Compile Include="PaymentAggregation\PaymentFactory.cs" />
+    <Compile Include="PaymentAggregation\IPaymentRepository.cs" />
+    <Compile Include="PaymentAggregation\Payment.cs" />
+    <Compile Include="PaymentAggregation\PaymentBusinessRule.cs" />
+    <Compile Include="PaymentAggregation\PaymentBusinessRuleMessages.cs" />
+    <Compile Include="PaymentAggregation\Specifications\PendingPayementSpecification.cs" />
+    <Compile Include="ProductAggregation\ProductAggregationMessages.cs" />
+    <Compile Include="ProductAggregation\ProductComments\IProductCommentRepository.cs" />
+    <Compile Include="ProductAggregation\ProductRatings\IProductRatingRepository.cs" />
+    <Compile Include="ProductAggregation\ProductAttribute.cs" />
+    <Compile Include="ProductAggregation\ProductBrand.cs" />
+    <Compile Include="ProductAggregation\IProductRepository.cs" />
+    <Compile Include="ProductAggregation\Product.cs" />
+    <Compile Include="ProductAggregation\ProductBusinessRules.cs" />
+    <Compile Include="ProductAggregation\ProductCategory.cs" />
+    <Compile Include="ProductAggregation\ProductColor.cs" />
+    <Compile Include="ProductAggregation\ProductComments\ProductComment.cs" />
+    <Compile Include="ProductAggregation\ProductPicture.cs" />
+    <Compile Include="ProductAggregation\ProductRatings\ProductRating.cs" />
+    <Compile Include="ProductAggregation\ProductSize.cs" />
+    <Compile Include="ProductAggregation\ProductComments\ProductCommentSpecifications.cs" />
+    <Compile Include="ProductAggregation\Specifications\ProductMatchingInStoreSpecification.cs" />
+    <Compile Include="ProductAggregation\ProductTag.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StoreAggregation\Auction.cs" />
+    <Compile Include="StoreAggregation\IStoreRepository.cs" />
+    <Compile Include="StoreAggregation\Store.cs" />
+    <Compile Include="MembershipAggregation\User.cs" />
+    <Compile Include="NotificationAggregation\MessageResponse.cs" />
+    <Compile Include="NotificationAggregation\Message.cs" />
+    <Compile Include="NotificationAggregation\IMessageRepository.cs" />
+    <Compile Include="StoreAggregation\StoreBusinessRule.cs" />
+    <Compile Include="StoreAggregation\Specifications\StoreSpecifications.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Seldino.CrossCutting.Resource\Seldino.CrossCutting.Resource.csproj">
+      <Project>{a7fac6c5-6bea-411a-9174-588a55098b41}</Project>
+      <Name>Seldino.CrossCutting.Resource</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Seldino.CrossCutting\Seldino.CrossCutting.csproj">
+      <Project>{E6160CEB-9431-46E1-8E04-42657AC23A86}</Project>
+      <Name>Seldino.CrossCutting</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Seldino.Infrastructure\Seldino.Infrastructure.csproj">
+      <Project>{F8A98EEA-8606-4CF0-8256-937291614D92}</Project>
+      <Name>Seldino.Infrastructure</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="BannerAggregation\QueryModels\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

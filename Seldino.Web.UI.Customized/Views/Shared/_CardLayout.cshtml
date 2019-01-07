@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>@ViewBag.Title</title>
+
+    <link href="/Content/bootstrap.rtl.min.css" rel="stylesheet" />
+    <link href="~/Content/components/input_field.css" rel="stylesheet" />
+    <link href="~/Content/components/toastr.css" rel="stylesheet" />
+    <link href="/Content/fonts/font-awesome.css" rel="stylesheet" />
+    <link href="/Content/fonts/yekan/yekan.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="/Content/card_style.css" rel="stylesheet" type="text/css" media="all" />
+</head>
+<body>
+    @RenderBody()
+
+    <script src="/Scripts/jquery-1.10.2.js"></script>
+    <script src="/Scripts/bootstrap.rtl.min.js"></script>
+    <script src="~/Scripts/components/input_field.js"></script>
+    <script src="~/Scripts/components/toastr.js"></script>
+    @RenderSection("scripts", false)
+</body>
+</html>

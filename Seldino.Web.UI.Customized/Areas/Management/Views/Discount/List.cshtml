@@ -1,0 +1,197 @@
+﻿@model Seldino.Application.Query.DiscountService.DiscountsQueryResponse
+@using Seldino.CrossCutting.Web.ViewMessages
+@{
+    ViewBag.Title = "List";
+}
+<div class="panel panel-default">
+    <div class="panel-heading">تخفیف های فعال</div>
+    <div class="panel-body">
+       @if (!Model.Failed)
+       {
+            <div class="btn-toolbar propbar">
+            <div class="pull-right">
+                <div class="progroup">
+                    @Html.ActionLink("ایجاد قالب تخفیف", "Create", "Discount", new { @class = "btn btn-default btn-sm" })
+                </div>
+            </div>
+            <div class="pull-left clearfix">
+                <div class=" pull-right">
+                    <p class="pgsize">@((Model.Discounts.CurrentPage * Model.Discounts.PageSize) - (Model.Discounts.PageSize - 1) + "-" + Model.Discounts.CurrentPage * Model.Discounts.PageSize) از @Model.Discounts.TotalCount</p>
+                </div>
+                <div class="btn-group pull-left">
+                    @if (Model.Discounts.CurrentPage == Model.Discounts.TotalPages)
+                    {
+                        <button disabled class="btn btn-default"><i class="icon-chevron-right"></i></button>
+                    }
+                    else
+                    {
+                        <a class="btn btn-default" href="@Url.Action("List", "Product", new { pageIndex = Model.Discounts.CurrentPage + 1 })"><i class="icon-chevron-right"></i></a>
+                    }
+                    @if (Model.Discounts.CurrentPage - 1 == 0)
+                    {
+                        <button disabled class="btn btn-default"><i class="icon-chevron-left"></i></button>
+                    }
+                    else
+                    {
+                        <a class="btn btn-default" href="@Url.Action("List", "Product", new { pageIndex = Model.Discounts.CurrentPage - 1 })"><i class="icon-chevron-left"></i></a>
+                    }
+                </div>
+            </div>
+        </div>
+        <hr />
+        <table id="productList" class="table">
+            <thead>
+                <tr>
+                    <th><input type="checkbox" class="datapropfull" /></th>
+                    <th>نام</th>
+                    <th>نوع تخفیف</th>
+                    <th>درصد تخفیف</th>
+                    <th>مبلغ</th>
+                    <th>شروع</th>
+                    <th>پایان</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Discounts.Result)
+                {
+                    <tr class="center-td">
+                        <td><input type="checkbox" class="dataprop" value="@item.DiscountId" /></td>
+                        <td>@item.Name</td>
+                        <td>@item.DiscountType</td>
+                        <td>@item.Percentage</td>
+                        <td>@item.Amount</td>
+                        <td class="sh-date">@item.StartDate</td>
+                        <td class="sh-date">@item.EndDate</td>
+                        <td>
+                            <div class="btn-group">
+                                @Html.ActionLink(CommonViewMessage.Edit, "Edit", "Discount", new { dicountId = item.DiscountId }, new { @class = "btn btn-default btn-sm" })
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+       }
+       else { 
+       <p class="bg-danger">@Model.Message</p>
+       }
+    </div>
+</div>
+
+@*@section scripts{
+@System.Web.Optimization.Scripts.Render("~/bundles/datepicker")
+    <script type="text/javascript">
+    function generateGUID() {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+            var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+            return v.toString(16);
+        });
+    }
+    function unMarkList() {
+        $.each($(".fa-check-square-o"), function (i, element) {
+            $(this).removeClass("fa-check-square-o").addClass("fa-square-o");
+        });
+        $.each($(".prop input[type=hidden]"), function (i, index) {
+            $("#" + $(this).val()).remove();
+        })
+        $(".prop").remove();
+    }
+    function ajaxLoading() {
+        $("#loading").show();
+    }
+    function remopveAjaxLoading() {
+        $("#loading").hide();
+    }
+    var guid = generateGUID();
+    $(function () {
+        $(".dataprop, .datapropfull").attr("checked", false);
+        var SelectedCount = 0
+        $("body").on("click", ".dataprop", function () {
+            if ($(this).is(':checked')) {
+                $(this).parents("tr").addClass("rowchecked");
+                SelectedCount++;
+            }
+            else {
+                $(".datapropfull").prop('checked', false);
+                $(this).parents("tr").removeClass("rowchecked");
+                SelectedCount--;
+            }
+            if (SelectedCount == 0) {
+                $("#_delPrdS").remove();
+            }
+            else {
+                if ($("#_delPrdS").html() === undefined) {
+                    $(".progroup").append('<button id="_delPrdS" onclick="DeleteSelectedDiscount()" class="btn btn-default btn-sm" title="@CommonViewMessage.Delete" ><i class="icon-trash"></i></button>')
+                }
+            }
+        });
+
+        $("body").on("click", ".datapropfull", function () {
+            if ($(this).is(':checked')) {
+                $.each($(".dataprop"), function (index, element) {
+                    $(this).prop('checked', true);
+                    $(this).parents("tr").addClass("rowchecked");
+                });
+                if ($("#_delPrdS").html() === undefined) {
+                    $(".progroup").append('<button id="_delPrdS" onclick="DeleteSelectedDiscount()" class="btn btn-default btn-sm" title="@CommonViewMessage.Delete" ><i class="icon-trash"></i></button>')
+                }
+            }
+            else {
+                $("#_delPrdS").remove();
+                $("#_disPrdS").remove();
+                $.each($(".dataprop"), function (index, element) {
+                    $(this).prop('checked', false);
+                    $(this).parents("tr").removeClass("rowchecked");
+                });
+            }
+        });
+    });
+    function DeleteSelectedDiscount() {
+        alertify.confirm('آیا شما مطمئن به حذف تخفیف هستید؟',
+            function () {
+                ajaxLoading();
+                var deletedList = [];
+                $.each($(".dataprop"), function (i, element) {
+                    if ($(this).is(':checked')) {
+                        deletedList.push($(this).val());
+                    }
+                });
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("Delete", "Discount", new { area = "Management" })',
+                    data: $.param({ productIds: deletedList }, true),
+                    success: function (data) {
+                        alertify.success(data.Message);
+                        $("tr.rowchecked").remove();
+                        $("#_delPrdS").remove();
+                        remopveAjaxLoading();
+                    },
+                    datatype: "json",
+                    traditional: true,
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        alertify.error(xhr.status);
+                        alertify.error(thrownError);
+                        remopveAjaxLoading();
+                    }
+                })
+            })
+    }
+        $(function () {
+            $.each($(".sh-date"), function (i, e) {
+                $(e).html(toShamsiDate($(e).html()))
+
+            })
+        })
+        function toShamsiDate(datestr) {
+            date = new Date(datestr);
+            var day = date.getDate();
+            var month = date.getMonth() + 1; //January is 0!
+            var year = date.getFullYear();
+            if (day < 10) day = '0' + day;
+            if (month < 10) month = '0' + month;
+            date = year + '-' + month + '-' + day;
+            return moment(date, 'YYYY/M/D').format('jYYYY/jM/jD');
+        }
+        </script>
+    }*@

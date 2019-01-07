@@ -1,0 +1,13 @@
+﻿@model Seldino.Application.Query.DiscountService.DiscountsQueryResponse
+
+<select class="form-control" name="DiscountId">
+    
+    @if (Model.Discounts != null)
+    {
+        foreach (var item in Model.Discounts.Result)
+        {
+            <option value="@item.DiscountId">@item.Name</option>
+        }
+    }
+
+</select>

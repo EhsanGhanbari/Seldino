@@ -1,0 +1,136 @@
+﻿@model Seldino.Application.Query.SettingService.SeoSettingDto
+
+@{
+    var title = Model.Title ?? "کادوبین";
+    var description = Model.Description ?? Model.DefaultMetaDescription;
+    var keywords = Model.Keywords ?? Model.DefaultMetaKeywords;
+    var imagePath = Model.ImagePath;
+    var link = Model.Link;
+    var createDate = Model.CreateDate;
+    var updateDate = Model.UpdateDate;
+}
+
+<title>@title</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+@{
+    if (string.IsNullOrEmpty(description))
+    {
+        <meta name="description" content="@description">
+    }
+}
+
+@{
+    if (keywords != null)
+    {
+        <meta name="keywords" content="@keywords">
+    }
+}
+
+<meta name="author" content="Kadobin.com">
+
+@{
+    if (string.IsNullOrEmpty(title))
+    {
+        <meta itemprop="name" content="@title" />
+    }
+}
+
+@{
+    if (string.IsNullOrEmpty(description))
+    {
+        <meta itemprop="description" content="@description">
+    }
+}
+
+@{
+    if (imagePath != null)
+    {
+        foreach (var image in imagePath)
+        {
+            <meta itemprop="image" content="@image" />
+        }
+    }
+}
+
+@{
+    if (imagePath != null)
+    {
+        foreach (var image in imagePath)
+        {
+            <meta name="twitter:card" content="@image" />
+        }
+    }
+}
+
+<meta name="twitter:site" content="http://www.Kadobin.com" />
+<meta name="twitter:title" content="@title">
+<meta name="twitter:description" content="@description">
+<meta name="twitter:creator" content="Kadobin">
+
+@{
+    if (imagePath != null)
+    {
+        foreach (var image in imagePath)
+        {
+            <meta name="twitter:image:src" content="@image" />
+        }
+    }
+}
+
+@{
+    if (string.IsNullOrEmpty(title))
+    {
+        <meta property="og:title" content="@title" />
+    }
+}
+
+@{
+    if (!string.IsNullOrEmpty(description))
+    {
+        <meta property="og:type" content="@(description ?? "article")" />
+    }
+}
+
+@{
+    if (!string.IsNullOrEmpty(link))
+    {
+        <meta property="og:url" content="@link" />
+    }
+}
+
+@{
+    if (imagePath != null)
+    {
+        foreach (var image in imagePath)
+        {
+            <meta property="og:image" content="@image" />
+        }
+    }
+}
+
+@{
+    if (!string.IsNullOrEmpty(description))
+    {
+        <meta property="og:description" content="@description" />
+    }
+}
+
+<meta property="og:site_name" content="http://www.kadobin.com" />
+
+@{
+    if (!string.IsNullOrEmpty(createDate.ToString()))
+    {
+        <meta property="article:published_time" content="@createDate" />
+    }
+}
+
+@{
+    if (!string.IsNullOrEmpty(updateDate.ToString()))
+    {
+        <meta property="article:modified_time" content="@updateDate" />
+    }
+}
+

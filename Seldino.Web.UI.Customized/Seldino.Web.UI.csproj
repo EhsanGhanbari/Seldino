@@ -1,0 +1,665 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E0C2D53E-7CC8-44AE-8B34-864DEF8AE61E}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Seldino.Web.UI</RootNamespace>
+    <AssemblyName>Seldino.Web.UI</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <WebGreaseLibPath>..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
+    <UseGlobalApplicationHostFile />
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <IncludeIisSettings>true</IncludeIisSettings>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime">
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac, Version=3.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Integration.Mvc">
+      <HintPath>..\packages\Autofac.Mvc5.3.3.3\lib\net45\Autofac.Integration.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=7.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentValidation.Mvc">
+      <HintPath>..\packages\FluentValidation.MVC5.5.0.0.1\lib\Net45\FluentValidation.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.1.0.0\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Interactive.Async, Version=1.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ix-Async.1.2.5\lib\net45\System.Interactive.Async.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.2\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.1\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.2\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.2\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WebGrease">
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\ScriptBundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\StyleBundleConfig.cs" />
+    <Compile Include="Areas\Management\Controllers\BannerController.cs" />
+    <Compile Include="Areas\Management\Controllers\BlogController.cs" />
+    <Compile Include="Areas\Management\Controllers\DashboardController.cs" />
+    <Compile Include="Areas\Management\Controllers\DiscountController.cs" />
+    <Compile Include="Areas\Management\Controllers\DocumentController.cs" />
+    <Compile Include="Areas\Management\Controllers\NotificationController.cs" />
+    <Compile Include="Areas\Management\Controllers\OrderController.cs" />
+    <Compile Include="Areas\Management\Controllers\PaymentController.cs" />
+    <Compile Include="Areas\Management\Controllers\ProductController.cs" />
+    <Compile Include="Areas\Management\Controllers\StoreController.cs" />
+    <Compile Include="Areas\Management\ManagementAreaRegistration.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BannerController.cs" />
+    <Compile Include="Controllers\BasketController.cs" />
+    <Compile Include="Controllers\BlogController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\GiftDeskController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NotificationController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\StoreController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\FanavaPaymentService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Data\log4net.txt" />
+    <Content Include="Content\admin\sb-admin-2.css" />
+    <Content Include="Content\admin\timeline.css" />
+    <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\card_style.css" />
+    <Content Include="Content\carousel-slide.css" />
+    <Content Include="Content\components\card.css" />
+    <Content Include="Content\components\input_field.css" />
+    <Content Include="Content\components\animate.css" />
+    <Content Include="Content\components\carousel.css" />
+    <Content Include="Content\components\dropdown.css" />
+    <Content Include="Content\components\flipclock.css" />
+    <Content Include="Content\components\input_style.css" />
+    <Content Include="Content\components\parallax.css" />
+    <Content Include="Content\components\search.css" />
+    <Content Include="Content\components\side-nav.css" />
+    <Content Include="Content\components\toastr.css" />
+    <Content Include="Content\components\toastr.min.css" />
+    <Content Include="Content\Css\alertify.bootstrap.css" />
+    <Content Include="Content\Css\alertify.core.css" />
+    <Content Include="Content\Css\alertify.default.css" />
+    <Content Include="Content\Css\animate.min.css" />
+    <Content Include="Content\Css\blueimp-gallery_min.css" />
+    <Content Include="Content\Css\bootstrap-datepicker.min.css" />
+    <Content Include="Content\Css\bootstrap-image-gallery.min.css" />
+    <Content Include="Content\Css\bootstrap-rtl.css" />
+    <Content Include="Content\Css\bootstrap-select.css" />
+    <Content Include="Content\Css\bootstrap-theme.css" />
+    <Content Include="Content\Css\bootstrap.css" />
+    <Content Include="Content\Css\font-awesome.min.css" />
+    <Content Include="Content\Css\jquery.mCustomScrollbar.css" />
+    <Content Include="Content\Css\material-design-color-palette.min.css" />
+    <Content Include="Content\Css\metisMenu.min.css" />
+    <Content Include="Content\Css\morris.css" />
+    <Content Include="Content\Css\owl.carousel.css" />
+    <Content Include="Content\Css\reCaptcha.css" />
+    <Content Include="Content\Css\sb-admin-2.css" />
+    <Content Include="Content\Css\select2.css" />
+    <Content Include="Content\Css\style.css" />
+    <Content Include="Content\Css\supervision-bootstrap-theme.css" />
+    <Content Include="Content\Css\timeline.css" />
+    <Content Include="Content\farsiFonts\yekan.css" />
+    <Content Include="Content\farsiFonts\Yekan.svg" />
+    <Content Include="Content\farsiFonts\YekanNo.svg" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\Images\bg-footer.jpg" />
+    <Content Include="Content\Images\images.png" />
+    <Content Include="Content\Images\kadobin_banner.jpg" />
+    <Content Include="Content\Images\logo.png" />
+    <Content Include="Content\nav.css" />
+    <Content Include="Content\product.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\tabs.css" />
+    <Content Include="Scripts\admin\metisMenu\metisMenu.css" />
+    <Content Include="Scripts\admin\metisMenu\metisMenu.js" />
+    <Content Include="Scripts\admin\metisMenu\metisMenu.min.css" />
+    <Content Include="Scripts\admin\metisMenu\metisMenu.min.js" />
+    <Content Include="Scripts\admin\sb-admin-2.js" />
+    <Content Include="Scripts\bootstrap.rtl.min.js" />
+    <Content Include="Scripts\components\card.js" />
+    <Content Include="Scripts\components\input_field.js" />
+    <Content Include="Scripts\components\carousel-slide.js" />
+    <Content Include="Scripts\components\carousel.js" />
+    <Content Include="Scripts\components\dropdown.js" />
+    <Content Include="Scripts\components\flipclock.js" />
+    <Content Include="Scripts\components\flipclock.min.js" />
+    <Content Include="Scripts\components\load.js" />
+    <Content Include="Scripts\components\nav.js" />
+    <Content Include="Scripts\components\parallax.js" />
+    <Content Include="Scripts\components\parallax.min.js" />
+    <Content Include="Scripts\components\price.js" />
+    <Content Include="Scripts\components\search.js" />
+    <Content Include="Scripts\components\side-nav.js" />
+    <Content Include="Scripts\components\tabs.js" />
+    <Content Include="Scripts\components\functions.js" />
+    <Content Include="Content\Fonts\font-awesome.css" />
+    <Content Include="Content\Fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\Fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\Fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\Fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\Fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\Fonts\FontAwesome.otf" />
+    <Content Include="Content\Fonts\material-design-iconic-font.minbfd2.css" />
+    <Content Include="Content\Fonts\Material-Design-Iconic-Fontf700.ttf" />
+    <Content Include="Content\Fonts\Material-Design-Iconic-Fontf700.woff" />
+    <Content Include="Content\Fonts\Yekan.eot" />
+    <Content Include="Content\Fonts\Yekan.svg" />
+    <Content Include="Content\Fonts\Yekan.ttf" />
+    <Content Include="Content\Fonts\Yekan.woff" />
+    <Content Include="Content\Fonts\yekan\yekan.css" />
+    <Content Include="Content\Fonts\yekan\Yekan.eot" />
+    <Content Include="Content\Fonts\yekan\Yekan.svg" />
+    <Content Include="Content\Fonts\yekan\Yekan.ttf" />
+    <Content Include="Content\Fonts\yekan\Yekan.woff" />
+    <Content Include="Content\Fonts\yekan\YekanNo.eot" />
+    <Content Include="Content\Fonts\yekan\YekanNo.svg" />
+    <Content Include="Content\Fonts\yekan\YekanNo.ttf" />
+    <Content Include="Content\Fonts\yekan\YekanNo.woff" />
+    <Content Include="Content\Images\logo.png" />
+    <Content Include="Fonts\fontawesome-webfont.svg" />
+    <Content Include="Fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Pictures\Product\Icon\0f16c685-5b82-46c9-b696-a84488287a6e.jpg" />
+    <Content Include="Pictures\Product\Icon\259ef6e7-67f9-4b8b-abaa-2026aacfcdce.jpg" />
+    <Content Include="Pictures\Product\Icon\414266a0-2eab-4287-904a-2a6137035c75.jpg" />
+    <Content Include="Pictures\Product\Icon\cb57f61e-cc11-4d68-8ee7-1c525c5bac11.jpg" />
+    <Content Include="Pictures\Product\Icon\f6c65c95-7760-4a80-a6fd-2c0ab992e327.jpg" />
+    <Content Include="Scripts\components\toastr.js" />
+    <Content Include="Scripts\components\toastr.min.js" />
+    <Content Include="Scripts\countdown.js" />
+    <Content Include="Scripts\customScripts.js" />
+    <Content Include="Content\farsiFonts\Yekan.eot" />
+    <Content Include="Content\farsiFonts\Yekan.ttf" />
+    <Content Include="Content\farsiFonts\Yekan.woff" />
+    <Content Include="Content\farsiFonts\YekanNo.eot" />
+    <Content Include="Content\farsiFonts\YekanNo.ttf" />
+    <Content Include="Content\farsiFonts\YekanNo.woff" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\old\alertify.js" />
+    <Content Include="Scripts\old\bootstrap-datepicker.fa.min.js" />
+    <Content Include="Scripts\old\bootstrap-datepicker.min.js" />
+    <Content Include="Scripts\old\bootstrap-select.min.js" />
+    <Content Include="Scripts\old\bootstrap-tokenizer.js" />
+    <Content Include="Scripts\old\bootstrap.js" />
+    <Content Include="Scripts\old\jquery.blueimp-gallery_min.js" />
+    <Content Include="Scripts\old\jquery.mCustomScrollbar.js" />
+    <Content Include="Scripts\old\jquery.min.js" />
+    <Content Include="Scripts\old\jquery.mobile.custom.min.js" />
+    <Content Include="Scripts\old\jquery.mousewheel-3.0.6.js" />
+    <Content Include="Scripts\old\jquery.nivo.slider.js" />
+    <Content Include="Scripts\old\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\old\jquery.validate.js" />
+    <Content Include="Scripts\old\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\old\metisMenu.min.js" />
+    <Content Include="Scripts\old\moment-jalaali.js" />
+    <Content Include="Scripts\old\moment-with-locales.js" />
+    <Content Include="Scripts\old\moment-with-locales.min.js" />
+    <Content Include="Scripts\old\moment.js" />
+    <Content Include="Scripts\old\moment.min.js" />
+    <Content Include="Scripts\old\morris-data.js" />
+    <Content Include="Scripts\old\morris.min.js" />
+    <Content Include="Scripts\old\owl.carousel.min.js" />
+    <Content Include="Scripts\old\raphael-min.js" />
+    <Content Include="Scripts\old\sb-admin-2.js" />
+    <Content Include="Scripts\old\select2.js" />
+    <Content Include="Scripts\old\select2_locale_fa.js" />
+    <Content Include="Scripts\respond.js" />
+    <None Include="Service References\FanavaPaymentService\configuration91.svcinfo" />
+    <None Include="Service References\FanavaPaymentService\configuration.svcinfo" />
+    <None Include="Service References\FanavaPaymentService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="Views\Account\ChangePassword.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Account\LoadUserAccount.cshtml" />
+    <Content Include="Views\Account\PartialRegister.cshtml" />
+    <Content Include="Views\Account\PartialSignIn.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\SignIn.cshtml" />
+    <Content Include="Views\Account\UpdateProfile.cshtml" />
+    <Content Include="Views\Banner\Fixed.cshtml" />
+    <Content Include="Views\Banner\Sliders.cshtml" />
+    <Content Include="Views\Basket\List.cshtml" />
+    <Content Include="Views\Basket\ShowBasket.cshtml" />
+    <Content Include="Views\Error\Code401.cshtml" />
+    <Content Include="Views\Error\Code402.cshtml" />
+    <Content Include="Views\Error\Code403.cshtml" />
+    <Content Include="Views\Error\Code404.cshtml" />
+    <Content Include="Views\Error\Code500.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Guide.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Information.cshtml" />
+    <Content Include="Views\Home\Rule.cshtml" />
+    <Content Include="Views\Home\SocialMedia.cshtml" />
+    <Content Include="Views\Notification\Messages.cshtml" />
+    <Content Include="Views\Notification\Newsletter.cshtml" />
+    <Content Include="Views\Notification\Notifications.cshtml" />
+    <Content Include="Views\Order\Pursuit.cshtml" />
+    <Content Include="Views\Product\BestSelling.cshtml" />
+    <Content Include="Views\Product\BestSellings.cshtml" />
+    <Content Include="Views\Product\Brand.cshtml" />
+    <Content Include="Views\Product\Categories.cshtml" />
+    <Content Include="Views\Product\Category.cshtml" />
+    <Content Include="Views\Product\CreateComment.cshtml" />
+    <Content Include="Views\Product\Detail.cshtml" />
+    <Content Include="Views\Product\Discounted.cshtml" />
+    <Content Include="Views\Product\Discounteds.cshtml" />
+    <Content Include="Views\Product\EditComment.cshtml" />
+    <Content Include="Views\Product\Latest.cshtml" />
+    <Content Include="Views\Product\MostVisited.cshtml" />
+    <Content Include="Views\Product\Popular.cshtml" />
+    <Content Include="Views\Product\Populars.cshtml" />
+    <Content Include="Views\Product\Products.cshtml" />
+    <Content Include="Views\Product\RateProduct.cshtml" />
+    <Content Include="Views\Product\Search.cshtml" />
+    <Content Include="Views\Product\SearchForm.cshtml" />
+    <Content Include="Views\Product\Similar.cshtml" />
+    <Content Include="Views\Product\SpecialState.cshtml" />
+    <Content Include="Views\Shared\Partials\Component.cshtml" />
+    <Content Include="Views\Shared\Partials\Footer.cshtml" />
+    <Content Include="Views\Shared\Partials\Header.cshtml" />
+    <Content Include="Views\Shared\Partials\Home.cshtml" />
+    <Content Include="Views\Shared\Partials\LoadUser.cshtml" />
+    <Content Include="Views\Shared\Partials\Login.cshtml" />
+    <Content Include="Views\Shared\Partials\Menu.cshtml" />
+    <Content Include="Views\Shared\Partials\Metadata.cshtml" />
+    <Content Include="Views\Shared\Partials\Scripts.cshtml" />
+    <Content Include="Views\Shared\Partials\SlideShow.cshtml" />
+    <Content Include="Views\Shared\_Account.cshtml" />
+    <Content Include="Views\Shared\_ErrorPageLayout.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Store\About.cshtml" />
+    <Content Include="Views\Store\BestSelling.cshtml" />
+    <Content Include="Views\Store\BestSellings.cshtml" />
+    <Content Include="Views\Store\CreateComment.cshtml" />
+    <Content Include="Views\Store\Detail.cshtml" />
+    <Content Include="Views\Store\Discounted.cshtml" />
+    <Content Include="Views\Store\Guide.cshtml" />
+    <Content Include="Views\Store\List.cshtml" />
+    <Content Include="Views\Store\Information.cshtml" />
+    <Content Include="Views\Store\ReplyToComment.cshtml" />
+    <Content Include="Views\Store\Rule.cshtml" />
+    <Content Include="Views\Store\SocialMedia.cshtml" />
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Shared\Partials\Tabs.cshtml" />
+    <None Include="Service References\FanavaPaymentService\merchantAuth.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\FanavaPaymentService\PaymentWebServiceService.wsdl" />
+    <Content Include="Views\Order\Invoice.cshtml" />
+    <Content Include="Views\Blog\Index.cshtml" />
+    <Content Include="Views\Blog\Post.cshtml" />
+    <Content Include="Views\Blog\Tag.cshtml" />
+    <Content Include="Views\Blog\Category.cshtml" />
+    <Content Include="Views\Blog\Tags.cshtml" />
+    <Content Include="Views\Blog\Categories.cshtml" />
+    <Content Include="Views\Shared\_BlogLayout.cshtml" />
+    <Content Include="Service References\FanavaPaymentService\Seldino.Web.UI.FanavaPaymentService.dataToSignResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\FanavaPaymentService\Seldino.Web.UI.FanavaPaymentService.detailReportResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\FanavaPaymentService\Seldino.Web.UI.FanavaPaymentService.detailReportTransactionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\FanavaPaymentService\Seldino.Web.UI.FanavaPaymentService.generatePurchaseToken2Response.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\FanavaPaymentService\Seldino.Web.UI.FanavaPaymentService.generatePurchaseTokenResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\FanavaPaymentService\Seldino.Web.UI.FanavaPaymentService.generateSignedPurchaseToken2Response.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\FanavaPaymentService\Seldino.Web.UI.FanavaPaymentService.generateSignedPurchaseTokenResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\FanavaPaymentService\Seldino.Web.UI.FanavaPaymentService.getPurchaseParamsToSignResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\FanavaPaymentService\Seldino.Web.UI.FanavaPaymentService.loginResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\FanavaPaymentService\Seldino.Web.UI.FanavaPaymentService.logoutResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\FanavaPaymentService\Seldino.Web.UI.FanavaPaymentService.merchantSettlementRequestResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\FanavaPaymentService\Seldino.Web.UI.FanavaPaymentService.reportResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\FanavaPaymentService\Seldino.Web.UI.FanavaPaymentService.reportTransactionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\FanavaPaymentService\Seldino.Web.UI.FanavaPaymentService.reverseResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\FanavaPaymentService\Seldino.Web.UI.FanavaPaymentService.reverseTransactionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\FanavaPaymentService\Seldino.Web.UI.FanavaPaymentService.secureVerifyResponseResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\FanavaPaymentService\Seldino.Web.UI.FanavaPaymentService.secureVerifyTransactionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\FanavaPaymentService\Seldino.Web.UI.FanavaPaymentService.tokenInfo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\FanavaPaymentService\Seldino.Web.UI.FanavaPaymentService.tokenPurchaseVerificationResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\FanavaPaymentService\Seldino.Web.UI.FanavaPaymentService.tokenPurchaseVerifyTransactionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\FanavaPaymentService\Seldino.Web.UI.FanavaPaymentService.verifyResponseResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\FanavaPaymentService\Seldino.Web.UI.FanavaPaymentService.verifyTransactionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Views\Error\Internal.cshtml" />
+    <Content Include="Views\GiftDesk\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Areas\Management\Views\Blog\" />
+    <Folder Include="Pictures\Banner\Thumb\" />
+    <Folder Include="Pictures\Document\Thumb\" />
+    <Folder Include="Pictures\Membership\Thumb\" />
+    <Folder Include="Pictures\Product\Icon\Thumb\" />
+    <Folder Include="Pictures\Product\Thumb\" />
+    <Folder Include="Pictures\Store\Thumb\" />
+    <Folder Include="Scripts\old\CKEditor\" />
+    <Folder Include="Themes\Gift\" />
+    <Folder Include="Themes\Seldino\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Management\Views\web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Management\Views\_ViewStart.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Management\Views\Shared\_Layout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Management\Views\Payment\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Management\Views\Product\List.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Management\Views\Store\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Management\Views\Shared\Partials\Header.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Management\Views\Product\Create.cshtml" />
+    <Content Include="Areas\Management\Views\Product\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Management\Views\Product\Detail.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Management\Views\Order\Pending.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Management\Views\Order\Detail.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Management\Views\Banner\Create.cshtml" />
+    <Content Include="Areas\Management\Views\Banner\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Management\Views\Banner\List.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Management\Views\Shared\Partials\Sidebar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Management\Views\Document\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Management\Views\Document\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Management\Views\Notification\List.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Management\Views\Notification\Unread.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Management\Views\Notification\UnReplied.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Management\Views\Order\List.cshtml" />
+    <Content Include="Areas\Management\Views\Order\Completed.cshtml" />
+    <Content Include="Areas\Management\Views\Payment\Charge.cshtml" />
+    <Content Include="Areas\Management\Views\Payment\Detail.cshtml" />
+    <Content Include="Areas\Management\Views\Payment\History.cshtml" />
+    <Content Include="Areas\Management\Views\Dashboard\Index.cshtml" />
+    <Content Include="Areas\Management\Views\Store\Edit.cshtml" />
+    <Content Include="Areas\Management\Views\Store\List.cshtml" />
+    <Content Include="Areas\Management\Views\Banner\Active.cshtml" />
+    <Content Include="Areas\Management\Views\Banner\Inactive.cshtml" />
+    <Content Include="Areas\Management\Views\Discount\List.cshtml" />
+    <Content Include="Areas\Management\Views\Discount\Inactive.cshtml" />
+    <Content Include="Areas\Management\Views\Discount\Active.cshtml" />
+    <Content Include="Areas\Management\Views\Discount\Create.cshtml" />
+    <Content Include="Areas\Management\Views\Discount\Edit.cshtml" />
+    <Content Include="Areas\Management\Views\Product\ApplyDiscountForm.cshtml" />
+    <Content Include="Areas\Management\Views\Product\Discounts.cshtml" />
+    <Content Include="Fonts\fontawesome-webfont.eot" />
+    <Content Include="Fonts\fontawesome-webfont.ttf" />
+    <Content Include="Fonts\fontawesome-webfont.woff" />
+    <Content Include="Fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Areas\Management\Views\Document\Index.cshtml" />
+    <Content Include="Fonts\fontawesome-webfont.woff2" />
+    <Content Include="Fonts\FontAwesome.otf" />
+    <None Include="Properties\PublishProfiles\Kadobin.pubxml" />
+    <Content Include="Views\Product\Tag.cshtml" />
+    <Content Include="Views\Basket\Card.cshtml" />
+    <Content Include="Views\Product\MostVisiteds.cshtml" />
+    <Content Include="Views\Shared\_CardLayout.cshtml" />
+    <Content Include="Views\Product\MostVisiteds.cshtml" />
+    <Content Include="Views\Product\Tags.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Seldino.Application.Command\Seldino.Application.Command.csproj">
+      <Project>{33BDB171-B4E6-4B59-9D15-9E5D0C5CB5E6}</Project>
+      <Name>Seldino.Application.Command</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Seldino.Application.Query\Seldino.Application.Query.csproj">
+      <Project>{4E731CB8-2A2C-4C66-82C7-F535D784E351}</Project>
+      <Name>Seldino.Application.Query</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Seldino.CrossCutting.Web\Seldino.CrossCutting.Web.csproj">
+      <Project>{EADFCDED-5110-4692-8052-6C09C3B1598C}</Project>
+      <Name>Seldino.CrossCutting.Web</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Seldino.CrossCutting\Seldino.CrossCutting.csproj">
+      <Project>{E6160CEB-9431-46E1-8E04-42657AC23A86}</Project>
+      <Name>Seldino.CrossCutting</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\FanavaPaymentService\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>24549</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:64999/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>http://192.168.1.107:64999/</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

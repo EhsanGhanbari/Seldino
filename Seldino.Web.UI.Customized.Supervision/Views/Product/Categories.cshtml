@@ -1,0 +1,147 @@
+﻿@using Seldino.CrossCutting.Web.Helpers
+@using Seldino.CrossCutting.Web.ViewMessages
+@model Seldino.Application.Query.ProductService.ProductCategoriesQueryResponse
+@{
+    ViewBag.Title = "List";
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <h4 class="page-header">@ProductViewMessage.ProductTag</h4>
+        <table id="productList" class="table">
+            <thead>
+                <tr>
+                    <th><input type="checkbox" class="datapropfull" /></th>
+                    <th>@ProductViewMessage.ProductTag</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    if (Model != null)
+                    {
+                        foreach (var item in Model.Categories)
+                        {
+                            <tr>
+                                <td>@item.Name</td>
+                                <td>
+                                @Html.ActionLink(ProductViewMessage.Products, "Category", "Product", new
+                                {
+                                    category = item.Name,
+                                    pageIndex = 1
+                                }, null)
+                                <td>
+                            </tr>
+                        }
+                    }
+                }
+            
+            </tbody>
+        </table>
+        <div class="row">
+
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+        function generateGUID() {
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+                var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            });
+        }
+        function unMarkList() {
+            $.each($(".fa-check-square-o"), function (i, element) {
+                $(this).removeClass("fa-check-square-o").addClass("fa-square-o");
+            });
+            $.each($(".prop input[type=hidden]"), function (i, index) {
+                $("#" + $(this).val()).remove();
+            })
+            $(".prop").remove();
+        }
+        function ajaxLoading() {
+            $("#loading").show();
+        }
+        function remopveAjaxLoading() {
+            $("#loading").hide();
+        }
+        var guid = generateGUID();
+        $(function () {
+            $(".dataprop, .datapropfull").attr("checked", false);
+            var SelectedCount = 0
+            $("body").on("click", ".dataprop", function () {
+                if ($(this).is(':checked')) {
+                    $(this).parents("tr").addClass("rowchecked");
+                    SelectedCount++;
+                }
+                else {
+                    $(".datapropfull").prop('checked', false);
+                    $(this).parents("tr").removeClass("rowchecked");
+                    SelectedCount--;
+                }
+                if (SelectedCount == 0) {
+                    $("#_delPrdS").remove();
+                }
+                else {
+                    if ($("#_delPrdS").html() === undefined) {
+                        $(".progroup").append('<button id="_delPrdS" onclick="DeleteSelectedProduct()" class="btn btn-default btn-sm" title="@CommonViewMessage.Delete" ><i class="icon-trash"></i></button>')
+                    }
+
+                }
+            });
+
+            $("body").on("click", ".datapropfull", function () {
+                if ($(this).is(':checked')) {
+                    $.each($(".dataprop"), function (index, element) {
+                        $(this).prop('checked', true);
+                        $(this).parents("tr").addClass("rowchecked");
+                    });
+                    if ($("#_delPrdS").html() === undefined) {
+                        $(".progroup").append('<button id="_delPrdS" onclick="DeleteSelectedProduct()" class="btn btn-default btn-sm" title="@CommonViewMessage.Delete" ><i class="icon-trash"></i></button>')
+                    }
+                }
+                else {
+                    $("#_delPrdS").remove();
+                    $.each($(".dataprop"), function (index, element) {
+                        $(this).prop('checked', false);
+                        $(this).parents("tr").removeClass("rowchecked");
+                    });
+                }
+            });
+        });
+
+        function DeleteSelectedProduct() {
+            alertify.confirm('@ProductViewMessage.ProductDeleteConfirm', function () {
+                ajaxLoading();
+                var deletedList = [];
+                $.each($(".dataprop"), function (i, element) {
+                    if ($(this).is(':checked')) {
+                        deletedList.push($(this).val());
+                    }
+                });
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("Delete", "Product")',
+                    data: $.param({ productIds: deletedList }, true),
+                    success: function (data) {
+                        alertify.success(data.Message);
+                        $("tr.rowchecked").remove();
+                        $("#_delPrdS").remove();
+                        remopveAjaxLoading();
+                    },
+                    datatype: "json",
+                    traditional: true,
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        alertify.error(xhr.status);
+                        alertify.error(thrownError);
+                        remopveAjaxLoading();
+                    }
+                });
+            });
+        }
+    </script>
+}
+
+

@@ -1,0 +1,167 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    @System.Web.Optimization.Styles.Render("~/Content/Default")
+    @System.Web.Optimization.Styles.Render("~/Content/css")
+    <link href="~/Content/font-awesome.css" rel="stylesheet" />
+    <link href="~/Content/Fonts/yekan/yekan.css" rel="stylesheet" />
+    <link href="~/Content/admin/sb-admin-2.css" rel="stylesheet" />
+    @System.Web.Optimization.Scripts.Render("~/bundles/jquery")
+    @System.Web.Optimization.Scripts.Render("~/bundles/scripts")
+</head>
+<body>
+    <div class="header">
+        <div class="row">
+            <div class="col-lg-3"></div>
+            <div class="col-lg-6">
+                <h3>مدیریت</h3>
+            </div>
+            <div class="col-lg-3">
+                <div class="logo">
+                    <img src="~/Content/Images/logo.png" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="content">
+        @RenderBody()
+    </div>
+
+    <div class="side-nav">
+        <div class="profile">
+            <img src="~/Content/Images/images.png"/>
+
+            <ul class="list-inline">
+                <li>
+                    <a href="@Url.Action("SignOut","Account", new {area=""})" class="btn btn-lg btn-warning">
+                        <i class="fa fa-power-off"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("UpdateProfile","Account", new {area=""})" class="btn btn-lg btn-warning">
+                        <i class="fa fa-gear"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="menu">
+            <ul class="list-unstyled">
+                <li data-tooltip="داشبورد">
+                    <a href="@Url.Action("Index","Dashboard", new {area="Management"})" class="btn btn-lg btn-primary">
+                        <i class="fa fa-home"></i>
+                    </a>
+                </li>
+                <li data-tooltip="مدیریت محصولات">
+                    <a  class="btn btn-lg btn-primary">
+                        <i class="fa fa-clone"></i>
+                    </a>
+                    <ul class="list-unstyled">
+                        <li data-tooltip="مدیریت محصولات / لیست محصولات">
+                            <a href="@Url.Action("List","Product", new {area="Management"})" class="btn btn-lg btn-default">
+                                <i class="fa fa-list"></i>
+                            </a>
+                        </li>
+                        <li data-tooltip="مدیریت محصولات / درج محصول جدید">
+                            <a href="@Url.Action("Create","Product", new {area="Management"})" class="btn btn-lg btn-default">
+                                <i class="fa fa-plus"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </li> 
+                <li data-tooltip="مدیریت تخفیفات">
+                    <a  class="btn btn-lg btn-primary">
+                        <i class="fa fa-tasks"></i>
+                    </a>
+                    <ul class="list-unstyled">
+                        <li data-tooltip="مدیریت تخفیفات / لیست تخفیفات">
+                            <a href="@Url.Action("List","Discount", new {area="Management"})" class="btn btn-lg btn-default">
+                                <i class="fa fa-list"></i>
+                            </a>
+                        </li>
+                        <li data-tooltip="مدیریت تخفیفات / درج تخفیف جدید ">
+                            <a href="@Url.Action("Create", "Discount", new {area = "Management"})" class="btn btn-lg btn-default">
+                                <i class="fa fa-plus"></i>
+                            </a>
+                        </li>
+                        <li data-tooltip="مدیریت تخفیفات / لیست تخفیفات فعال">
+                            <a href="@Url.Action("Active", "Discount", new {area = "Management"})" class="btn btn-lg btn-default">
+                                <i class="fa fa-bookmark"></i>
+                            </a>
+                        </li>
+                        <li data-tooltip="مدیریت تخفیفات / لیست تخفیفات غیر فعال">
+                            <a href="@Url.Action("Inactive","Discount", new {area="Management"})" class="btn btn-lg btn-default">
+                                <i class="fa fa-bookmark-o"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </li> 
+                <li data-tooltip="مدیریت بنرها">
+                    <a  class="btn btn-lg btn-primary">
+                        <i class="fa fa-object-ungroup"></i>
+                    </a>
+                    <ul class="list-unstyled">
+                        <li data-tooltip="مدیریت بنرها / لیست بنرها">
+                            <a href="@Url.Action("List","Banner", new {area="Management"})" class="btn btn-lg btn-default">
+                                <i class="fa fa-list"></i>
+                            </a>
+                        </li>
+                        <li data-tooltip="مدیریت بنرها / درج بنر جدید">
+                            <a href="@Url.Action("Create", "Banner", new {area = "Management"})" class="btn btn-lg btn-default">
+                                <i class="fa fa-plus"></i>
+                            </a>
+                        </li>
+                        <li data-tooltip="مدیریت بنرها / لیست بنرهای فعال">
+                            <a href="@Url.Action("Active", "Banner", new {area = "Management"})" class="btn btn-lg btn-default">
+                                <i class="fa fa-bookmark"></i>
+                            </a>
+                        </li>
+                        <li data-tooltip="مدیریت بنرها / لیست بنرهای غیر فعال">
+                            <a href="@Url.Action("Inactive", "Banner", new {area = "Management"})" class="btn btn-lg btn-default">
+                                <i class="fa fa-bookmark-o"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li  data-tooltip="مدیریت فروشگاه ها">
+                    <a  class="btn btn-lg btn-primary">
+                        <i class="fa fa-bank"></i>
+                    </a>
+                    <ul class="list-unstyled">
+                        <li  data-tooltip="مدیریت فروشگاه ها / لیست فروشگاه ها">
+                            <a href="@Url.Action("List","Store", new {area="Management"})" class="btn btn-lg btn-default">
+                                <i class="fa fa-list"></i>
+                            </a>
+                        </li>
+                        <li  data-tooltip="مدیریت فروشگاه ها / درج فروشگاه جدید">
+                            <a href="@Url.Action("Create", "Store", new {area = "Management"})" class="btn btn-lg btn-default">
+                                <i class="fa fa-plus"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="tooltip-handler"></div>
+
+@Html.Partial("~/Views/Shared/Partials/Component.cshtml")
+    @RenderSection("scripts", false)
+    <script>
+        $(function () {
+            $("[data-tooltip]").mouseenter(function() {
+                var tooltip = $(this).data("tooltip");
+                $(".tooltip-handler").fadeIn(500);
+                $(".tooltip-handler").html(tooltip);
+            }).mouseleave(function() {
+                $(".tooltip-handler").fadeOut(300);
+            });
+        })
+    </script>
+
+</body>
+</html>

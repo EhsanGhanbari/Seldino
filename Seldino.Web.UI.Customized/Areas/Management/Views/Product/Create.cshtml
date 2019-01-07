@@ -1,0 +1,354 @@
+﻿@using Seldino.CrossCutting.Web.Extensions
+@using Seldino.CrossCutting.Web.ViewMessages
+@model Seldino.Application.Command.ProductHandler.CreateProductCommand
+
+@{
+    ViewBag.Title = ProductViewMessage.CreateProductPageTitle;
+    var stores = (Seldino.CrossCutting.Paging.PagingQueryResponse<Seldino.Application.Query.StoreService.StoreDto>)ViewBag.Stores;
+}
+
+@System.Web.Optimization.Styles.Render("~/Content/SelectList")
+<div class="panel panel-default">
+    <div class="panel-heading">@ProductViewMessage.CreateProductPageTitle</div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-lg-12">
+                @using (Html.BeginForm("Create", "Product", FormMethod.Post, new {enctype = "multipart/form-data", @class = "form-horizontal"}))
+                {
+                    <div class="form-group">
+                        @Html.Label(StoreViewMessage.Store, new {@class = "col-sm-2 control-label"})
+                        <div class="col-sm-5">
+                            @if (stores.Result != null && stores.TotalCount != 0)
+                            {
+                                @Html.DropDownListFor(x => x.StoreCommands[0].StoreId, stores.Result.Select(m => new SelectListItem {Text = m.Name, Value = m.StoreId.ToString()}), "فروشگاه را انتخاب نمایید", new Dictionary<string, Object> {{"class", "form-control"}})
+                            }
+                        </div>
+                        @Html.ValidationMessageFor(c => c.StoreCommands[0].StoreId)
+                    </div>
+                    <div class="form-group">
+                        @Html.Label(ProductViewMessage.OriginalName, new {@class = "col-sm-2 control-label"})
+                        <div class="col-sm-6">
+                            @Html.TextBoxFor(p => p.OriginalName, new {@class = "form-control", placeholder = ProductViewMessage.OriginalName})
+                        </div>
+                        @Html.ValidationMessageFor(c => c.OriginalName)
+                    </div>
+                    <div class="form-group">
+                        @Html.Label(ProductViewMessage.ProductName, new {@class = "col-sm-2 control-label"})
+                        <div class="col-sm-6">
+                            @Html.TextBoxFor(p => p.Name, new {@class = "form-control", placeholder = ProductViewMessage.ProductName})
+                        </div>
+                        @Html.ValidationMessageFor(c => c.Name)
+                    </div>
+                    <div class="form-group">
+                        @Html.Label(ProductViewMessage.ProductPrice, new {@class = "col-sm-2 control-label"})
+                        <div class="col-sm-6">
+                            @Html.TextBoxFor(p => p.Price, new Dictionary<string, Object> {{"class", "form-control"}, {"placeholder", ProductViewMessage.ProductPrice}, {"data-isnumber", "isnumber"}})
+                        </div>
+                        @Html.ValidationMessageFor(c => c.Price)
+                    </div>
+                    <div class="form-group">
+                        @Html.Label(ProductViewMessage.ProductOldPrice, new {@class = "col-sm-2 control-label"})
+                        <div class="col-sm-6">
+                            @Html.TextBoxFor(p => p.OldPrice, new Dictionary<string, Object> {{"class", "form-control"}, {"placeholder", ProductViewMessage.ProductOldPrice}, {"data-isnumber", "isnumber"}})
+                        </div>
+                        @Html.ValidationMessageFor(c => c.OldPrice)
+                    </div>
+                    <div class="form-group">
+                        @Html.Label(ProductViewMessage.ProductCategory, new {@class = "col-sm-2 control-label"})
+                        <div class="col-sm-5">
+                            @Html.DropDownListFor(x => x.ProductCategory.Name, ((List<Seldino.Application.Query.ProductService.ProductCategoryDto>) ViewBag.ProductCategories).Select(m => new SelectListItem {Text = m.Name, Value = m.Name}), "گروه را انتخاب نمایید", new Dictionary<string, Object> {{"class", "form-control"}})
+                        </div>
+                        @Html.ValidationMessageFor(c => c.ProductCategory.Name)
+                    </div>
+                    <div class="relcat">
+                    </div>
+                    <div class="form-group">
+                        @Html.Label(ProductViewMessage.ProductBrand, new {@class = "col-sm-2 control-label"})
+                        <div class="col-sm-7">
+                            <select id="ProductBrand_Name" name="ProductBrand.Name" class="form-control" multiple></select>
+                        </div>
+                        @Html.ValidationMessageFor(c => c.ProductBrand.Name)
+                    </div>
+                    <div class="form-group">
+                        @Html.Label(ProductViewMessage.ProductTag, new {@class = "col-sm-2 control-label"})
+                        <div class="col-sm-7">
+                            @Html.DropDownListFor(p => p.ProductTags[0].Name, Model.ProductTags.ToSelectListItems(x => x.Name, x => x.Name, x => x.Name == Model.Name), new Dictionary<string, Object> {{"class", "form-control"}, {"multiple", "multiple"}})
+                        </div>
+                        @Html.ValidationMessageFor(c => c.ProductTags[0].Name)
+                    </div>
+                    <div class="form-group">
+                        @Html.Label(ProductViewMessage.ProductDescription, new {@class = "col-sm-2 control-label"})
+                        <div class="col-sm-8">
+                            @Html.TextAreaFor(p => p.Description, new {@class = "form-control", placeholder = ProductViewMessage.ProductDescription})
+                            @Html.ValidationMessageFor(c => c.Description, "", new {customerror = "true"})
+                        </div>
+                    </div>
+                    <div class="row">
+                        @Html.Label(ProductViewMessage.ProductPicture, new {@class = "col-sm-2 control-label"})
+                        <div class="clearfix">
+                            @for (int i = 0; i < 5; i++)
+                            {
+                                string imgId = Guid.NewGuid().ToString("N");
+                                <div class="pull-right prmarg">
+                                    <input type="file" name="HttpPostedFileBases" style="display: none" data-target="@imgId"/>
+                                    <div class="unknowimg img-thumbnail filerep primg icon-plus" id="@imgId" data-file="@imgId"></div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <hr/>
+                    <div class="btn-group">
+                        <button class="btn btn-sm btn-success" type="submit">@CommonViewMessage.Create</button>
+                    </div>
+                    <hr class="transparent"/>
+                    @Html.ValidationSummary(true)
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@System.Web.Optimization.Scripts.Render("~/bundles/jqueryval")
+@System.Web.Optimization.Scripts.Render("~/bundles/SelectList")
+
+<script type="text/javascript">
+    $("#ProductCategory_Name").select2({
+        language: "@CommonViewMessage.SelectFarsi",
+        dir: "rtl"
+    }).on("change", function (e) {
+        $('#ProductBrand_Name').select2("val", "");
+        $('#ProductTags_0__Name').select2("val", "");
+        $.ajax({
+            url: "@Url.Action("Attribute", "Product", new { area = "Management" })",
+            data: { category: $("#ProductCategory_Name").val() },
+            success: function(data) {
+                if (data != "") {
+                    $.each(data.Attributes, function(i, element) {
+                        var options = "";
+                        $.each(element.AttributeOptions, function(j, e) {
+                            options += "<option value='" + e.Name + "'>" + e.Name + "</option>";
+                        });
+                        $(".relcat").html($("<div class='form-group'></div>")
+                            .append($("<label></label>").addClass("col-sm-2").addClass("control-label").attr("for", "").text(element.Name))
+                            .append($("<div></div>")
+                                .addClass("col-sm-5")
+                                .append($("<select></select>").addClass("ProductAttribute").attr("name", "ProductAttributes[0].AttributeOptionCommands[0].Name").append(options))
+                                .append($("<input type='hidden' />").attr("name", "ProductAttributes[0].AttributeId").val(element.AttributeId))
+                                .append($("<input type='hidden' />").attr("name", "ProductAttributes[0].AttributeOptionCommands[0].IsSelected").val(true))));
+                    });
+                    $(".relcat").show();
+                    $(".ProductAttribute").select2({
+                        language: "@CommonViewMessage.SelectFarsi",
+                        dir: "rtl"
+                    });
+                } else {
+                    $(".relcat").html("").hide();
+                }
+            }
+        });
+    });
+    $(".ProductAttribute").select2({
+        language: "@CommonViewMessage.SelectFarsi",
+        dir: "rtl"
+    });
+    $("#Gender").select2({
+        language: "@CommonViewMessage.SelectFarsi",
+        dir: "rtl"
+    });
+    $("#ProductBrand_Name").select2({
+        language: "@CommonViewMessage.SelectFarsi",
+        tags: true,
+        dir: "rtl",
+        //minimumInputLength: 1,
+        maximumSelectionLength: 1,
+        val: 1,
+        ajax: {
+            url: "@Url.Action("Brands", "Product")",
+            dataType: 'json',
+            data: function(params) {
+                return {
+                    keyword: params.term,
+                    category: $("#ProductCategory_Name").val()
+                };
+            },
+            processResults: function(data, params) {
+                return {
+                    results: $.map(data, function(item) {
+                        return {
+                            id: item.Name,
+                            text: item.Name,
+                            IsNew: (item.Name == params.term) ? true : false
+                        };
+                    })
+                };
+            }
+        },
+
+        templateSelection: function(data) {
+            var result = $("<span></span>")
+                .text(data.text)
+                .append($("<input />").attr("type", "hidden").attr("name", "ProductBrand.Name").val(data.text))
+                .append($("<input />").attr("type", "hidden").attr("name", "ProductBrand.IsNew").val((data.IsNew == null) ? true : false));
+            return result;
+        },
+        templateResult: function(data) {
+            if (data.text.length > 1) {
+                return data.text;
+            }
+        }
+
+    }).on("select2:unselect", function (e) {
+        ReOrderTags();
+    }).on("select2:select", function (e) {
+        ReOrderTags();
+        $(".tooltip ").remove();
+    });
+
+    $("#ProductTags_0__Name").select2({
+        language: "@CommonViewMessage.SelectFarsi",
+        tags: true,
+        dir: "rtl",
+        //minimumInputLength: 1,
+        maximumSelectionLength: 5,
+        val: 5,
+        ajax: {
+            url: "@Url.Action("Tags", "Product")",
+            dataType: 'json',
+            data: function (params) {
+                return {
+                    keyword: params.term,
+                    category: $("#ProductCategory_Name").val()
+                };
+            },
+            processResults: function (data, params) {
+                return {
+                    results: $.map(data, function (item) {
+                        return {
+                            id: item.Name,
+                            text: item.Name,
+                            IsNew: (item.Name == params.term) ? true : false
+                        };
+                    })
+                };
+            }
+        },
+        templateSelection: function (data) {
+            var result = $("<span></span>")
+                          .text(data.text)
+                          .append($("<input />").attr("type", "hidden").attr("name", "ProductTags[" + data.index + "].Name").val(data.text))
+                          .append($("<input />").attr("type", "hidden").attr("name", "ProductTags[" + data.index + "].IsNew").val((data.IsNew == null) ? true : false));
+            return result;
+        },
+        templateResult: function (data) {
+            if (data.text.length > 1) {
+                return data.text;
+            }
+        }
+
+    }).on("select2:unselect", function (e) {
+        ReOrderTags();
+    })
+    .on("select2:select", function (e) {
+        ReOrderTags();
+        $(".tooltip ").remove();
+    });
+
+    function ChangeIndex(index, element) {
+        var result = element.split('[')[0] + "[" + index + "]" + element.split(']')[1];
+        return result;
+    }
+
+    $(function() {
+        $("body").on("focus", ".select2 [type=search]", function() {
+            $(this).tooltip({
+                title: "@ProductViewMessage.ChooseTagValidation",
+                placement: "top",
+                trigger: "focus"
+            });
+        })
+        $("#Price").val("");
+        $("#ProductCategory_Name").select2('val', '');
+        $("body").on("submit", "form", function(e) {
+            var has_selected_file = $('input[type=file]').filter(function() {
+                return $.trim(this.value) != ''
+            }).length > 0;
+            if (!has_selected_file) {
+                e.preventDefault();
+                alertify.alert("@ProductViewMessage.ProductPictureValidate")
+            } else {
+                e.preventDefault();
+                e.stopImmediatePropagation();
+                document.getElementById("loading").style.display = "block";
+                var form = e.target;
+                if (form.getAttribute("enctype") === "multipart/form-data") {
+                    var xmlhttp = new XMLHttpRequest();
+                    xmlhttp.open(form.method, form.action);
+                    xmlhttp.onreadystatechange = function() {
+                        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                            if (form.dataset.ajaxUpdate) {
+                                var updateTarget = document.querySelector(form.dataset.ajaxUpdate);
+                                if (updateTarget) {
+                                    updateTarget.innerHTML = xmlhttp.responseText;
+                                }
+                            }
+                        }
+                    };
+                    xmlhttp.send(new FormData(form));
+                    xmlhttp.onreadystatechange = function() {
+                        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                            document.getElementById("loading").style.display = "none";
+                            var result = JSON.parse(xmlhttp.responseText);
+                            if (result.Success) {
+                                alertify.success(result.Message);
+                                var setTimeOut = setTimeout(function() {
+                                    window.location.href = "@Url.Action("List", "Product", new { area = "Management" })";
+                                }, 2000);
+                            } else {
+                                alertify.error(result.Message);
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    });
+
+    $(function () {
+        $("#ProductBrand_Name, #ProductTags_0__Name").removeAttr("name");
+        $("body").on("click", "div.filerep", function (e) {
+            $("input[data-target=" + $(this).attr('data-file') + "]").click();
+        });
+        $('input[type=file]').on('change', prepareUpload);
+    });
+    function prepareUpload(event) {
+        if (this.files[0].type == "image/jpeg" || this.files[0].type == "image/png") {
+            if (this.files[0].size <= 524288) {
+                var target = $("#" + $(this).attr("data-target"));
+                var dataTarget = $(this).attr("data-target");
+                target.removeClass("icon-plus");
+                target.css("background-image", "url(" + URL.createObjectURL(event.target.files[0]) + ")").append($("<i></i>").addClass("imgremove").addClass("btn").addClass("btn-danger").addClass("fa").addClass("icon-remove").on("click", function () { target.html("").removeAttr("style"); target.addClass("icon-plus"); $("[data-target=" + dataTarget + "]").val(""); }));
+            }
+            else {
+                alertify.alert("@ProductViewMessage.ImageSizeValidation")
+                $('#Image').val("");
+            }
+        }
+        else {
+            alertify.alert("@ProductViewMessage.ImageTypeValidation")
+            $('#Image').val("");
+        }
+    }
+    function ReOrderTags() {
+        $.each($("[name ^='ProductTags'][Name $='Name']"), function(i, element) {
+            $(element).attr("name", ChangeIndex(i, $(element).attr("name")));
+        });
+        $.each($("[name ^='ProductTags'][Name $='IsNew']"), function(i, element) {
+            $(element).attr("name", ChangeIndex(i, $(element).attr("name")));
+        });
+    }
+</script>
+<style>
+    .relcat {
+        display: none;
+    }
+</style>

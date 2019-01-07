@@ -1,0 +1,93 @@
+﻿.navbar {
+    margin-bottom: 0;
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: #000;
+    -webkit-transition: color 0.3s ease;
+    -moz-transition: color 0.3s ease;
+    -ms-transition: color 0.3s ease;
+    -o-transition: color 0.3s ease;
+    transition: color 0.3s ease;
+}
+
+.navbar-default .navbar-nav > li > a:hover {
+        color: #00bcd4;
+    }
+
+.navbar.navbar-default {
+    background: #fff;
+    padding: 20px 0;
+    border: none;
+}
+
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+    border: none;
+}
+
+.navbar .navbar-header {
+    float: left;
+}
+
+.navbar .navbar-brand {
+    padding: 0px 15px;
+    margin-top: -10px;
+}
+
+    .navbar .navbar-brand img {
+        width: 180px;
+    }
+
+.navbar .nav.navbar-icons {
+    margin-left: 50px;
+}
+
+.navbar-toggle {
+    color: #888;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+.collapse-navbar-icons {
+    position: fixed;
+    background: #efefef;
+    border-right: solid 1px #00bcd4;
+    padding-right: 10px;
+    left: -300px;
+    top: -7.5px;
+    height: 100%;
+    width: 300px;
+    z-index: 200;
+    transition: all 0.1s ease;
+}
+
+.navbar-collapse.in .collapse-navbar-icons {
+    left: 0;
+}
+
+.logo-xs {
+    width: 150px;
+    position: absolute;
+    top: 8px;
+}
+
+    .logo-xs img {
+        width: 100%;
+    }
+
+.dynamic .navbar {
+    right: 0;
+    width: 100%;
+    transition: right 0.3s ease;
+}
+
+.dynamic.active .navbar {
+    position: fixed;
+    top: 0;
+    right: -280px;
+    margin-bottom: 100px;
+    z-index: 5;
+}
+
+.navbar .side-nav{
+}

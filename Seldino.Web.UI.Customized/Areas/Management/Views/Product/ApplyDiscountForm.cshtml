@@ -1,0 +1,20 @@
+﻿@model Seldino.Application.Command.ProductHandler.ApplyProductDiscountCommand
+
+@using (Ajax.BeginForm("ApplyDiscount", "Product", new { ProductIds = ViewBag.ProductIds }, new AjaxOptions
+{
+    HttpMethod = "Post"
+}, new { @class = "form-horizontal" }))
+{
+    <div class="form-group">
+        <label class="control-label col-sm-3">انتخاب نوع تخفیف</label>
+        <div class="col-sm-4">
+            @Html.Action("Discounts", new { storeId = ViewBag.StoreId })
+        </div>
+    </div>
+    <hr />
+<div class="text-left">
+    <div class="btn-group">
+        <button class="btn btn-default" type="submit">اعمال تخفیف</button>
+    </div>
+</div>
+}
